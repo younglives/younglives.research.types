@@ -32,7 +32,7 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
  </state>
- <state state_id="peer-review" title="Peer Review">
+ <state state_id="peer-review" title="Journal Review">
   <description>Research is being reviewed by a peer review process</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
@@ -44,7 +44,7 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
  </state>
- <state state_id="propsosed" title="Propsosed">
+ <state state_id="propsosed" title="Proposed">
   <description>Research has been proposed and is being considered</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
@@ -59,6 +59,8 @@
  </state>
  <state state_id="unpublished" title="Unpublished">
   <description>Research was declined for publication</description>
+  <exit-transition transition_id="reject"/>
+  <exit-transition transition_id="redraft"/>
  </state>
  <transition transition_id="accept" title="Accept" new_state="draft" trigger="USER">
   <description>Research was accepted and starts the draft process</description>
@@ -72,9 +74,9 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="deline" title="Deline" new_state="planned" trigger="USER">
+ <transition transition_id="deline" title="Decline" new_state="planned" trigger="USER">
   <description>Research was declined for publication</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=deline" category="workflow" icon="">Deline</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=deline" category="workflow" icon="">Decline</action>
   <guard>
   </guard>
  </transition>
@@ -90,9 +92,9 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="peer-review" title="Peer Review" new_state="peer-review" trigger="USER">
+ <transition transition_id="peer-review" title="Journal Review" new_state="peer-review" trigger="USER">
   <description>Research was submitted for a peer review</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=peer-review" category="workflow" icon="">Peer Review</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=peer-review" category="workflow" icon="">Journal Review</action>
   <guard>
   </guard>
  </transition>
