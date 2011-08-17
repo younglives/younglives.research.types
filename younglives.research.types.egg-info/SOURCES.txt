@@ -1,0 +1,14 @@
+README.txt
+setup.py
+younglives/__init__.py
+younglives.research.types.egg-info/PKG-INFO
+younglives.research.types.egg-info/SOURCES.txt
+younglives.research.types.egg-info/dependency_links.txt
+younglives.research.types.egg-info/entry_points.txt
+younglives.research.types.egg-info/namespace_packages.txt
+younglives.research.types.egg-info/not-zip-safe
+younglives.research.types.egg-info/requires.txt
+younglives.research.types.egg-info/top_level.txt
+younglives/research/__init__.py
+younglives/research/types/__init__.py
+younglives/research/types/tests.py
