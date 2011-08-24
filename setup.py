@@ -1,15 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = open(os.path.join("younglives", "research", "types", "version.txt")).read().strip()
 
 setup(name='younglives.research.types',
       version=version,
       description="",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from
-      # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
@@ -25,7 +23,6 @@ setup(name='younglives.research.types',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
       ],
       extras_require = {
           'test': [
@@ -34,8 +31,7 @@ setup(name='younglives.research.types',
       },
       entry_points="""
       # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      )
+)
