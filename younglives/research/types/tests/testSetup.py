@@ -15,6 +15,11 @@ class TestInstallation(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
 
+    def testTypesInstalled(self):
+        portal_types = getToolByName(self.portal, 'portal_types')
+        assert 'Research' in portal_types.objectIds(), portal_types.objectIds()
+        assert 'ResearchDatabase' in portal_types.objectIds(), portal_types.objectIds()
+
 class TestReinstall(unittest.TestCase):
     """Ensure product can be reinstalled safely"""
     layer = YOUNGLIVES_RESEARCH_TYPES_INTEGRATION_TESTING
