@@ -7,7 +7,7 @@ from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 
 from younglives.research.types.config import PROJECTNAME
-from younglives.research.types.interfaces.course import IResearch
+from younglives.research.types.interfaces.research import IResearch
 
 from schemata import ResearchSchema
 
