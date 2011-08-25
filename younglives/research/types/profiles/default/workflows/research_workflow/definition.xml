@@ -62,79 +62,92 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
  </state>
- <transition transition_id="accept" title="Accept" new_state="draft" trigger="USER">
+ <transition transition_id="accept" title="Accept" new_state="draft" trigger="USER"
+     before_script="" after_script="">
   <description>Research was accepted and starts the draft process</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=accept" category="workflow" icon="">Accept</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="complete" title="Complete" new_state="completed" trigger="USER">
+ <transition transition_id="complete" title="Complete" new_state="completed" trigger="USER"
+     before_script="" after_script="">
   <description>Research was accepted by the review process and is complete ready for production for publication</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=complete" category="workflow" icon="">Complete</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="deline" title="Decline" new_state="planned" trigger="USER">
+ <transition transition_id="deline" title="Decline" new_state="planned" trigger="USER"
+     before_script="" after_script="">
   <description>Research was declined for publication</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=deline" category="workflow" icon="">Decline</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="external-review" title="External Review" new_state="external-review" trigger="USER">
+ <transition transition_id="external-review" title="External Review" new_state="external-review" trigger="USER"
+     before_script="" after_script="">
   <description>Research was submitted for an external review</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=external-review" category="workflow" icon="">External Review</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="internal-review" title="Internal Review" new_state="internal-review" trigger="USER">
+ <transition transition_id="internal-review" title="Internal Review" new_state="internal-review" trigger="USER"
+     before_script="" after_script="">
   <description>Research was submitted for an internal review</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=internal-review" category="workflow" icon="">Internal Review</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="peer-review" title="Journal Review" new_state="peer-review" trigger="USER">
+ <transition transition_id="peer-review" title="Journal Review" new_state="peer-review" trigger="USER"
+     before_script="" after_script="">
   <description>Research was submitted for a peer review</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=peer-review" category="workflow" icon="">Journal Review</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="produce" title="Produce" new_state="in-productsion" trigger="USER">
+ <transition transition_id="produce" title="Produce" new_state="in-productsion" trigger="USER"
+     before_script="" after_script="">
   <description>Research is complete and has gone into production</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=produce" category="workflow" icon="">Produce</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="propose" title="Propose" new_state="propsosed" trigger="USER">
+ <transition transition_id="propose" title="Propose" new_state="propsosed" trigger="USER"
+     before_script="" after_script="">
   <description>Research has been submitted for initial consideration</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=propose" category="workflow" icon="">Propose</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="publish" title="Publish" new_state="published" trigger="USER">
+ <transition transition_id="publish" title="Publish" new_state="published" trigger="USER"
+     before_script="" after_script="">
   <description>Research has been published</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="redraft" title="Redraft" new_state="draft" trigger="USER">
+ <transition transition_id="redraft" title="Redraft" new_state="draft" trigger="USER"
+     before_script="" after_script="">
   <description>Research was reviewed and a redraft has been requested</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=redraft" category="workflow" icon="">Redraft</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="refused" title="Refused" new_state="unpublished" trigger="USER">
+ <transition transition_id="refused" title="Refused" new_state="unpublished" trigger="USER"
+     before_script="" after_script="">
   <description>Research was declined for publication</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=refused" category="workflow" icon="">Refused</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="reject" title="Reject" new_state="rejected" trigger="USER">
+ <transition transition_id="reject" title="Reject" new_state="rejected" trigger="USER"
+     before_script="" after_script="">
   <description>Research was rejected at some point in the process</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=reject" category="workflow" icon="">Reject</action>
   <guard>
   </guard>
  </transition>
- <transition transition_id="retrieve" title="Retrieve" new_state="planned" trigger="USER">
+ <transition transition_id="retrieve" title="Retrieve" new_state="planned" trigger="USER"
+     before_script="" after_script="">
   <description>A previously rejected research proposal was retrieved to be reproposed</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=retrieve" category="workflow" icon="">Retrieve</action>
   <guard>
