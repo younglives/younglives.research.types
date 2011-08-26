@@ -1,202 +1,201 @@
-[Workflow]
-Id:,research_workflow
-Title:,research_workflow
-Description:,"- Essentially a workflow with no transitions, but has a Published state, so portlets and applications that expect that state will continue to work."
-Initial state:,planned
-Type:,Workflow
-State variable:,review_state
-
-[State]
-Id:,completed
-Title:,Completed
-Description:,Final draft of research has been accepted and is now ready for production
-Transitions,"refused, produce"
+[Workflow],,,,,,,
+Id:,research_workflow,,,,,,
+Title:,Research workflow,,,,,,
+Description:,#NAME?,[Not sure if I should change this?],,,,,
+Initial state:,planned,,,,,,
+Type:,Workflow,,,,,,
+State variable:,review_state,,,,,,
+,,,,,,,
+[State],,,,,,,
+Id:,completed,,,,,,
+Title:,Completed,,,,,,
+Description:,Final draft has been accepted and is now ready for production,,,,,,
+Transitions,"refused, produce",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,draft
-Title:,Draft
-Description:,Research is being drafted in preperation for a review
-Transitions,"internal-review, peer-review, external-review"
+,,,,,,,
+[State],,,,,,,
+Id:,draft,,,,,,
+Title:,Draft,,,,,,
+Description:,Paper is being drafted in preparation for review,,,,,,
+Transitions,"internal-review, peer-review, external-review",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,external-review
-Title:,External Review
-Description:,Research is being reviewed by an external body
-Transitions,"complete, reject, redraft"
+,,,,,,,
+[State],,,,,,,
+Id:,external-review,,,,,,
+Title:,External review,,,,,,
+Description:,Paper is being externally reviewed,,,,,,
+Transitions,"complete, reject, redraft",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,in-productsion
-Title:,In Production
-Description:,Research is in production ready to be published somewhere
-Transitions,"refused, publish"
+,,,,,,,
+[State],,,,,,,
+Id:,in-productsion,"[Spelling error, should be: in-production]",,,,,
+Title:,In production,,,,,,
+Description:,Paper is in production or being published externally,,,,,,
+Transitions,"refused, publish",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,internal-review
-Title:,Internal Review
-Description:,Research is being reviewed by an internal group
-Transitions,"complete, reject, redraft"
+,,,,,,,
+[State],,,,,,,
+Id:,internal-review,,,,,,
+Title:,Internal review,,,,,,
+Description:,Paper is being internally reviewed,,,,,,
+Transitions,"complete, reject, redraft",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,peer-review
-Title:,Journal Review
-Description:,Research is being reviewed by a peer review process
-Transitions,"complete, reject, redraft"
+,,,,,,,
+[State],,,,,,,
+Id:,peer-review,,,,,,
+Title:,Journal review,,,,,,
+Description:,Paper is being peer-reviewed by a journal,,,,,,
+Transitions,"complete, reject, redraft",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,planned
-Title:,Planned
-Description:,Research is being prepared for proposal
-Transitions,"propose, reject, accept"
+,,,,,,,
+[State],,,,,,,
+Id:,planned,,,,,,
+Title:,Planned,,,,,,
+Description:,Research idea is being prepared for a proposal,,,,,,
+Transitions,"propose, reject, accept",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,propsosed
-Title:,Proposed
-Description:,Research has been proposed and is being considered
-Transitions,"reject, accept, deline"
+,,,,,,,
+[State],,,,,,,
+Id:,propsosed,,,,,,
+Title:,Proposed,,,,,,
+Description:,Submitted proposal is under consideration,,,,,,
+Transitions,"reject, accept, deline",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,published
-Title:,Published
-Description:,Research has been published
-Transitions,
+,,,,,,,
+[State],,,,,,,
+Id:,published,,,,,,
+Title:,Published,,,,,,
+Description:,Paper has been published,,,,,,
+Transitions,,,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,rejected
-Title:,Rejected
-Description:,Research proposal has been rejected and will not be proceeded
-Transitions,retrieve
+,,,,,,,
+[State],,,,,,,
+Id:,rejected,,,,,,
+Title:,Rejected,,,,,,
+Description:,Proposal has been rejected or withdrawn and will not proceed,,,,,,
+Transitions,retrieve,,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[State]
-Id:,unpublished
-Title:,Unpublished
-Description:,Research was declined for publication
-Transitions,"reject, redraft"
+,,,,,,,
+[State],,,,,,,
+Id:,unpublished,,,,,,
+Title:,Unpublished,,,,,,
+Description:,Paper was declined for publication,,,,,,
+Transitions,"reject, redraft",,,,,,
 Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor
-
-[Transition]
-Id:,accept
-Title:,Accept
-Description:,Accept
-Details:,Research was accepted and starts the draft process
-Target state:,draft
-URL:,%(content_url)s/content_status_modify?workflow_action=accept
-Trigger:,User
-
-[Transition]
-Id:,complete
-Title:,Complete
-Description:,Complete
-Details:,Research was accepted by the review process and is complete ready for production for publication
-Target state:,completed
-URL:,%(content_url)s/content_status_modify?workflow_action=complete
-Trigger:,User
-
-[Transition]
-Id:,deline
-Title:,Decline
-Description:,Decline
-Details:,Research was declined for publication
-Target state:,planned
-URL:,%(content_url)s/content_status_modify?workflow_action=deline
-Trigger:,User
-
-[Transition]
-Id:,external-review
-Title:,External Review
-Description:,External Review
-Details:,Research was submitted for an external review
-Target state:,external-review
-URL:,%(content_url)s/content_status_modify?workflow_action=external-review
-Trigger:,User
-
-[Transition]
-Id:,internal-review
-Title:,Internal Review
-Description:,Internal Review
-Details:,Research was submitted for an internal review
-Target state:,internal-review
-URL:,%(content_url)s/content_status_modify?workflow_action=internal-review
-Trigger:,User
-
-[Transition]
-Id:,peer-review
-Title:,Journal Review
-Description:,Journal Review
-Details:,Research was submitted for a peer review
-Target state:,peer-review
-URL:,%(content_url)s/content_status_modify?workflow_action=peer-review
-Trigger:,User
-
-[Transition]
-Id:,produce
-Title:,Produce
-Description:,Produce
-Details:,Research is complete and has gone into production
-Target state:,in-productsion
-URL:,%(content_url)s/content_status_modify?workflow_action=produce
-Trigger:,User
-
-[Transition]
-Id:,propose
-Title:,Propose
-Description:,Propose
-Details:,Research has been submitted for initial consideration
-Target state:,propsosed
-URL:,%(content_url)s/content_status_modify?workflow_action=propose
-Trigger:,User
-
-[Transition]
-Id:,publish
-Title:,Publish
-Description:,Publish
-Details:,Research has been published
-Target state:,published
-URL:,%(content_url)s/content_status_modify?workflow_action=publish
-Trigger:,User
-
-[Transition]
-Id:,redraft
-Title:,Redraft
-Description:,Redraft
-Details:,Research was reviewed and a redraft has been requested
-Target state:,draft
-URL:,%(content_url)s/content_status_modify?workflow_action=redraft
-Trigger:,User
-
-[Transition]
-Id:,refused
-Title:,Refused
-Description:,Refused
-Details:,Research was declined for publication
-Target state:,unpublished
-URL:,%(content_url)s/content_status_modify?workflow_action=refused
-Trigger:,User
-
-[Transition]
-Id:,reject
-Title:,Reject
-Description:,Reject
-Details:,Research was rejected at some point in the process
-Target state:,rejected
-URL:,%(content_url)s/content_status_modify?workflow_action=reject
-Trigger:,User
-
-[Transition]
-Id:,retrieve
-Title:,Retrieve
-Description:,Retrieve
-Details:,A previously rejected research proposal was retrieved to be reproposed
-Target state:,planned
-URL:,%(content_url)s/content_status_modify?workflow_action=retrieve
-Trigger:,User
-
+,,,,,,,
+[Transition],,,,,,,
+Id:,accept,,,,,,
+Title:,Accepted,,,,,,
+Description:,Accept,,,,,,
+Details:,Proposal was accepted and starts the draft process,,,,,,
+Target state:,draft,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=accept,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,complete,,,,,,
+Title:,Completed,,,,,,
+Description:,Complete,,,,,,
+Details:,Paper was reviewed and accepted and is now ready for production for publication,,,,,,
+Target state:,completed,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=complete,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,deline,,,,,,
+Title:,Declined,,,,,,
+Description:,Decline,,,,,,
+Details:,Paper was declined for publication,,,,,,
+Target state:,planned,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=deline,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,external-review,,,,,,
+Title:,External review,,,,,,
+Description:,External Review,,,,,,
+Details:,Paper submitted undergoing an external review,,,,,,
+Target state:,external-review,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=external-review,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,internal-review,,,,,,
+Title:,Internal review,,,,,,
+Description:,Internal Review,,,,,,
+Details:,Paper submitted undergoing an internal review,,,,,,
+Target state:,internal-review,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=internal-review,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,peer-review,,,,,,
+Title:,Journal review,,,,,,
+Description:,Journal Review,,,,,,
+Details:,Paper submitted to journal undergoing a peer review,,,,,,
+Target state:,peer-review,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=peer-review,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,produce,,,,,,
+Title:,In production,,,,,,
+Description:,Produce,,,,,,
+Details:,Paper is complete and now in production,,,,,,
+Target state:,in-productsion,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=produce,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,propose,,,,,,
+Title:,Proposed,,,,,,
+Description:,Propose,,,,,,
+Details:,Proposal has been submitted for consideration,,,,,,
+Target state:,propsosed,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=propose,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,publish,,,,,,
+Title:,Published,,,,,,
+Description:,Publish,,,,,,
+Details:,Paper has been published,,,,,,
+Target state:,published,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=publish,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,redraft,,,,,,
+Title:,Redraft,,,,,,
+Description:,Redraft,,,,,,
+Details:,Paper was reviewed and a redraft requested,,,,,,
+Target state:,draft,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=redraft,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,refused,,,,,,
+Title:,Refused,,,,,,
+Description:,Refused,,,,,,
+Details:,Paper was declined for publication,,,,,,
+Target state:,unpublished,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=refused,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,reject,,,,,,
+Title:,Rejected,,,,,,
+Description:,Reject,,,,,,
+Details:,Paper was rejected at some point in the process,,,,,,
+Target state:,rejected,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=reject,,,,,,
+Trigger:,User,,,,,,
+,,,,,,,
+[Transition],,,,,,,
+Id:,retrieve,,,,,,
+Title:,Reactivated,,,,,,
+Description:,Retrieve,,,,,,
+Details:,A previously rejected or withdrawn proposal or paper was reactivated,,,,,,
+Target state:,planned,,,,,,
+URL:,%(content_url)s/content_status_modify?workflow_action=retrieve,,,,,,
+Trigger:,User,,,,,,
