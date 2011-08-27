@@ -1,0 +1,7 @@
+from AccessControl.Permissions import manage_zcatalog_entries as ManageZCatalogEntries
+from Products.CMFCore.permissions import AccessContentsInformation
+from Products.CMFCore.permissions import AddPortalContent
+from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.permissions import ModifyPortalContent
+from Products.CMFCore.permissions import ReviewPortalContent
+from Products.CMFCore.permissions import View
