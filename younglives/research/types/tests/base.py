@@ -12,9 +12,12 @@ class TestCase(PloneSandboxLayer):
         # Load ZCML
         import younglives.research.types
         self.loadZCML(package=younglives.research.types)
+        import collective.wfform
+        self.loadZCML(package=collective.wfform)
 
         # Install product and call its initialize() function
         z2.installProduct(app, 'younglives.research.types')
+        z2.installProduct(app, 'collective.wfform')
 
         # Note: you can skip this if my.product is not a Zope 2-style
         # product, i.e. it is not in the Products.* namespace and it
