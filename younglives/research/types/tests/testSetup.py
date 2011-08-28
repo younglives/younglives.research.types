@@ -24,6 +24,10 @@ class TestInstallation(unittest.TestCase):
         assert 'Research' in self.portal.portal_factory.getFactoryTypes()
         assert 'ResearchDatabase' in self.portal.portal_factory.getFactoryTypes()
 
+    def testWorkflowsInstalled(self):
+        workflow_ids = self.portal.portal_workflow.getWorkflowIds()
+        assert 'research_workflow' in workflow_ids
+
     def testWorkflowsMapped(self):
         workflows = self.portal.portal_workflow.getChainForPortalType('Research')
         assert ('research_workflow',) == workflows
