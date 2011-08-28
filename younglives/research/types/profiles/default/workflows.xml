@@ -3,4 +3,9 @@
  <property
     name="title">Contains workflow definitions for your portal</property>
  <object name="research_workflow" meta_type="Workflow"/>
+ <bindings>
+  <type type_id="Research">
+   <bound-workflow workflow_id="research_workflow"/>
+  </type>
+ </bindings>
 </object>

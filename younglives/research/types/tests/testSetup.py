@@ -24,6 +24,10 @@ class TestInstallation(unittest.TestCase):
         assert 'Research' in self.portal.portal_factory.getFactoryTypes()
         assert 'ResearchDatabase' in self.portal.portal_factory.getFactoryTypes()
 
+    def testWorkflowsMapped(self):
+        workflows = self.portal.portal_workflow.getChainForPortalType('Research')
+        assert ('research_workflow',) == workflows
+
 class TestReinstall(unittest.TestCase):
     """Ensure product can be reinstalled safely"""
     layer = YOUNGLIVES_RESEARCH_TYPES_INTEGRATION_TESTING
