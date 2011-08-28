@@ -5,7 +5,7 @@ from Products.CMFCore import utils
 
 from younglives.research.types import config
 
-researchMessageFactory = MessageFactory('younglives.research.types')
+_ = MessageFactory('younglives.research.types')
 
 def initialize(context):
     """Initializer called when used as a Zope 2 product."""
