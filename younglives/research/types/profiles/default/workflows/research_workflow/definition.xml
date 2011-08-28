@@ -65,91 +65,91 @@
  <transition transition_id="accept" title="Accepted" new_state="draft" trigger="USER"
      before_script="" after_script="">
   <description>Proposal was accepted and starts the draft process</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=accept" category="workflow" icon="">Accept</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=accept" category="workflow" icon="">Accept</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="complete" title="Completed" new_state="completed" trigger="USER"
      before_script="" after_script="">
   <description>Paper was reviewed and accepted and is now ready for production for publication</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=complete" category="workflow" icon="">Complete</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=complete" category="workflow" icon="">Complete</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="deline" title="Declined" new_state="planned" trigger="USER"
      before_script="" after_script="">
   <description>Paper was declined for publication</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=deline" category="workflow" icon="">Decline</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=deline" category="workflow" icon="">Decline</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="external-review" title="External review" new_state="external-review" trigger="USER"
      before_script="" after_script="">
   <description>Research was submitted for an external review</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=external-review" category="workflow" icon="">External Review</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=external-review" category="workflow" icon="">External Review</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="internal-review" title="Internal review" new_state="internal-review" trigger="USER"
      before_script="" after_script="">
   <description>Paper submitted undergoing an internal review</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=internal-review" category="workflow" icon="">Internal Review</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=internal-review" category="workflow" icon="">Internal Review</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="peer-review" title="Journal review" new_state="peer-review" trigger="USER"
      before_script="" after_script="">
   <description>Paper submitted to journal undergoing a peer review</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=peer-review" category="workflow" icon="">Journal Review</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=peer-review" category="workflow" icon="">Journal Review</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="produce" title="In production" new_state="in-productsion" trigger="USER"
      before_script="" after_script="">
   <description>Paper is complete and now in production</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=produce" category="workflow" icon="">Produce</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=produce" category="workflow" icon="">Produce</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="propose" title="Proposed" new_state="propsosed" trigger="USER"
      before_script="" after_script="">
   <description>Proposal has been submitted for consideration</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=propose" category="workflow" icon="">Propose</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=propose" category="workflow" icon="">Propose</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="publish" title="Published" new_state="published" trigger="USER"
      before_script="" after_script="">
   <description>Paper has been published</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=publish" category="workflow" icon="">Publish</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="redraft" title="Redraft" new_state="draft" trigger="USER"
      before_script="" after_script="">
   <description>Research was reviewed and a redraft has been requested</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=redraft" category="workflow" icon="">Redraft</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=redraft" category="workflow" icon="">Redraft</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="refused" title="Refused" new_state="unpublished" trigger="USER"
      before_script="" after_script="">
   <description>Paper was declined for publication</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=refused" category="workflow" icon="">Refused</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=refused" category="workflow" icon="">Refused</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="reject" title="Rejected" new_state="rejected" trigger="USER"
      before_script="" after_script="">
   <description>Paper was rejected at some point in the process</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=reject" category="workflow" icon="">Reject</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=reject" category="workflow" icon="">Reject</action>
   <guard>
   </guard>
  </transition>
  <transition transition_id="retrieve" title="Reactivated" new_state="planned" trigger="USER"
      before_script="" after_script="">
   <description>A previously rejected or withdrawn proposal or paper was reactivated</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=retrieve" category="workflow" icon="">Retrieve</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=retrieve" category="workflow" icon="">Retrieve</action>
   <guard>
   </guard>
  </transition>
