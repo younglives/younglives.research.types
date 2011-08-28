@@ -23,6 +23,7 @@ setup(name='younglives.research.types',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'collective.wfform',
       ],
       extras_require = {
           'test': [
