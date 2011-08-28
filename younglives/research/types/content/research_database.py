@@ -59,4 +59,16 @@ class ResearchDatabase(ATFolder):
                 vocab.add(group.getProperty('id'),group.getProperty('id'))
         return vocab
 
+    security.declareProtected(permissions.ModifyPortalContent, 'getMembersVocab')
+    def getMembersVocab(self):
+        """Get the members available as a DisplayList."""
+        m_tool = getToolByName(self, 'portal_membership')
+        users = m_tool.searchForMembers()
+        vocab = DisplayList()
+        for user in users:
+            user_id = user.getId()
+            user_name = user.getProperty('fullname')
+            vocab.add(user_id, user_name)
+        return vocab
+
 registerType(ResearchDatabase, PROJECTNAME)
