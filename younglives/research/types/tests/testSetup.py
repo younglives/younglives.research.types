@@ -32,6 +32,10 @@ class TestInstallation(unittest.TestCase):
         workflows = self.portal.portal_workflow.getChainForPortalType('Research')
         assert ('research_workflow',) == workflows
 
+    def testNavtreePropertiesConfigured(self):
+        portal_types = self.portal.portal_properties.navtree_properties.metaTypesNotToList
+        assert 'Research' in portal_types
+
 class TestReinstall(unittest.TestCase):
     """Ensure product can be reinstalled safely"""
     layer = YOUNGLIVES_RESEARCH_TYPES_INTEGRATION_TESTING
