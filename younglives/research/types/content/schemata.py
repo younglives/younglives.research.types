@@ -5,6 +5,7 @@ from Products.Archetypes.atapi import MultiSelectionWidget
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import StringWidget
 
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
@@ -29,6 +30,15 @@ ResearchDatabaseSchema = ATFolderSchema.copy() + Schema((
 ))
 
 ResearchSchema = ATContentTypeSchema.copy() + Schema((
+
+    StringField('referenceNumber',
+        searchable = 0,
+        required = 1,
+        widget = StringWidget(
+            label = 'Reference Number',
+            description = 'This should be in the form of year-num-letter',
+            ),
+        ),
 
     LinesField('researchTheme',
         required = False,
