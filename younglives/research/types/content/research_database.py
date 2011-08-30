@@ -1,3 +1,4 @@
+import os
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 
@@ -70,5 +71,50 @@ class ResearchDatabase(ATFolder):
             user_name = user.getProperty('fullname')
             vocab.add(user_id, user_name)
         return vocab
+
+# spreadsheet upload methods
+
+    security.declareProtected(permissions.ManagePortal, 'processFile')
+    def processFile(self):
+        """process the file"""
+        input = self._openFile()
+        # skip the first 7 lines, as these are headers
+        input = input[7:]
+        import pdb;pdb.set_trace()
+        for line in input:
+            fields = line.split('|')
+            if len(fields) == 1:
+                continue
+            if fields[1] == '':
+                # assume anything that does not have an author is not a record
+                continue
+            try:
+                new_id = self.invokeFactory('Research', fields[0][1:-1])
+                object = self[new_id]
+                object.unmarkCreationFlag()
+                print new_id
+            except:
+                print fields[0]
+                import pdb;pdb.set_trace()
+                pass
+        return input
+
+    def _openFile(self):
+        """open the file, and return the file contents"""
+        data_path = os.path.abspath('var')
+        try:
+            data_catch = open(data_path + '/spreadsheet', 'rU')
+        except IOError: # file does not exist, or path is wrong
+            try:
+                # we might be in foreground mode
+                data_path = os.path.abspath('../var')
+                data_catch = open(data_path + '/spreadsheet', 'rU')
+            except IOError: # file does not exist, or path is wrong
+                return 'File does not exist'
+        input = data_catch.read()
+        data_catch.close()
+        input = input.replace("'", "\\'\\")
+        input = input.split('\n')
+        return input
 
 registerType(ResearchDatabase, PROJECTNAME)
