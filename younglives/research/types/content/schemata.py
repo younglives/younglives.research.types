@@ -51,6 +51,17 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         )
     ),
 
+    LinesField('researchCountry',
+        required = False,
+        searchable = False,
+        vocabulary = RESEARCH_COUNTRY,
+        multiValued = True,
+        widget = MultiSelectionWidget(
+            label='Country of data to be used',
+            format='checkbox',
+        )
+    ),
+
     LinesField('researchMethodology',
         required = False,
         searchable = False,
