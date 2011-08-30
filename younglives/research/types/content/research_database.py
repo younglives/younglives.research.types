@@ -80,7 +80,6 @@ class ResearchDatabase(ATFolder):
         input = self._openFile()
         # skip the first 7 lines, as these are headers
         input = input[7:]
-        import pdb;pdb.set_trace()
         for line in input:
             fields = line.split('|')
             if len(fields) == 1:
@@ -90,6 +89,19 @@ class ResearchDatabase(ATFolder):
                 continue
             new_id = self.invokeFactory('Research', fields[0][1:-1])
             object = self[new_id]
+            object.setTitle(fields[2][1:-1])
+            object.setReferenceNumber(fields[0][1:-1])
+            # countries
+            countries = []
+            if 'E' in fields[5]:
+                countries.append('ETH')
+            if 'I' in fields[5]:
+                countries.append('IND')
+            if 'P' in fields[5]:
+                countries.append('PER')
+            if 'V' in fields[5]:
+                countries.append('VNM')
+            object.setResearchCountry(countries)
             object.unmarkCreationFlag()
         return input
 
