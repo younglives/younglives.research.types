@@ -38,3 +38,13 @@ RESEARCH_OUTPUT = DisplayList((
     ('BC', 'Book Chapter'),
     ('O', 'Other'),
 ))
+
+PAPER_ORIGIN = DisplayList((
+    ('student_call', 'Student Call for Papers'),
+    ('internal', 'YL team/Internal'),
+    ('external_commision', 'External commission'),
+    ('student_ad_hoc', 'Student Ad Hoc'),
+    ('vietnam_call', 'Vietnam Call for Papers'),
+    ('ethiopia_external', 'Ethiopia external commission'),
+    ('other', 'Other'),
+))
