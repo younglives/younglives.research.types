@@ -88,15 +88,9 @@ class ResearchDatabase(ATFolder):
             if fields[1] == '':
                 # assume anything that does not have an author is not a record
                 continue
-            try:
-                new_id = self.invokeFactory('Research', fields[0][1:-1])
-                object = self[new_id]
-                object.unmarkCreationFlag()
-                print new_id
-            except:
-                print fields[0]
-                import pdb;pdb.set_trace()
-                pass
+            new_id = self.invokeFactory('Research', fields[0][1:-1])
+            object = self[new_id]
+            object.unmarkCreationFlag()
         return input
 
     def _openFile(self):
