@@ -91,6 +91,10 @@ class ResearchDatabase(ATFolder):
             object = self[new_id]
             object.setTitle(fields[2][1:-1])
             object.setReferenceNumber(fields[0][1:-1])
+            # research methodology
+            methodology = fields[4][1:-1]
+            if methodology in ['MM', 'QL', 'QN']:
+                object.setResearchMethodology(methodology)
             # countries
             countries = []
             if 'E' in fields[5]:
