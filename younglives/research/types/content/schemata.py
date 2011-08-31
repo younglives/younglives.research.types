@@ -62,14 +62,13 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         )
     ),
 
-    LinesField('researchMethodology',
+    StringField('researchMethodology',
         required = False,
         searchable = False,
         vocabulary = RESEARCH_METHODOLOGY,
-        multiValued = True,
-        widget = MultiSelectionWidget(
+        widget = SelectionWidget(
             label='Reasearch Methodology',
-            format='checkbox',
+            format='radio',
         )
     ),
 
