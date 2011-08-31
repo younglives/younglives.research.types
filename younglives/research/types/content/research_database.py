@@ -14,6 +14,12 @@ from younglives.research.types.interfaces.research_database import IResearchData
 
 from schemata import ResearchDatabaseSchema
 
+# only need the vocab imports for the initial import
+from younglives.research.types.config import RESEARCH_THEME, \
+                                             RESEARCH_METHODOLOGY, \
+                                             RESEARCH_COUNTRY, \
+                                             RESEARCH_OUTPUT
+
 class ResearchDatabase(ATFolder):
     """Research database"""
 
@@ -89,8 +95,18 @@ class ResearchDatabase(ATFolder):
                 continue
             new_id = self.invokeFactory('Research', fields[0][1:-1])
             object = self[new_id]
-            object.setTitle(fields[2][1:-1])
             object.setReferenceNumber(fields[0][1:-1])
+            # authors
+            authors = fields[1][1:-1]
+            # TODO
+            object.setTitle(fields[2][1:-1])
+            # research theme
+            themes = []
+            theme = fields[3][1:-1]
+            for char in theme:
+                if char in ['1','2','3','M','X',]:
+                    themes.append(char)
+            object.setResearchTheme(themes)
             # research methodology
             methodology = fields[4][1:-1]
             if methodology in ['MM', 'QL', 'QN']:
@@ -106,6 +122,13 @@ class ResearchDatabase(ATFolder):
             if 'V' in fields[5]:
                 countries.append('VNM')
             object.setResearchCountry(countries)
+            # research output
+            outputs = []
+            output = fields[6][1:-1]
+            for item in RESEARCH_OUTPUT:
+                if item in output:
+                    outputs.append(item)
+            object.setResearchOutput(outputs)
             object.unmarkCreationFlag()
         return input
 
@@ -113,12 +136,12 @@ class ResearchDatabase(ATFolder):
         """open the file, and return the file contents"""
         data_path = os.path.abspath('var')
         try:
-            data_catch = open(data_path + '/spreadsheet', 'rU')
+            data_catch = open(data_path + '/spreadsheet.csv', 'rU')
         except IOError: # file does not exist, or path is wrong
             try:
                 # we might be in foreground mode
                 data_path = os.path.abspath('../var')
-                data_catch = open(data_path + '/spreadsheet', 'rU')
+                data_catch = open(data_path + '/spreadsheet.csv', 'rU')
             except IOError: # file does not exist, or path is wrong
                 return 'File does not exist'
         input = data_catch.read()
