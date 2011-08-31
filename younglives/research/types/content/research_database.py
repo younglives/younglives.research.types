@@ -18,7 +18,8 @@ from schemata import ResearchDatabaseSchema
 from younglives.research.types.config import RESEARCH_THEME, \
                                              RESEARCH_METHODOLOGY, \
                                              RESEARCH_COUNTRY, \
-                                             RESEARCH_OUTPUT
+                                             RESEARCH_OUTPUT, \
+                                             PAPER_MANAGER
 
 class ResearchDatabase(ATFolder):
     """Research database"""
@@ -129,7 +130,12 @@ class ResearchDatabase(ATFolder):
                 if item in output:
                     outputs.append(item)
             object.setResearchOutput(outputs)
+            # paper manager
+            manager = fields[7][1:-1]
+            if manager in PAPER_MANAGER:
+                object.setPaperManager(PAPER_MANAGER.getValue(manager))
             object.unmarkCreationFlag()
+            object.reindexObject()
         return input
 
     def _openFile(self):
