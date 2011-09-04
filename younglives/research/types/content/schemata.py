@@ -2,6 +2,7 @@ from plone.app.folder.folder import ATFolderSchema
 
 from Products.Archetypes.atapi import LinesField
 from Products.Archetypes.atapi import MultiSelectionWidget
+from Products.Archetypes.atapi import ReferenceField
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import StringField
@@ -9,6 +10,7 @@ from Products.Archetypes.atapi import StringWidget
 
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 from younglives.research.types.config import RESEARCH_THEME, \
                                              RESEARCH_METHODOLOGY, \
@@ -39,6 +41,31 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
             description = 'This should be in the form of year-num-letter',
             ),
         ),
+
+    ReferenceField('primaryAuthor',
+        allowed_types = ['Author',],
+        relationship = 'PrimaryAuthor',
+        searchable = 0,
+        required = 1,
+        widget = ReferenceBrowserWidget(
+            label = "Primary Author",
+            startup_directory = 'authors',
+            show_review_state = True,
+        ),
+    ),
+
+    ReferenceField('secondaryAuthors',
+        allowed_types = ['Author',],
+        relationship = 'SecondaryAuthor',
+        searchable = 0,
+        required = 0,
+        multiValued = 1,
+        widget = ReferenceBrowserWidget(
+            label = "Secondary Authors",
+            startup_directory = 'authors',
+            show_review_state = True,
+        ),
+    ),
 
     LinesField('researchTheme',
         required = False,
