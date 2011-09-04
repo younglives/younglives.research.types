@@ -48,3 +48,33 @@ PAPER_ORIGIN = DisplayList((
     ('ethiopia_external', 'Ethiopia external commission'),
     ('other', 'Other'),
 ))
+
+# vocabs for initial imports 
+
+PAPER_MANAGER = DisplayList((
+    ('Caroline', 'caroline.knowles@qeh.ox.ac.uk'),
+    ('Paul', 'pauldornan'),
+    ('Emma', 'emma.merry@qeh.ox.ac.uk'),
+    ('Inka', 'inkabarnett'),
+    ('Caine', 'cainerolleston'),
+    ('Andreas', 'andreasgeorgiadis'),
+    ('Ginny', 'Other'),
+    ('Martin', 'martinwoodhead'),
+    ('Abhijeet', 'abhijeetsingh'),
+    ('Sofya', 'sofyakrutikova'),
+    ('Kirrily', 'kirrilypells'),
+    ('Michelle', 'michelle.chew@qeh.ox.ac.uk'),
+))
+
+
+"""
+ginacrivello
+helenmurray
+joboyden
+melaniefrost
+stefandercon
+tassewwoldehanna
+#
+virginiamorrow
+worknehyadete
+"""
