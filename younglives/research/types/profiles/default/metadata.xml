@@ -3,5 +3,6 @@
   <version>1000</version>
   <dependencies>
     <dependency>profile-collective.wfform:default</dependency>
+    <dependency>profile-younglives.research.authors:default</dependency>
   </dependencies>
 </metadata>
