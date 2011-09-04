@@ -1,3 +1,4 @@
+from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 from plone.app.folder.folder import ATFolderSchema
 
 from Products.Archetypes.atapi import LinesField
@@ -10,7 +11,6 @@ from Products.Archetypes.atapi import StringWidget
 
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 
 from younglives.research.types.config import RESEARCH_THEME, \
                                              RESEARCH_METHODOLOGY, \
