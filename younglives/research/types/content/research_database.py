@@ -147,6 +147,8 @@ class ResearchDatabase(ATFolder):
         if 'authors' not in self.objectIds():
             new_id = self.invokeFactory('AuthorFolder', 'authors')
             object = self[new_id]
+            workflow_tool = getToolByName(self, 'portal_workflow', None)
+            workflow_tool.doActionFor(object,'publish',comment='Published on initial import')
         else:
             object = self['authors']
         return object._createAuthors(authors)
