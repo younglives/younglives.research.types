@@ -99,7 +99,11 @@ class ResearchDatabase(ATFolder):
             object.setReferenceNumber(fields[0][1:-1])
             # authors
             authors = fields[1][1:-1]
-            # TODO
+            authors = self._importAuthors(authors)
+            object.setPrimaryAuthor(authors[0])
+            if len(authors) > 1:
+                object.setSecondaryAuthors(authors[1:])
+            # title
             object.setTitle(fields[2][1:-1])
             # research theme
             themes = []
@@ -136,7 +140,16 @@ class ResearchDatabase(ATFolder):
                 object.setPaperManager(PAPER_MANAGER.getValue(manager))
             object.unmarkCreationFlag()
             object.reindexObject()
-        return input
+        return self
+
+    def _importAuthors(self, authors):
+        """Import the authors"""
+        if 'authors' not in self.objectIds():
+            new_id = self.invokeFactory('AuthorFolder', 'authors')
+            object = self[new_id]
+        else:
+            object = self['authors']
+        return object._createAuthors(authors)
 
     def _openFile(self):
         """open the file, and return the file contents"""
