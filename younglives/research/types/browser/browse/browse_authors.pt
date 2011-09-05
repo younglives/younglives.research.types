@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="younglives.research.types">
+<body>
+
+<metal:main fill-slot="main">
+    
+    <h1 class="documentFirstHeading" tal:content="view/title" />
+
+    <dl tal:define="results view/results">
+        <tal:repeat repeat="result results">
+            <dt tal:content="result/Title" />
+            <dd tal:define="papers python:view.papersForAuthor(result)"
+                tal:repeat="paper papers"
+                tal:content="paper/Title" />
+        </tal:repeat>
+    </dl>
+
+</metal:main>
+</body>
+</html>

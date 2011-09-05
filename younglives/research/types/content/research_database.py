@@ -79,6 +79,21 @@ class ResearchDatabase(ATFolder):
             vocab.add(user_id, user_name)
         return vocab
 
+# view methods
+
+    security.declareProtected(permissions.View, 'getPapersByAuthors')
+    def getPapersByAuthors(self):
+        """Return the papers sorted by author family name"""
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        results = portal_catalog(meta_type='Author', sort_on='sortable_title')
+        return results
+
+    security.declareProtected(permissions.View, 'getPapersForAuthor')
+    def getPapersForAuthor(self, author):
+        """Return the papers sorted by author family name"""
+        object = author.getObject()
+        return object.getBRefs()
+
 # spreadsheet upload methods
 
     security.declareProtected(permissions.ManagePortal, 'processFile')

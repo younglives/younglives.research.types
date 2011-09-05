@@ -3,4 +3,12 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="younglives.research.types">
 
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="browse_authors"
+    class=".browse.authors.BrowseAuthorsView"
+    template="browse/browse_authors.pt"
+    permission="zope2.View"
+    />
+
 </configure>
