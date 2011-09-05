@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="younglives.research.types">
+<body>
+
+<metal:main fill-slot="main"
+    tal:define="content view/content;
+                currentSelection view/selectedTheme">
+    
+    <h1 class="documentFirstHeading" tal:content="view/title" />
+
+    <form method="get"
+        tal:attributes="action string:${context/absolute_url}/${view/__name__}">
+        <span tal:replace="structure context/@@authenticator/authenticator" />
+        <fieldset>
+            <legend>List papers by a research theme</legend>
+            <select name="theme" size="1">
+                <option value="">Please select</option>
+                <option tal:define="vocab view/getThemesVocab"
+                        tal:repeat="theme vocab"
+                        tal:attributes="value theme;
+                                        selected python:currentSelection == theme and 'selected' or None"
+                        tal:content="python:vocab.getValue(theme)"
+                        />
+            </select>
+            <input type="submit" class="context" name="form.button.Search"
+                   value="Search" />
+        </fieldset>
+    </form>
+    <tal:block condition="content">
+        <table class="listing">
+            <thead>
+                <tr>
+                    <th>Paper title</th>
+                    <th>Authors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="item content">
+                    <td tal:content="item/Title" />
+                    <td tal:define="object item/getObject;
+                                    authors object/getRefs">
+                        <span tal:repeat="author authors"
+                              tal:content="string:${author/Title}," />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </tal:block>
+
+</metal:main>
+</body>
+</html>

@@ -11,4 +11,12 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="themes"
+    class=".browse.themes.BrowseThemesView"
+    template="browse/themes.pt"
+    permission="zope2.View"
+    />
+
 </configure>
