@@ -33,14 +33,19 @@
             <thead>
                 <tr>
                     <th>Paper title</th>
-                    <th>Authors</th>
+                    <th>Primary Author</th>
+                    <th>Secondary Authors</th>
                 </tr>
             </thead>
             <tbody>
                 <tr tal:repeat="item content">
                     <td tal:content="item/Title" />
                     <td tal:define="object item/getObject;
-                                    authors object/getRefs">
+                                    author object/getPrimaryAuthor">
+                        <span tal:content="string:${author/Title}" />
+                    </td>
+                    <td tal:define="object item/getObject;
+                                    authors object/getSecondaryAuthors">
                         <span tal:repeat="author authors"
                               tal:content="string:${author/Title}," />
                     </td>
