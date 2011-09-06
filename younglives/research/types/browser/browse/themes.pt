@@ -39,7 +39,10 @@
             </thead>
             <tbody>
                 <tr tal:repeat="item content">
-                    <td tal:content="item/Title" />
+                    <td>
+                        <a tal:attributes="href item/getURL"
+                           tal:content="item/Title" />
+                    </td>
                     <td tal:define="object item/getObject;
                                     author object/getPrimaryAuthor">
                         <span tal:content="string:${author/Title}" />
