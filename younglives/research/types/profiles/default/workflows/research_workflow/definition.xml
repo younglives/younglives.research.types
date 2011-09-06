@@ -48,7 +48,7 @@
   <description>Submitted proposal is under consideration</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
-  <exit-transition transition_id="deline"/>
+  <exit-transition transition_id="decline"/>
  </state>
  <state state_id="published" title="Published">
   <description>Paper has been published</description>
@@ -76,10 +76,10 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="deline" title="Declined" new_state="planned" trigger="USER"
+ <transition transition_id="decline" title="Declined" new_state="planned" trigger="USER"
      before_script="" after_script="">
   <description>Paper was declined for publication</description>
-  <action url="%(content_url)s/workflow_transition_form?workflow_action=deline" category="workflow" icon="">Decline</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=decline" category="workflow" icon="">Decline</action>
   <guard>
   </guard>
  </transition>
