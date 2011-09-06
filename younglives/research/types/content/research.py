@@ -88,4 +88,22 @@ class Research(ATCTContent):
         """Return the member of the group, as a display list"""
         return self.aq_inner.aq_parent.getPaperMembersVocab()
 
+# transition forms
+
+    security.declareProtected(permissions.ModifyPortalContent, 'getSchemaForTransition')
+    def getSchemaForTransition(self, transition):
+        """Return a fieldset depending on the transition"""
+        if transition == 'propose':
+            from younglives.research.types.interfaces.transitions import IProposedTransition
+            return IProposedTransition
+        else:
+            from younglives.research.types.interfaces.transitions import IAcceptTransition
+            return IAcceptTransition
+
+    security.declareProtected(permissions.ModifyPortalContent, 'processTransitionForm')
+    def processTransitionForm(self, data):
+        """Return a fieldset depending on the transition"""
+        if data.has_key('test_field'):
+            self.setDescription(data['test_field'])
+
 registerType(Research, PROJECTNAME)
