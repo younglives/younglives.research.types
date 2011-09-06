@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="younglives.research.types">
+<body>
+
+<metal:main fill-slot="main"
+    tal:define="content view/content;
+                currentSelection view/selectedManager">
+    
+    <h1 class="documentFirstHeading" tal:content="view/title" />
+
+    <form method="get"
+        tal:attributes="action string:${context/absolute_url}/${view/__name__}">
+        <span tal:replace="structure context/@@authenticator/authenticator" />
+        <fieldset>
+            <legend tal:condition="not:currentSelection">List papers by a paper manager</legend>
+            <legend tal:condition="currentSelection">Papers Managed by <span tal:replace="currentSelection" /></legend>
+            <select name="paper_manager" size="1">
+                <option value="">Please select</option>
+                <option tal:define="vocab view/getManagersVocab"
+                        tal:repeat="item vocab"
+                        tal:attributes="value item;
+                                        selected python:currentSelection == item and 'selected' or None"
+                        tal:content="python:vocab.getValue(item)"
+                        />
+            </select>
+            <input type="submit" class="context" name="form.button.Search"
+                   value="Search" />
+        </fieldset>
+    </form>
+    <tal:block condition="content">
+        <table class="listing">
+            <thead>
+                <tr>
+                    <th>Paper title</th>
+                    <th>Primary Author</th>
+                    <th>Secondary Authors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="item content">
+                    <td>
+                        <a tal:attributes="href item/getURL"
+                           tal:content="item/Title" />
+                    </td>
+                    <td tal:define="object item/getObject;
+                                    author object/getPrimaryAuthor">
+                        <span tal:content="string:${author/Title}" />
+                    </td>
+                    <td tal:define="object item/getObject;
+                                    authors object/getSecondaryAuthors">
+                        <span tal:repeat="author authors"
+                              tal:content="string:${author/Title}," />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </tal:block>
+
+</metal:main>
+</body>
+</html>

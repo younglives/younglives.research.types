@@ -19,4 +19,12 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="managers"
+    class=".browse.paper_managers.BrowsePaperManagersView"
+    template="browse/paper_managers.pt"
+    permission="zope2.View"
+    />
+
 </configure>
