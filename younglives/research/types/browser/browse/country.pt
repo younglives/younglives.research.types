@@ -6,7 +6,8 @@
 
 <metal:main fill-slot="main"
     tal:define="content view/content;
-                currentSelection view/selectedCountry">
+                currentSelection view/selectedCountry;
+                vocab view/getVocab">
     
     <h1 class="documentFirstHeading" tal:content="view/title" />
 
@@ -15,16 +16,14 @@
         <span tal:replace="structure context/@@authenticator/authenticator" />
         <fieldset>
             <legend tal:condition="not:currentSelection">List papers by Country of data</legend>
-            <legend tal:condition="currentSelection">Country of data <span tal:replace="currentSelection" /></legend>
-            <select name="country" size="1">
-                <option value="">Please select</option>
-                <option tal:define="vocab view/getVocab"
-                        tal:repeat="item vocab"
-                        tal:attributes="value item;
-                                        selected python:currentSelection == item and 'selected' or None"
-                        tal:content="python:vocab.getValue(item)"
-                        />
-            </select>
+            <legend tal:condition="currentSelection">Country of data <span tal:replace="python:vocab.getValue(currentSelection)" /></legend>
+            <div tal:repeat="item vocab">
+                <input type="radio" name="country"
+                       tal:attributes="value item;
+                                       checked python:currentSelection == item and 'selected' or None"/>
+                <span tal:content="python:vocab.getValue(item)" />
+            </div>
+            <div>&nbsp;</div>
             <input type="submit" class="context" name="form.button.Search"
                    value="Search" />
         </fieldset>
