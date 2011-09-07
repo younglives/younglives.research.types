@@ -119,7 +119,8 @@ class ResearchDatabase(ATFolder):
             if len(authors) > 1:
                 object.setSecondaryAuthors(authors[1:])
             # title
-            object.setTitle(fields[2][1:-1])
+            title = fields[2][1:-1].replace('""', '"')
+            object.setTitle(title)
             # research theme
             themes = []
             theme = fields[3][1:-1]
@@ -182,7 +183,7 @@ class ResearchDatabase(ATFolder):
                 return 'File does not exist'
         input = data_catch.read()
         data_catch.close()
-        input = input.replace("'", "\\'\\")
+        #input = input.replace("'", "\'\")
         input = input.split('\n')
         return input
 
