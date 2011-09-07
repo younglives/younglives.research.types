@@ -27,4 +27,12 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="country"
+    class=".browse.country.BrowseCountry"
+    template="browse/country.pt"
+    permission="zope2.View"
+    />
+
 </configure>
