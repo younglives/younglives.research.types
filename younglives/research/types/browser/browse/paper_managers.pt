@@ -45,11 +45,11 @@
                            tal:content="item/Title" />
                     </td>
                     <td tal:define="object item/getObject;
-                                    author object/getPrimaryAuthor">
+                                    author object/getAuthor">
                         <span tal:content="string:${author/Title}" />
                     </td>
                     <td tal:define="object item/getObject;
-                                    authors object/getSecondaryAuthors">
+                                    authors object/getCoAuthors">
                         <span tal:repeat="author authors"
                               tal:content="string:${author/Title}," />
                     </td>

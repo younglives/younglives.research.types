@@ -115,9 +115,9 @@ class ResearchDatabase(ATFolder):
             # authors
             authors = fields[1][1:-1]
             authors = self._importAuthors(authors)
-            object.setPrimaryAuthor(authors[0])
+            object.setAuthor(authors[0])
             if len(authors) > 1:
-                object.setSecondaryAuthors(authors[1:])
+                object.setCoAuthors(authors[1:])
             # title
             title = fields[2][1:-1].replace('""', '"')
             object.setTitle(title)
