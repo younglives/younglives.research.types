@@ -16,9 +16,10 @@ RESEARCH_THEME = DisplayList((
 ))
 
 RESEARCH_METHODOLOGY = DisplayList((
-    ('MM', 'Mixed methods'),
-    ('QL', 'Qualitative methods'),
-    ('QN', 'Quantitative methods'),
+    ('', 'Not applicable'),
+    ('MM', 'Mixed Methods'),
+    ('QL', 'Qualitative Methods'),
+    ('QN', 'Quantitative Methods'),
 ))
 
 RESEARCH_COUNTRY = DisplayList((
@@ -30,7 +31,7 @@ RESEARCH_COUNTRY = DisplayList((
 
 RESEARCH_OUTPUT = DisplayList((
     ('WP', 'Working Paper'),
-    ('J', 'Journal article'),
+    ('J', 'Journal Article'),
     ('TN', 'Technical Note'),
     ('PP', 'Policy Paper'),
     ('PB', 'Policy Brief'),
@@ -40,12 +41,11 @@ RESEARCH_OUTPUT = DisplayList((
 ))
 
 PAPER_ORIGIN = DisplayList((
-    ('student_call', 'Student Call for Papers'),
-    ('internal', 'YL team/Internal'),
-    ('external_commision', 'External commission'),
-    ('student_ad_hoc', 'Student Ad Hoc'),
-    ('vietnam_call', 'Vietnam Call for Papers'),
-    ('ethiopia_external', 'Ethiopia external commission'),
+    ('external_non_commision', 'External Non-commissioned'),
+    ('external_commision', 'External Commissioned'),
+    ('student_non_commision', 'Student Non-commissioned'),
+    ('student_commision', 'Student Commissioned'),
+    ('internal', 'YL Team/Internal'),
     ('other', 'Other'),
 ))
 
@@ -58,7 +58,7 @@ PAPER_MANAGER = DisplayList((
     ('Inka', 'inkabarnett'),
     ('Caine', 'cainerolleston'),
     ('Andreas', 'andreasgeorgiadis'),
-    ('Ginny', 'Other'),
+    ('Ginny', 'virginiamorrow'),
     ('Martin', 'martinwoodhead'),
     ('Abhijeet', 'abhijeetsingh'),
     ('Sofya', 'sofyakrutikova'),
@@ -75,6 +75,5 @@ melaniefrost
 stefandercon
 tassewwoldehanna
 #
-virginiamorrow
 worknehyadete
 """
