@@ -21,7 +21,7 @@
                         tal:repeat="theme vocab"
                         tal:attributes="value theme;
                                         selected python:currentSelection == theme and 'selected' or None"
-                        tal:content="python:vocab.getValue(theme)"
+                        tal:content="python:theme + '. '+ vocab.getValue(theme)"
                         />
             </select>
             <input type="submit" class="context" name="form.button.Search"
