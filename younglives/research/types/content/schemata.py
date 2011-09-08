@@ -42,7 +42,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
             ),
         ),
 
-    ReferenceField('author',
+    ReferenceField('paperAuthor',
         allowed_types = ['Author',],
         relationship = 'Author',
         searchable = 0,

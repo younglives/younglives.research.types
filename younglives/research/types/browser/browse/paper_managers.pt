@@ -45,7 +45,7 @@
                            tal:content="item/Title" />
                     </td>
                     <td tal:define="object item/getObject;
-                                    author object/getAuthor">
+                                    author object/getPaperAuthor">
                         <span tal:content="string:${author/Title}" />
                     </td>
                     <td tal:define="object item/getObject;

@@ -115,7 +115,7 @@ class ResearchDatabase(ATFolder):
             # authors
             authors = fields[1][1:-1]
             authors = self._importAuthors(authors)
-            object.setAuthor(authors[0])
+            object.setPaperAuthor(authors[0])
             if len(authors) > 1:
                 object.setCoAuthors(authors[1:])
             # title
