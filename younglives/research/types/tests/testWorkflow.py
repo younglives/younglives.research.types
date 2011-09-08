@@ -39,7 +39,7 @@ class TestInstallation(unittest.TestCase):
         assert len(all_transitions) == 13
         assert 'accept' in all_transitions
         assert 'complete' in all_transitions
-        assert 'deline' in all_transitions
+        assert 'decline' in all_transitions
         assert 'external-review' in all_transitions
         assert 'internal-review' in all_transitions
         assert 'peer-review' in all_transitions
