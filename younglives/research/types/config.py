@@ -1,6 +1,8 @@
 from Products.Archetypes.atapi import DisplayList
 
+GLOBALS = globals()
 PROJECTNAME = 'younglives.research.types'
+SKINS_DIR = 'skins'
 
 ADD_PERMISSIONS = {
     'Research': 'YounglivesResearchTypes: Add Research',
