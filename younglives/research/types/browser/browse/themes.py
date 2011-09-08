@@ -18,7 +18,7 @@ class BrowseThemesView(BrowserView):
     def content(self):
         if self.selectedTheme is None:
             return
-        catalog = getToolByName(self.context, 'portal_catalog')
+        catalog = getToolByName(self.context, 'research_database_catalog')
         return catalog({
             'meta_type': 'Research',
             'theme': self.selectedTheme,

@@ -18,7 +18,7 @@ class BrowsePaperManagersView(BrowserView):
     def content(self):
         if self.selectedManager is None:
             return
-        catalog = getToolByName(self.context, 'portal_catalog')
+        catalog = getToolByName(self.context, 'research_database_catalog')
         return catalog({
             'meta_type': 'Research',
             'paper_manager': self.selectedManager,

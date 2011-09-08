@@ -18,7 +18,7 @@ class BrowseCountry(BrowserView):
     def content(self):
         if self.selectedCountry is None:
             return
-        catalog = getToolByName(self.context, 'portal_catalog')
+        catalog = getToolByName(self.context, 'research_database_catalog')
         return catalog({
             'meta_type': 'Research',
             'country': self.selectedCountry,
