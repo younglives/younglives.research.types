@@ -10,12 +10,18 @@ class TestCase(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
+        import younglives.research.authors
+        self.loadZCML(package=younglives.research.authors)
+        import younglives.research.catalog
+        self.loadZCML(package=younglives.research.catalog)
         import younglives.research.types
         self.loadZCML(package=younglives.research.types)
         import collective.wfform
         self.loadZCML(package=collective.wfform)
 
         # Install product and call its initialize() function
+        z2.installProduct(app, 'younglives.research.authors')
+        z2.installProduct(app, 'younglives.research.catalog')
         z2.installProduct(app, 'younglives.research.types')
         z2.installProduct(app, 'collective.wfform')
 
