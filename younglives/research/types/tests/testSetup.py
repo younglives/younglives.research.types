@@ -36,6 +36,10 @@ class TestInstallation(unittest.TestCase):
         portal_types = self.portal.portal_properties.navtree_properties.metaTypesNotToList
         assert 'Research' in portal_types
 
+    def testSkinLayersInstalled(self):
+        assert 'research_database' in self.portal.portal_skins.objectIds()
+        assert 'research_reports_macros' in self.portal.portal_skins.research_database.objectIds()
+
 class TestReinstall(unittest.TestCase):
     """Ensure product can be reinstalled safely"""
     layer = YOUNGLIVES_RESEARCH_TYPES_INTEGRATION_TESTING
