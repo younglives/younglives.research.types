@@ -8,8 +8,8 @@
         <tr>
             <th>Ref No</th>
             <th>Paper title</th>
-            <th>Primary Author</th>
-            <th>Secondary Authors</th>
+            <th>Authors</th>
+            <th>Theme</th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +20,8 @@
                    tal:content="item/Title" />
             </td>
             <td tal:define="object item/getObject;
-                            author object/getPaperAuthor">
-                <span tal:content="string:${author/Title}" />
+                            authors object/getAllAuthors">
+                <span tal:content="authors" />
             </td>
             <td tal:define="object item/getObject;
                             authors object/getCoAuthors">
