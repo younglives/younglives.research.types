@@ -104,7 +104,7 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="produce" title="In production" new_state="in-productsion" trigger="USER"
+ <transition transition_id="produce" title="In production" new_state="in-production" trigger="USER"
      before_script="" after_script="">
   <description>Paper is complete and now in production</description>
   <action url="%(content_url)s/workflow_transition_form?workflow_action=produce" category="workflow" icon="">Produce</action>
