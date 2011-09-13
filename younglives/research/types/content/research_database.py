@@ -154,6 +154,8 @@ class ResearchDatabase(ATFolder):
             manager = fields[7][1:-1]
             if manager in PAPER_MANAGER:
                 object.setPaperManager(PAPER_MANAGER.getValue(manager))
+            # paper state
+            self._createState(object, fields[8][1:-1])
             object.unmarkCreationFlag()
             object.reindexObject()
         return self
@@ -168,6 +170,46 @@ class ResearchDatabase(ATFolder):
         else:
             object = self['authors']
         return object._createAuthors(authors)
+
+    def _createState(self, object, state):
+        """Move the object to the right state"""
+        wf_tool = getToolByName(self, 'portal_workflow')
+        # Pending proposal and [Blank] OR N/A should be initial state
+        if state == 'Withdrawn/On hold':
+            wf_tool.doActionFor(object, 'reject')
+            return
+        if state not in ['Proposal under review',
+                         'Pending 1st draft',
+                         'Draft under review',
+                         'Pending next draft',
+                         'Pending final draft',
+                         'Final draft received',
+                         'Pending journal submission',
+                         'Pending journal review',
+                         'Completed',
+                         'In production',
+                         'Published',
+                         ]:
+            return
+        wf_tool.doActionFor(object, 'propose')
+        if state == 'Proposal under review':
+            return
+        wf_tool.doActionFor(object, 'accept')
+        if state in ['Pending 1st draft', 'Pending next draft', 'Pending final draft']:
+            return
+        wf_tool.doActionFor(object, 'internal-review')
+        if state == 'Draft under review':
+            return
+        wf_tool.doActionFor(object, 'complete')
+        if state == 'Pending journal submission':
+            return
+        wf_tool.doActionFor(object, 'produce')
+        if state == 'In production':
+            return
+        if state == 'Published':
+            wf_tool.doActionFor(object, 'publish')
+        # Completed and Pending journal review not dealt with yet
+        return
 
     def _openFile(self):
         """open the file, and return the file contents"""
