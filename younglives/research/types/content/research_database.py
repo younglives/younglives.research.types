@@ -110,6 +110,7 @@ class ResearchDatabase(ATFolder):
                 # assume anything that does not have an author is not a record
                 continue
             new_id = self.invokeFactory('Research', fields[0][1:-1])
+            print new_id
             object = self[new_id]
             object.setReferenceNumber(fields[0][1:-1])
             # authors
