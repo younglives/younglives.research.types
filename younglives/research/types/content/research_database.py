@@ -1,4 +1,5 @@
 import os
+import transaction
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 
@@ -159,6 +160,7 @@ class ResearchDatabase(ATFolder):
             self._createState(object, fields[8][1:-1])
             object.unmarkCreationFlag()
             object.reindexObject()
+            transaction.savepoint(optimistic = True)
         return self
 
     def _importAuthors(self, authors):
