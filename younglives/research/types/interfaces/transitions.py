@@ -9,13 +9,6 @@ class IWorkflowForm(Interface):
     """Utility to present a z3c.form during a workflow transition
     """
 
-class IComment(Interface):
-
-    comment = schema.Text(
-        title=_(u"Comment"),
-        description=_(u"Please enter a comment for this state change."),
-        required=False)
-
 class IProposedTransition(Interface):
 
     test_field = schema.Text(
@@ -31,7 +24,7 @@ class IAcceptTransition(Interface):
         #default=datetime.date(2007, 4, 1),
         required=True)
 
-class INoteTransition(Interface):
+class IDeadlineTransition(Interface):
 
     new_deadline = schema.Date(
         title=_(u"New Deadline"),
