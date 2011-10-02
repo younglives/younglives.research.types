@@ -157,10 +157,11 @@ class ResearchDatabase(ATFolder):
             if manager in PAPER_MANAGER:
                 object.setPaperManager(PAPER_MANAGER.getValue(manager))
             # paper state
-            self._createState(object, fields[8][1:-1])
+            self._createState(object, fields[8][1:-1], fields[9][1:-1])
             object.unmarkCreationFlag()
             object.reindexObject()
             transaction.savepoint(optimistic = True)
+            # cell 14, Paper origin
         return self
 
     def _importAuthors(self, authors):
@@ -174,12 +175,13 @@ class ResearchDatabase(ATFolder):
             object = self['authors']
         return object._createAuthors(authors)
 
-    def _createState(self, object, state):
+    def _createState(self, object, state, comment):
         """Move the object to the right state"""
+        default_comment = 'Automatic transition during intitial import.'
         wf_tool = getToolByName(self, 'portal_workflow')
         # Pending proposal and [Blank] OR N/A should be initial state
         if state == 'Withdrawn/On hold':
-            wf_tool.doActionFor(object, 'reject')
+            wf_tool.doActionFor(object, 'reject', comment=comment)
             return
         if state not in ['Proposal under review',
                          'Pending 1st draft',
@@ -193,24 +195,31 @@ class ResearchDatabase(ATFolder):
                          'In production',
                          'Published',
                          ]:
+            if comment != 'N/A':
+                wf_tool.doActionFor(object, 'note', comment=comment)
             return
-        wf_tool.doActionFor(object, 'propose')
         if state == 'Proposal under review':
+            wf_tool.doActionFor(object, 'propose', comment=comment)
             return
-        wf_tool.doActionFor(object, 'accept')
+        wf_tool.doActionFor(object, 'propose', comment=default_comment)
         if state in ['Pending 1st draft', 'Pending next draft', 'Pending final draft']:
+            wf_tool.doActionFor(object, 'accept', comment=comment)
             return
-        wf_tool.doActionFor(object, 'internal-review')
+        wf_tool.doActionFor(object, 'accept', comment=default_comment)
         if state == 'Draft under review':
+            wf_tool.doActionFor(object, 'internal-review', comment=comment)
             return
-        wf_tool.doActionFor(object, 'complete')
+        wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
         if state == 'Pending journal submission':
+            wf_tool.doActionFor(object, 'complete', comment=comment)
             return
-        wf_tool.doActionFor(object, 'produce')
+        wf_tool.doActionFor(object, 'complete', comment=default_comment)
         if state == 'In production':
+            wf_tool.doActionFor(object, 'produce', comment=comment)
             return
+        wf_tool.doActionFor(object, 'produce', comment=default_comment)
         if state == 'Published':
-            wf_tool.doActionFor(object, 'publish')
+            wf_tool.doActionFor(object, 'publish', comment=comment)
         # Completed and Pending journal review not dealt with yet
         return
 
