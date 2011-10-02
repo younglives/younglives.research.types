@@ -127,12 +127,12 @@ class Research(ATCTContent):
     security.declareProtected(permissions.ModifyPortalContent, 'getSchemaForTransition')
     def getSchemaForTransition(self, transition):
         """Return a fieldset depending on the transition"""
-        if transition == 'propose':
-            from younglives.research.types.interfaces.transitions import IProposedTransition
-            return IProposedTransition
-        elif transition == 'note':
-            from younglives.research.types.interfaces.transitions import INoteTransition
-            return INoteTransition
+        if transition in ['note', 'propose', 'accept']:
+            from younglives.research.types.interfaces.transitions import IDeadlineTransition
+            return IDeadlineTransition
+        elif transition in ['note', 'propose']:
+            from younglives.research.types.interfaces.transitions import IDeadlineTransition
+            return IDeadlineTransition
         else:
             # just the comment field
             return
