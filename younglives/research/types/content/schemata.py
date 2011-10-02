@@ -17,7 +17,8 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from younglives.research.types.config import RESEARCH_THEME, \
                                              RESEARCH_METHODOLOGY, \
                                              RESEARCH_COUNTRY, \
-                                             RESEARCH_OUTPUT
+                                             RESEARCH_OUTPUT, \
+                                             PAPER_ORIGIN
 
 ResearchDatabaseSchema = ATFolderSchema.copy() + Schema((
 
@@ -110,6 +111,15 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
             label='Reasearch Output',
             format='checkbox',
         )
+    ),
+
+    StringField('researchOrigin',
+        required = 0,
+        searchable = 0,
+        vocabulary = PAPER_ORIGIN,
+        widget = SelectionWidget(
+            label = 'Paper Origin',
+        ),
     ),
 
     StringField('paperManager',

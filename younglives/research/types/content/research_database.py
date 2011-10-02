@@ -20,7 +20,8 @@ from younglives.research.types.config import RESEARCH_THEME, \
                                              RESEARCH_METHODOLOGY, \
                                              RESEARCH_COUNTRY, \
                                              RESEARCH_OUTPUT, \
-                                             PAPER_MANAGER
+                                             PAPER_MANAGER, \
+                                             PAPER_ORIGIN
 
 class ResearchDatabase(ATFolder):
     """Research database"""
@@ -158,10 +159,17 @@ class ResearchDatabase(ATFolder):
                 object.setPaperManager(PAPER_MANAGER.getValue(manager))
             # paper state
             self._createState(object, fields[8][1:-1], fields[9][1:-1])
+            # cell 14, Paper origin
+            try:
+                origin = fields[14][1:-1]
+            except IndexError:
+                import pdb;pdb.set_trace()
+            if origin in PAPER_ORIGIN.values():
+                origin_key = PAPER_ORIGIN.getKey(origin)
+                object.setResearchOrigin(origin_key)
             object.unmarkCreationFlag()
             object.reindexObject()
             transaction.savepoint(optimistic = True)
-            # cell 14, Paper origin
         return self
 
     def _importAuthors(self, authors):
