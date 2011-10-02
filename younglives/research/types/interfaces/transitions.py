@@ -35,5 +35,5 @@ class INoteTransition(Interface):
 
     new_deadline = schema.Date(
         title=_(u"New Deadline"),
-        description=_(u"Leave this blank to keep the original deadline"),
+        description=_(u"Leave this blank to keep the original deadline, the new deadline will be added to the comment"),
         required=False)
