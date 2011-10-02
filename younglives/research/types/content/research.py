@@ -89,6 +89,10 @@ class Research(ATCTContent):
         # we could be in portal factory, so assume there is only one research database
         # and therefore only one authors folder
         authors = catalog(meta_type='AuthorFolder')
+        if not authors:
+            portal = getToolByName(self, 'portal_url')
+            portal = portal.getPortalObject()
+            return portal.absolute_url()
         path = catalog(meta_type='AuthorFolder')[0].getPath()
         return path
 
