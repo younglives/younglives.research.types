@@ -11,5 +11,12 @@
       description="The configuration and setup for the research database"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
+
+  <genericsetup:importStep
+      name="younglives.research.types"
+      title="younglives.research.types special import handlers"
+      description=""
+      handler="younglives.research.types.setuphandlers.setupVarious" />
+      />
+
 </configure>
