@@ -8,47 +8,55 @@
   <description>Final draft has been accepted and is now ready for production</description>
   <exit-transition transition_id="refused"/>
   <exit-transition transition_id="produce"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="draft" title="Draft">
   <description>Paper is being drafted in preparation for review</description>
   <exit-transition transition_id="internal-review"/>
   <exit-transition transition_id="peer-review"/>
   <exit-transition transition_id="external-review"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="external-review" title="External review">
   <description>Paper is being externally reviewed</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="in-production" title="In production">
   <description>Paper is in production or being published externally</description>
   <exit-transition transition_id="refused"/>
   <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="internal-review" title="Internal review">
   <description>Paper is being internally reviewed</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="peer-review" title="Journal review">
   <description>Paper is being peer-reviewed by a journal</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="planned" title="Planned">
   <description>Research idea is being prepared for a proposal</description>
   <exit-transition transition_id="propose"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="propsosed" title="Proposed">
   <description>Submitted proposal is under consideration</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
   <exit-transition transition_id="decline"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="published" title="Published">
   <description>Paper has been published</description>
@@ -56,11 +64,13 @@
  <state state_id="rejected" title="Rejected">
   <description>Proposal has been rejected or withdrawn and will not proceed</description>
   <exit-transition transition_id="retrieve"/>
+  <exit-transition transition_id="note"/>
  </state>
  <state state_id="unpublished" title="Unpublished">
   <description>Paper was declined for publication</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
+  <exit-transition transition_id="note"/>
  </state>
  <transition transition_id="accept" title="Accepted" new_state="draft" trigger="USER"
      before_script="" after_script="">
@@ -94,6 +104,13 @@
      before_script="" after_script="">
   <description>Paper submitted undergoing an internal review</description>
   <action url="%(content_url)s/workflow_transition_form?workflow_action=internal-review" category="workflow" icon="">Internal Review</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="note" title="Add Note" new_state="" trigger="USER"
+     before_script="" after_script="">
+  <description>Add a note, and also update the deadline if required</description>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=note" category="workflow" icon="">Add Note</action>
   <guard>
   </guard>
  </transition>
