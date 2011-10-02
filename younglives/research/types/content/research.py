@@ -81,6 +81,17 @@ class Research(ATCTContent):
         user_name = user['fullname']
         return user_name
 
+    security.declareProtected(permissions.ModifyPortalContent, 'refStartUpDir')
+    def refStartUpDir(self):
+        """
+        Get the authors folder path for the reference fields."""
+        catalog = getToolByName(self, 'portal_catalog')
+        # we could be in portal factory, so assume there is only one research database
+        # and therefore only one authors folder
+        authors = catalog(meta_type='AuthorFolder')
+        path = catalog(meta_type='AuthorFolder')[0].getPath()
+        return path
+
 # view helper methods
 
     security.declareProtected(permissions.View, 'getAllAuthors')

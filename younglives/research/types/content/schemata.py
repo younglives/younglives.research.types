@@ -49,7 +49,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 1,
         widget = ReferenceBrowserWidget(
             label = "Author",
-            startup_directory = 'authors',
+            startup_directory_method = 'refStartUpDir',
             show_review_state = True,
         ),
     ),
@@ -62,7 +62,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         multiValued = 1,
         widget = ReferenceBrowserWidget(
             label = "Co-authors",
-            startup_directory = 'authors',
+            startup_directory_method = 'refStartUpDir',
             show_review_state = True,
         ),
     ),
