@@ -30,3 +30,10 @@ class IAcceptTransition(Interface):
         description=_(u"This isn't saved anywhere yet"),
         #default=datetime.date(2007, 4, 1),
         required=True)
+
+class INoteTransition(Interface):
+
+    field = schema.Date(
+        title=_(u"New Deadline"),
+        description=_(u"Leave this blank to keep the original deadline"),
+        required=False)
