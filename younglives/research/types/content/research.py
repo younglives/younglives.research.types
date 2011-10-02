@@ -140,7 +140,20 @@ class Research(ATCTContent):
     security.declareProtected(permissions.ModifyPortalContent, 'processTransitionForm')
     def processTransitionForm(self, data):
         """Process the transition forms"""
-        if data.has_key('test_field'):
-            self.setDescription(data['test_field'])
+        comment = data['comment']
+        #import pdb;pdb.set_trace()
+        if data.has_key('new_deadline'):
+            if comment:
+                comment = comment + ' '
+            else:
+                comment = ''
+            if self.getNextDeadline():
+                comment += 'Deadline changed from ' + self.getNextDeadline().strftime('%d/%m/%Y') + ' to '
+            else:
+                comment += 'Deadline set to '
+            comment += data['new_deadline'].strftime('%d/%m/%Y')
+            data['comment'] = comment
+            self.setNextDeadline(data['new_deadline'].strftime('%Y/%m/%d'))
+        return data
 
 registerType(Research, PROJECTNAME)

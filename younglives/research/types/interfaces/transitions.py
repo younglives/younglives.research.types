@@ -33,7 +33,7 @@ class IAcceptTransition(Interface):
 
 class INoteTransition(Interface):
 
-    field = schema.Date(
+    new_deadline = schema.Date(
         title=_(u"New Deadline"),
         description=_(u"Leave this blank to keep the original deadline"),
         required=False)

@@ -1,6 +1,8 @@
 from archetypes.referencebrowserwidget import ReferenceBrowserWidget
 from plone.app.folder.folder import ATFolderSchema
 
+from Products.Archetypes.atapi import CalendarWidget
+from Products.Archetypes.atapi import DateTimeField
 from Products.Archetypes.atapi import LinesField
 from Products.Archetypes.atapi import MultiSelectionWidget
 from Products.Archetypes.atapi import ReferenceField
@@ -117,6 +119,15 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         default_method = 'getCurrentUser',
         widget = SelectionWidget(
             label = 'Paper Manager',
+        ),
+    ),
+
+    DateTimeField('nextDeadline',
+        required = 0,
+        searchable = 0,
+        widget = CalendarWidget(
+            label = 'Next Deadline',
+            show_hm = False,
         ),
     ),
 
