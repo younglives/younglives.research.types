@@ -160,10 +160,7 @@ class ResearchDatabase(ATFolder):
             # paper state
             self._createState(object, fields[8][1:-1], fields[9][1:-1])
             # cell 14, Paper origin
-            try:
-                origin = fields[14][1:-1]
-            except IndexError:
-                import pdb;pdb.set_trace()
+            origin = fields[14][1:-1]
             if origin in PAPER_ORIGIN.values():
                 origin_key = PAPER_ORIGIN.getKey(origin)
                 object.setResearchOrigin(origin_key)
