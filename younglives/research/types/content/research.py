@@ -134,8 +134,8 @@ class Research(ATCTContent):
             from younglives.research.types.interfaces.transitions import INoteTransition
             return INoteTransition
         else:
-            from younglives.research.types.interfaces.transitions import IAcceptTransition
-            return IAcceptTransition
+            # just the comment field
+            return
 
     security.declareProtected(permissions.ModifyPortalContent, 'processTransitionForm')
     def processTransitionForm(self, data):
