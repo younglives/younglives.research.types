@@ -4,6 +4,14 @@
     i18n_domain="younglives.research.types">
 
   <browser:page
+      name="research_database_view"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      class=".research_database.ResearchDatabaseView"
+      template="templates/research_database_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
     for="younglives.research.types.interfaces.research_database.IResearchDatabase"
     name="browse_authors"
     class=".browse.authors.BrowseAuthorsView"
