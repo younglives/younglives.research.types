@@ -130,13 +130,16 @@ class Research(ATCTContent):
         if transition == 'propose':
             from younglives.research.types.interfaces.transitions import IProposedTransition
             return IProposedTransition
+        elif transition == 'note':
+            from younglives.research.types.interfaces.transitions import INoteTransition
+            return INoteTransition
         else:
             from younglives.research.types.interfaces.transitions import IAcceptTransition
             return IAcceptTransition
 
     security.declareProtected(permissions.ModifyPortalContent, 'processTransitionForm')
     def processTransitionForm(self, data):
-        """Return a fieldset depending on the transition"""
+        """Process the transition forms"""
         if data.has_key('test_field'):
             self.setDescription(data['test_field'])
 
