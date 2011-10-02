@@ -39,6 +39,16 @@ class Research(ATCTContent):
         transaction.savepoint(optimistic = True)
         self.setId(self.getReferenceNumber())
 
+    security.declareProtected(permissions.View, 'Description')
+    def Description(self):
+        """Return the last workflow comment as the description"""
+        workflow_tool = getToolByName(self, 'portal_workflow')
+        history = workflow_tool.getInfoFor(self, 'review_history')
+        if not history:
+            return ''
+        last_comment = history[-1]['comments']
+        return last_comment
+
 # Edit form helper methods
 
     security.declareProtected(permissions.ModifyPortalContent, 'post_validate')
@@ -141,7 +151,6 @@ class Research(ATCTContent):
     def processTransitionForm(self, data):
         """Process the transition forms"""
         comment = data['comment']
-        #import pdb;pdb.set_trace()
         if data.has_key('new_deadline'):
             if comment:
                 comment = comment + ' '
