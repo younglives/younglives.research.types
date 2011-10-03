@@ -27,6 +27,7 @@
  <state state_id="in-production" title="In production">
   <description>Paper is in production or being published externally</description>
   <exit-transition transition_id="refused"/>
+  <exit-transition transition_id="reject"/>
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="note"/>
  </state>
