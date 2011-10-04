@@ -216,11 +216,18 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'accept', comment=comment)
             return
         wf_tool.doActionFor(object, 'accept', comment=default_comment)
+        # journal review and journal submission are currently the same state
+        if state == 'Pending journal review':
+            wf_tool.doActionFor(object, 'peer-review', comment=comment)
+            return
+        if state == 'Pending journal submission':
+            wf_tool.doActionFor(object, 'peer-review', comment=comment)
+            return
         if state == 'Draft under review':
             wf_tool.doActionFor(object, 'internal-review', comment=comment)
             return
         wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
-        if state == 'Pending journal submission':
+        if state == 'Completed':
             wf_tool.doActionFor(object, 'complete', comment=comment)
             return
         wf_tool.doActionFor(object, 'complete', comment=default_comment)
@@ -230,7 +237,6 @@ class ResearchDatabase(ATFolder):
         wf_tool.doActionFor(object, 'produce', comment=default_comment)
         if state == 'Published':
             wf_tool.doActionFor(object, 'publish', comment=comment)
-        # Completed and Pending journal review not dealt with yet
         return
 
     def _getNextDeadline(self, object, fields):
@@ -244,12 +250,12 @@ class ResearchDatabase(ATFolder):
                 pass
             else:
                 dates.append(DateTime(date))
-        last_date = marker = DateTime()-1000
+        last_date = marker = DateTime()-5000
         for date in dates:
             if date > last_date:
                 last_date = date
-        if last_date != date:
-            return date
+        if last_date != marker:
+            return last_date
         #due = fields[10]
         #rcvd = fields[11]
         #accept = fields[12]
