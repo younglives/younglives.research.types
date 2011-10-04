@@ -1,6 +1,8 @@
 import os
 import transaction
 from AccessControl import ClassSecurityInfo
+from DateTime.DateTime import DateTime
+from DateTime.DateTime import DateError
 from zope.interface import implements
 
 from plone.app.folder.folder import ATFolder
@@ -164,6 +166,9 @@ class ResearchDatabase(ATFolder):
             if origin in PAPER_ORIGIN.values():
                 origin_key = PAPER_ORIGIN.getKey(origin)
                 object.setResearchOrigin(origin_key)
+            next_deadline = self._getNextDeadline(object, fields)
+            if next_deadline:
+                object.setNextDeadline(next_deadline)
             object.unmarkCreationFlag()
             object.reindexObject()
             transaction.savepoint(optimistic = True)
@@ -227,6 +232,44 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'publish', comment=comment)
         # Completed and Pending journal review not dealt with yet
         return
+
+    def _getNextDeadline(self, object, fields):
+        """Work out the next deadline from the date fields"""
+        dates = []
+        for field_num in [10, 11, 12, 15, 16, 18, 19, 20, 22, 23, 24, 25, 25, 28, 29, 30, 31, 32, 34, 35]:
+            date = fields[field_num]
+            try:
+                DateTime(date)
+            except (DateTime.SyntaxError, DateError):
+                pass
+            else:
+                dates.append(DateTime(date))
+        last_date = marker = DateTime()-1000
+        for date in dates:
+            if date > last_date:
+                last_date = date
+        if last_date != date:
+            return date
+        #due = fields[10]
+        #rcvd = fields[11]
+        #accept = fields[12]
+        #sent = fields[15]
+        #rcvd4 = fields[16]
+        #sent2 = fields[18]
+        #rcvd6 = fields[19]
+        #data_released = fields[20]
+        #due3 = fields[22]
+        #rcvd2 = fields[23]
+        #sent_review = fields[24]
+        #rcvd_review = fields[25]
+        #sent_author = fields[26]
+        #due4 = fields[28]
+        #rcvd3 = fields[29]
+        #sent_review2 = fields[30]
+        #rcvd_review2 = fields[31]
+        #sent_author2 = fields[32]
+        #due2 = fields[34]
+        #rcvd5 = fields[35]
 
     def _openFile(self):
         """open the file, and return the file contents"""
