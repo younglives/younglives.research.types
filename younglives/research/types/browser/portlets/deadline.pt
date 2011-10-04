@@ -1,7 +1,7 @@
-<dl id="research-deadline"
+<dl class="portlet" id="research-deadline"
     tal:define="results view/results"
     tal:condition="results">
-    <dt class="sidePortletHeader">
+    <dt class="PortletHeader">
         Research by Deadline
     </dt>
     <dd class="portletItem"
@@ -13,5 +13,8 @@
         </a>
         <div tal:define="deadline python:context.restrictedTraverse('@@plone').toLocalizedTime(result.nextDeadline,long_format=1)"
             tal:content="deadline" />
+    </dd>
+    <dd class="portletFooter">
+        &nbsp;
     </dd>
 </dl>
