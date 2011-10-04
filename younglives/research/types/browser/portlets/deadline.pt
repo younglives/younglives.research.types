@@ -8,7 +8,7 @@
         tal:repeat="result results">
         <a tal:define="item_icon result/getIcon"
             tal:attributes="href result/getURL;">
-            <img tal:replace="structure item_icon/html_tag" />
+            <img tal:attributes="src item_icon" />
             <span tal:content="result/Title" />
         </a>
         <div tal:define="deadline python:context.restrictedTraverse('@@plone').toLocalizedTime(result.nextDeadline,long_format=1)"

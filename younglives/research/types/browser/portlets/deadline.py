@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from DateTime import DateTime
 from random import choice
 from zope.component import getMultiAdapter
 from zope.formlib import form
@@ -58,5 +59,6 @@ class Renderer(base.Renderer):
     def results(self):
         research_catalog = getToolByName(self.context, 'research_database_catalog')
         results = research_catalog.searchResults(portal_type='Research',
+                                                 nextDeadline = {'query':[DateTime(), DateTime()+7], 'range':'minmax'},
                                                  sort_on='nextDeadline',)
         return results
