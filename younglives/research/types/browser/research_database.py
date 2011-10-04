@@ -16,3 +16,20 @@ class ResearchDatabaseView(BrowserView):
         assignable = getMultiAdapter((self.context, portletManager,), ILocalPortletAssignmentManager)
         assignable.setBlacklistStatus(CONTEXT_CATEGORY, True)
         return self.template() 
+
+    def getWorkflowStates(self):
+        portal_workflow = getToolByName(self, 'portal_workflow')
+        research_workflow = portal_workflow.getWorkflowById('research_workflow')
+        all_states = research_workflow['states'].objectIds()
+        return all_states
+
+    def getStateInfo(self, state):
+        portal_workflow = getToolByName(self, 'portal_workflow')
+        research_workflow = portal_workflow.getWorkflowById('research_workflow')
+        state = research_workflow['states'][state]
+        return state
+
+    def getPapersByState(self, state):
+        portal_catalog = getToolByName(self, 'portal_catalog')
+        results = portal_catalog(portal_type='Research', review_state=state)
+        return results
