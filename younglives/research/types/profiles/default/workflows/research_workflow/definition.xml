@@ -52,7 +52,7 @@
   <exit-transition transition_id="accept"/>
   <exit-transition transition_id="note"/>
  </state>
- <state state_id="propsosed" title="Proposed">
+ <state state_id="proposed" title="Proposed">
   <description>Submitted proposal is under consideration</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
@@ -129,7 +129,7 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="propose" title="Proposed" new_state="propsosed" trigger="USER"
+ <transition transition_id="propose" title="Proposed" new_state="proposed" trigger="USER"
      before_script="" after_script="">
   <description>Proposal has been submitted for consideration</description>
   <action url="%(content_url)s/workflow_transition_form?workflow_action=propose" category="workflow" icon="">Propose</action>
