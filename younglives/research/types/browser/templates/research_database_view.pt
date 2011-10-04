@@ -23,7 +23,10 @@
         </div>
         <dl tal:define="items python:view.getPapersByState(state)">
             <div tal:repeat="item items">
-                <dt tal:content="item/Title" />
+                <dt>
+                    <a tal:attributes="href item/getURL"
+                       tal:content="item/Title" />
+                </dt>
                 <dd tal:content="item/Description" />
             </div>
         </dl>
