@@ -1,7 +1,10 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="younglives.research.types">
+
+  <include package="plone.app.portlets"/>
 
   <browser:page
       name="research_database_view"
@@ -49,5 +52,14 @@
     template="browse/country.pt"
     permission="zope2.View"
     />
+
+  <plone:portlet
+      name="younglives.portlets.deadline"
+      interface=".portlets.interfaces.IDeadlinePortlet"
+      assignment=".portlets.deadline.Assignment"
+      renderer=".portlets.deadline.Renderer"
+      addview=".portlets.deadline.AddForm"
+      editview=".portlets.deadline.EditForm"
+      />
 
 </configure>

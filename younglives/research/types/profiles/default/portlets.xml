@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<portlets
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="younglives.research.types">
+ <assignment name="Research Deadline" category="content_type" key="ResearchDatabase"
+     manager="plone.rightcolumn" type="younglives.portlets.deadline" visible="True">
+  <property name="interval">10</property>
+ </assignment>
+  <portlet 
+    addview="younglives.portlets.deadline"
+    title="Research by deadline"
+    description="A portlet to display the next set of research by deadline.">
+    <for interface="plone.app.portlets.interfaces.IColumn" />
+    <for interface="plone.app.portlets.interfaces.IRightColumn" />
+  </portlet>
+</portlets>
