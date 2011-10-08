@@ -12,6 +12,12 @@
       layer=".interfaces.IResearchTypes"
       />
 
+  <browser:resourceDirectory
+      name="younglives.research.types.javascripts"
+      directory="javascripts"
+      layer=".interfaces.IResearchTypes"
+      />
+
   <browser:page
       name="research_database_view"
       for="younglives.research.types.interfaces.research_database.IResearchDatabase"
