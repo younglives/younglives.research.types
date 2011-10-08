@@ -42,6 +42,13 @@
       />
 
   <browser:page
+      name="younglives.research.types.research_macros"
+      for="younglives.research.types.interfaces.research.IResearch"
+      template="templates/research_macros.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
     for="younglives.research.types.interfaces.research_database.IResearchDatabase"
     name="browse_authors"
     class=".browse.authors.BrowseAuthorsView"
