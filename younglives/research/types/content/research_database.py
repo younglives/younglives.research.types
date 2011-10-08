@@ -169,6 +169,13 @@ class ResearchDatabase(ATFolder):
             next_deadline = self._getNextDeadline(object, fields)
             if next_deadline:
                 object.setNextDeadline(next_deadline)
+            # deadlines
+            if fields[22]:
+                object.setFirstDraftDeadline(fields[22])
+            if fields[28]:
+                object.setSecondDraftDeadline(fields[28])
+            if fields[34]:
+                object.setFinalDraftDeadline(fields[34])
             object.unmarkCreationFlag()
             object.reindexObject()
             transaction.savepoint(optimistic = True)

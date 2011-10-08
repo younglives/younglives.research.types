@@ -141,6 +141,36 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    DateTimeField('firstDraftDeadline',
+        schemata='Deadlines',
+        required = 0,
+        searchable = 0,
+        widget = CalendarWidget(
+            label = 'First Draft Deadline',
+            show_hm = False,
+        ),
+    ),
+
+    DateTimeField('secondDraftDeadline',
+        schemata='Deadlines',
+        required = 0,
+        searchable = 0,
+        widget = CalendarWidget(
+            label = 'Second Draft Deadline',
+            show_hm = False,
+        ),
+    ),
+
+    DateTimeField('finalDraftDeadline',
+        schemata='Deadlines',
+        required = 0,
+        searchable = 0,
+        widget = CalendarWidget(
+            label = 'Final Draft Deadline',
+            show_hm = False,
+        ),
+    ),
+
 ))
 
 finalizeATCTSchema(ResearchSchema)
