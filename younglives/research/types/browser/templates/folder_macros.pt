@@ -1,15 +1,16 @@
-<div metal:define-macro="papers_by_state"
-     tal:define="state_info python:view.getStateInfo(state)">
-    <h2 tal:content="state_info/title" />
-    <div class="formHelp"
-        tal:content="state_info/description" />
-</div>
-<dl tal:define="items python:view.getPapersByState(state)">
-    <div tal:repeat="item items">
-        <dt>
-            <a tal:attributes="href item/getURL"
-               tal:content="item/Title" />
-        </dt>
-        <dd tal:content="item/Description" />
+<div metal:define-macro="papers_by_state">
+    <div tal:define="state_info python:view.getStateInfo(state)">
+        <h2 tal:content="state_info/title" />
+        <div class="formHelp"
+            tal:content="state_info/description" />
     </div>
-</dl>
+    <dl tal:define="items python:view.getPapersByState(state)">
+        <div tal:repeat="item items">
+            <dt>
+                <a tal:attributes="href item/getURL"
+                   tal:content="item/Title" />
+            </dt>
+            <dd tal:content="item/Description" />
+        </div>
+    </dl>
+</div>
