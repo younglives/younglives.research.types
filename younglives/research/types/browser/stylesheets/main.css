@@ -6,3 +6,7 @@ dl.portletWorkflowSteps dd.odd {
 dl.portletWorkflowSteps dd.even {
     padding: 0;
 }
+
+dl.portletWorkflowSteps dd.portletFooter a {
+    visibility: hidden;
+}
