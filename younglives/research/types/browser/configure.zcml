@@ -34,6 +34,14 @@
       />
 
   <browser:page
+      name="research_view"
+      for="younglives.research.types.interfaces.research.IResearch"
+      class=".research.ResearchView"
+      template="templates/research_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
     for="younglives.research.types.interfaces.research_database.IResearchDatabase"
     name="browse_authors"
     class=".browse.authors.BrowseAuthorsView"

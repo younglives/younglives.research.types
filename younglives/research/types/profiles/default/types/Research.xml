@@ -9,15 +9,15 @@
  <property name="content_meta_type">Research</property>
  <property name="product">younglives.research.types</property>
  <property name="factory">addResearch</property>
- <property name="immediate_view">base_view</property>
+ <property name="immediate_view">research_view</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">base_view</property>
+ <property name="default_view">research_view</property>
  <property name="view_methods">
-  <element value="base_view"/>
+  <element value="research_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>
