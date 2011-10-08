@@ -13,4 +13,13 @@
     <for interface="plone.app.portlets.interfaces.IColumn" />
     <for interface="plone.app.portlets.interfaces.IRightColumn" />
   </portlet>
+ <assignment name="header-text" category="content_type" key="Research"
+    manager="plone.rightcolumn"
+    type="collective.portlet.workflowsteps.WorkflowSteps" visible="True">
+  <property name="text"></property>
+  <property name="show_transitions">True</property>
+  <property name="show_transition_descriptions">True</property>
+  <property name="show_state">True</property>
+  <property name="header">Workflow Steps</property>
+ </assignment>
 </portlets>

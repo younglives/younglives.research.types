@@ -24,6 +24,7 @@ setup(name='younglives.research.types',
       install_requires=[
           'setuptools',
           'collective.wfform',
+          'collective.portlet.workflowsteps',
       ],
       extras_require = {
           'test': [
