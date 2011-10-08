@@ -16,20 +16,7 @@
 
     <div tal:replace="structure provider:plone.abovecontentbody" />
     <div tal:repeat="state view/getWorkflowStates">
-        <div tal:define="state_info python:view.getStateInfo(state)">
-            <h2 tal:content="state_info/title" />
-            <div class="formHelp"
-                tal:content="state_info/description" />
-        </div>
-        <dl tal:define="items python:view.getPapersByState(state)">
-            <div tal:repeat="item items">
-                <dt>
-                    <a tal:attributes="href item/getURL"
-                       tal:content="item/Title" />
-                </dt>
-                <dd tal:content="item/Description" />
-            </div>
-        </dl>
+        <div metal:use-macro="context/@@younglives.research.types.macros/macros/papers_by_state" />
     </div>
     <div tal:replace="structure provider:plone.belowcontentbody" />
     </tal:main-macro>

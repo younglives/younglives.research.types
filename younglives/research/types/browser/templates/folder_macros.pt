@@ -1,9 +1,15 @@
-<fieldset metal:define-macro="freetext_facet">
-    <legend>Course Search</legend>
-    <div class="field"
-         tal:define="course_search request/course_search|string:">
-        <input tal:attributes="value course_search;"
-                name="course_search"
-            />
+<div metal:define-macro="papers_by_state"
+     tal:define="state_info python:view.getStateInfo(state)">
+    <h2 tal:content="state_info/title" />
+    <div class="formHelp"
+        tal:content="state_info/description" />
+</div>
+<dl tal:define="items python:view.getPapersByState(state)">
+    <div tal:repeat="item items">
+        <dt>
+            <a tal:attributes="href item/getURL"
+               tal:content="item/Title" />
+        </dt>
+        <dd tal:content="item/Description" />
     </div>
-</fieldset>
+</dl>
