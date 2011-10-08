@@ -1,3 +1,3 @@
 jq(document).ready(function() {
-    jq('.actionSeparator').remove();
+    jq('#plone-contentmenu-workflow li:last').remove();
 });
