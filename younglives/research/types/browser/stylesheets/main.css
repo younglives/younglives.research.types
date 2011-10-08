@@ -1,0 +1,8 @@
+dl.portletWorkflowSteps dd.odd {
+    margin-left: 1em;
+    padding-top: 0;
+}
+
+dl.portletWorkflowSteps dd.even {
+    padding: 0;
+}

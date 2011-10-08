@@ -6,6 +6,12 @@
 
   <include package="plone.app.portlets"/>
 
+  <browser:resourceDirectory
+      name="younglives.research.types.stylesheets"
+      directory="stylesheets"
+      layer=".interfaces.IResearchTypes"
+      />
+
   <browser:page
       name="research_database_view"
       for="younglives.research.types.interfaces.research_database.IResearchDatabase"
