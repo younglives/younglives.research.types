@@ -5,4 +5,9 @@
    <element value="Research"/>
   </property>
  </object>
+ <object name="site_properties" meta_type="Plone Property Sheet">
+  <property name="localTimeFormat" type="string">%d %B %Y</property>
+  <property name="localLongTimeFormat" type="string">%d %b %Y %I:%M %p</property>
+  <property name="localTimeOnlyFormat" type="string">%I:%M %p</property>
+ </object>
 </object>
