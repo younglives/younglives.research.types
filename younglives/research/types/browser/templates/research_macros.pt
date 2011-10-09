@@ -9,3 +9,9 @@
         <dd tal:content="context/finalDraftDeadline|string:Not defined" />
     </dl>
 </div>
+<dl metal:define-macro="next-deadline"
+    class="portalMessage warning">
+    <dt tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+        tal:content="python:context.toLocalizedTime(context.getNextDeadline(),long_format=0)" />
+    <dd tal:content="context/getLastComment" />
+</dl>

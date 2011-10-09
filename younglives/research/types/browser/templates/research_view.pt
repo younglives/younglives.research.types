@@ -11,6 +11,8 @@
     <h1 class="documentFirstHeading">
         <span metal:use-macro="python:context.widget('title', mode='view')" />
     </h1>
+
+    <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/next-deadline" />
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/deadlines" />
 
     <div tal:replace="structure provider:plone.belowcontenttitle" />
