@@ -174,5 +174,3 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
 ))
 
 finalizeATCTSchema(ResearchSchema)
-
-ResearchSchema['description'].widget.visible = False

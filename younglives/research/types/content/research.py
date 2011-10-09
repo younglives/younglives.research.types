@@ -39,9 +39,9 @@ class Research(ATCTContent):
         transaction.savepoint(optimistic = True)
         self.setId(self.getReferenceNumber())
 
-    security.declareProtected(permissions.View, 'Description')
-    def Description(self):
-        """Return the last workflow comment as the description"""
+    security.declareProtected(permissions.View, 'getLastComment')
+    def getLastComment(self):
+        """Return the last workflow comment"""
         workflow_tool = getToolByName(self, 'portal_workflow')
         history = workflow_tool.getInfoFor(self, 'review_history')
         if not history:
