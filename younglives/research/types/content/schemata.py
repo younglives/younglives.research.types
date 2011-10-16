@@ -171,6 +171,18 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    ReferenceField('relatedResearch',
+        allowed_types = ['Research',],
+        relationship = 'relatedResearch',
+        searchable = 0,
+        required = 0,
+        multiValued = 1,
+        widget = ReferenceBrowserWidget(
+            label = "Related Outputs",
+            show_review_state = True,
+        ),
+    ),
+
 ))
 
 finalizeATCTSchema(ResearchSchema)

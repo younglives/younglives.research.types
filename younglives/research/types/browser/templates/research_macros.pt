@@ -15,3 +15,14 @@
         tal:content="python:context.toLocalizedTime(context.getNextDeadline(),long_format=0)" />
     <dd tal:content="context/getLastComment" />
 </dl>
+<div metal:define-macro="related-outputs"
+     tal:define="related_items context/getRelatedResearch|python:[]"
+     tal:condition="related_items">
+    <h3>Related outputs</h3>
+    <ul>
+        <li tal:repeat="related_item related_items">
+            <a tal:attributes="href python:related_item.absolute_url()"
+               tal:content="python:related_item.Title()" />
+        </li>
+    </ul>
+</div>

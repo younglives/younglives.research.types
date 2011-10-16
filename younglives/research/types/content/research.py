@@ -45,8 +45,10 @@ class Research(ATCTContent):
         workflow_tool = getToolByName(self, 'portal_workflow')
         history = workflow_tool.getInfoFor(self, 'review_history')
         if not history:
-            return ''
+            return 'Initial record'
         last_comment = history[-1]['comments']
+        if not last_comment:
+            return 'Initial record'
         return last_comment
 
 # Edit form helper methods
