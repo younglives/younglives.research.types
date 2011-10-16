@@ -78,7 +78,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         vocabulary = RESEARCH_THEME,
         multiValued = True,
         widget = MultiSelectionWidget(
-            label='Reasearch Theme',
+            label='Research Theme',
             format='checkbox',
         )
     ),
@@ -99,7 +99,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         searchable = False,
         vocabulary = RESEARCH_METHODOLOGY,
         widget = SelectionWidget(
-            label='Reasearch Methodology',
+            label='Research Methodology',
             format='radio',
         )
     ),
@@ -110,7 +110,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         vocabulary = RESEARCH_OUTPUT,
         multiValued = True,
         widget = MultiSelectionWidget(
-            label='Reasearch Output',
+            label='Research Output',
             format='checkbox',
         )
     ),
