@@ -12,13 +12,18 @@
         <span tal:replace="string:${context/referenceNumber}: " />
         <span metal:use-macro="python:context.widget('title', mode='view')" />
     </h1>
+    <div class="documentDescription">
+        <span metal:use-macro="python:context.widget('description', mode='view')" />
+    </div>
 
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/next-deadline" />
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/deadlines" />
     <div tal:replace="structure provider:plone.belowcontenttitle" />
+
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/related-outputs" />
 
     <div tal:replace="structure provider:plone.abovecontentbody" />
+    <div metal:use-macro="python:context.widget('privateNotes', mode='view')" />
     <div tal:replace="structure provider:plone.belowcontentbody" />
     </tal:main-macro>
 </div>

@@ -10,6 +10,8 @@ from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import SelectionWidget
 from Products.Archetypes.atapi import StringField
 from Products.Archetypes.atapi import StringWidget
+from Products.Archetypes.atapi import TextField
+from Products.Archetypes.atapi import RichWidget
 
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
@@ -182,6 +184,17 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
             show_review_state = True,
         ),
     ),
+
+    TextField('privateNotes',
+        required = False,
+        searchable = False,
+        validators = ('isTidyHtmlWithCleanup',),
+        default_output_type = 'text/x-html-safe',
+        widget = RichWidget(
+            label = 'Private Notes',
+            description = "Any notes stored here will only be available to system managers.",
+            rows = 25,)
+        ),
 
 ))
 
