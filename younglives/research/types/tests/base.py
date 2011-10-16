@@ -18,6 +18,8 @@ class TestCase(PloneSandboxLayer):
         self.loadZCML(package=younglives.research.types)
         import collective.wfform
         self.loadZCML(package=collective.wfform)
+        import collective.portlet.workflowsteps
+        self.loadZCML(package=collective.portlet.workflowsteps)
 
         # Install product and call its initialize() function
         z2.installProduct(app, 'younglives.research.authors')
