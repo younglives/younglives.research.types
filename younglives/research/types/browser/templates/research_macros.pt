@@ -26,3 +26,30 @@
         </li>
     </ul>
 </div>
+<div metal:define-macro="research-info">
+    <h2>Research Information</h2>
+    <div>
+        <b>Research Theme:</b>
+        <div metal:use-macro="python:context.widget('researchTheme', mode='view')" />
+    </div>
+    <div>
+        <b>Country of data to be used:</b>
+        <div metal:use-macro="python:context.widget('researchCountry', mode='view')" />
+    </div>
+    <div>
+        <b>Research Methodology:</b>
+        <div metal:use-macro="python:context.widget('researchMethodology', mode='view')" />
+    </div>
+    <div>
+        <b>Research Output:</b>
+        <div metal:use-macro="python:context.widget('researchOutput', mode='view')" />
+    </div>
+    <div>
+        <b>Paper Origin:</b>
+        <div metal:use-macro="python:context.widget('researchOrigin', mode='view')" />
+    </div>
+    <div>
+        <b>Paper Manager:</b>
+        <div metal:use-macro="python:context.widget('paperManager', mode='view')" />
+    </div>
+</div>
