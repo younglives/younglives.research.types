@@ -10,10 +10,17 @@
   <exit-transition transition_id="produce"/>
   <exit-transition transition_id="note"/>
  </state>
+ <state state_id="initial-draft" title="Being Drafted">
+  <description>Paper is being drafted for the first time</description>
+  <exit-transition transition_id="internal-review"/>
+  <exit-transition transition_id="journal-submission"/>
+  <exit-transition transition_id="external-review"/>
+  <exit-transition transition_id="note"/>
+ </state>
  <state state_id="draft" title="Draft">
   <description>Paper is being drafted in preparation for review</description>
   <exit-transition transition_id="internal-review"/>
-  <exit-transition transition_id="peer-review"/>
+  <exit-transition transition_id="journal-submission"/>
   <exit-transition transition_id="external-review"/>
   <exit-transition transition_id="note"/>
  </state>
@@ -38,7 +45,14 @@
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
  </state>
- <state state_id="peer-review" title="Journal review">
+ <state state_id="journal-submission" title="Journal review">
+  <description>Paper is being peer-reviewed by a journal</description>
+  <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="reject"/>
+  <exit-transition transition_id="redraft"/>
+  <exit-transition transition_id="note"/>
+ </state>
+ <state state_id="journal-review" title="Journal review">
   <description>Paper is being peer-reviewed by a journal</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
@@ -115,10 +129,10 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="peer-review" title="Journal review" new_state="peer-review" trigger="USER"
+ <transition transition_id="journal-submission" title="Pending Journal Submission" new_state="journal-submission" trigger="USER"
      before_script="" after_script="">
   <description>Paper submitted to journal undergoing a peer review</description>
-  <action url="%(content_url)s/workflow_transition_form?workflow_action=peer-review" category="workflow" icon="">Journal Review</action>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=journal-submission" category="workflow" icon="">Journal Review</action>
   <guard>
   </guard>
  </transition>

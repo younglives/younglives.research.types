@@ -23,13 +23,15 @@ class TestWorkflow(unittest.TestCase):
     def testStatesExist(self):
         research_workflow = self.research_workflow
         all_states = research_workflow['states'].objectIds()
-        assert len(all_states) == 11
+        assert len(all_states) == 13
         assert 'completed' in all_states
+        assert 'initial-draft' in all_states
         assert 'draft' in all_states
         assert 'external-review' in all_states
         assert 'in-production' in all_states
         assert 'internal-review' in all_states
-        assert 'peer-review' in all_states
+        assert 'journal-submission' in all_states
+        assert 'journal-review' in all_states
         assert 'planned' in all_states
         assert 'proposed' in all_states
         assert 'published' in all_states
@@ -46,7 +48,7 @@ class TestWorkflow(unittest.TestCase):
         assert 'external-review' in all_transitions
         assert 'internal-review' in all_transitions
         assert 'note' in all_transitions
-        assert 'peer-review' in all_transitions
+        assert 'journal-submission' in all_transitions
         assert 'produce' in all_transitions
         assert 'propose' in all_transitions
         assert 'publish' in all_transitions
@@ -73,3 +75,9 @@ class TestWorkflowStates(unittest.TestCase):
         r1 = self.r1
         object_state = self.workflow.getInfoFor(r1, 'review_state')
         self.assertEqual('planned', object_state)
+        transitions = self.workflow['research_workflow'].states['planned'].getTransitions()
+        assert 'propose' in transitions
+        assert 'reject' in transitions
+        assert 'accept' in transitions
+        assert 'note' in transitions
+        assert len(transitions) == 4
