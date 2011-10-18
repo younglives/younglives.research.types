@@ -163,6 +163,7 @@ class Research(ATCTContent):
             else:
                 comment += 'Deadline set to '
             comment += data['new_deadline'].strftime('%d/%m/%Y')
+            comment += '.'
             data['comment'] = comment
             self.setNextDeadline(data['new_deadline'].strftime('%Y/%m/%d'))
         return data
