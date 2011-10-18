@@ -173,6 +173,14 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    StringField('dataReleaseAgreement',
+        required = 0,
+        searchable = 0,
+        widget = StringWidget(
+            label = 'Data Release Agreement',
+        ),
+    ),
+
     ReferenceField('relatedResearch',
         allowed_types = ['Research',],
         relationship = 'relatedResearch',

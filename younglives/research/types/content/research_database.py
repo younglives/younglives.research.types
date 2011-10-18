@@ -176,6 +176,13 @@ class ResearchDatabase(ATFolder):
                 object.setSecondDraftDeadline(fields[28])
             if fields[34]:
                 object.setFinalDraftDeadline(fields[34])
+            # data release comments
+            if fields[21]:
+                object.setDataReleaseAgreement(fields[21])
+            # data release comments
+            if fields[37]:
+                data = '<p>' + fields[37] + '</p>'
+                object.setPrivateNotes(data)
             object.unmarkCreationFlag()
             object.reindexObject()
             transaction.savepoint(optimistic = True)
@@ -224,11 +231,12 @@ class ResearchDatabase(ATFolder):
             return
         wf_tool.doActionFor(object, 'accept', comment=default_comment)
         # journal review and journal submission are currently the same state
-        if state == 'Pending journal review':
-            wf_tool.doActionFor(object, 'peer-review', comment=comment)
-            return
         if state == 'Pending journal submission':
-            wf_tool.doActionFor(object, 'peer-review', comment=comment)
+            wf_tool.doActionFor(object, 'journal-submission', comment=comment)
+            return
+        if state == 'Pending journal review':
+            wf_tool.doActionFor(object, 'journal-submission', comment=comment)
+            wf_tool.doActionFor(object, 'journal-review', comment=comment)
             return
         if state == 'Draft under review':
             wf_tool.doActionFor(object, 'internal-review', comment=comment)
