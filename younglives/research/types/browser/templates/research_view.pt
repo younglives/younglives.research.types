@@ -26,6 +26,10 @@
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/related-outputs" />
 
     <div tal:replace="structure provider:plone.abovecontentbody" />
+    <h3>Data Release Agreement</h3>
+    <div metal:use-macro="python:context.widget('dataReleaseAgreement', mode='view')" />
+    <h3>Contract Comments</h3>
+    <div metal:use-macro="python:context.widget('contractsComment', mode='view')" />
     <h3>Notes</h3>
     <div metal:use-macro="python:context.widget('privateNotes', mode='view')" />
     <div tal:replace="structure provider:plone.belowcontentbody" />
