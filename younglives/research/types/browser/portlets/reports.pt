@@ -1,0 +1,28 @@
+<dl class="portlet" id="research-reports">
+    <dt class="PortletHeader">
+        Research Reports
+    </dt>
+    <dd class="portletItem">
+        <a tal:attributes="href string:${context/absolute_url}/browse_authors">
+            Browse by author
+        </a>
+    </dd>
+    <dd class="portletItem">
+        <a tal:attributes="href string:${context/absolute_url}/themes">
+            Browse by theme
+        </a>
+    </dd>
+    <dd class="portletItem">
+        <a tal:attributes="href string:${context/absolute_url}/managers">
+            Browse by paper manager
+        </a>
+    </dd>
+    <dd class="portletItem">
+        <a tal:attributes="href string:${context/absolute_url}/country">
+            Browse by country
+        </a>
+    </dd>
+    <dd class="portletFooter">
+        &nbsp;
+    </dd>
+</dl>

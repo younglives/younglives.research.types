@@ -89,4 +89,13 @@
       editview=".portlets.deadline.EditForm"
       />
 
+  <plone:portlet
+      name="younglives.portlets.reports"
+      interface=".portlets.interfaces.IReportsPortlet"
+      assignment=".portlets.reports.Assignment"
+      renderer=".portlets.reports.Renderer"
+      addview=".portlets.reports.AddForm"
+      editview=".portlets.reports.EditForm"
+      />
+
 </configure>

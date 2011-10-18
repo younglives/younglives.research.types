@@ -6,10 +6,20 @@
      manager="plone.rightcolumn" type="younglives.portlets.deadline" visible="True">
   <property name="interval">10</property>
  </assignment>
+ <assignment name="Research Reports" category="content_type" key="ResearchDatabase"
+     manager="plone.rightcolumn" type="younglives.portlets.reports" visible="True">
+ </assignment>
   <portlet 
     addview="younglives.portlets.deadline"
     title="Research by deadline"
     description="A portlet to display the next set of research by deadline.">
+    <for interface="plone.app.portlets.interfaces.IColumn" />
+    <for interface="plone.app.portlets.interfaces.IRightColumn" />
+  </portlet>
+  <portlet 
+    addview="younglives.portlets.reports"
+    title="Research Reports"
+    description="Links to the reports for the research database.">
     <for interface="plone.app.portlets.interfaces.IColumn" />
     <for interface="plone.app.portlets.interfaces.IRightColumn" />
   </portlet>
