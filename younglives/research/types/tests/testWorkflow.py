@@ -152,7 +152,7 @@ class TestWorkflowStates(unittest.TestCase):
 
     def testJournalSubmissionState(self):
         transitions = self.workflow['research_workflow'].states['journal-submission'].getTransitions()
-        assert 'journal-submission' in transitions
+        assert 'journal-review' in transitions
         assert 'reject' in transitions
         assert 'redraft' in transitions
         assert 'note' in transitions
