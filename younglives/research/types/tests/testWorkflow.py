@@ -84,7 +84,7 @@ class TestWorkflowStates(unittest.TestCase):
         assert 'propose' in transitions
         assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 5
+        assert len(transitions) == 6
 
     def testProposedState(self):
         r1 = self.r1

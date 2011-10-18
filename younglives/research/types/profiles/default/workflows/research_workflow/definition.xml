@@ -12,9 +12,8 @@
  </state>
  <state state_id="initial-draft" title="Being Drafted">
   <description>Paper is being drafted for the first time</description>
-  <exit-transition transition_id="internal-review"/>
-  <exit-transition transition_id="journal-submission"/>
-  <exit-transition transition_id="external-review"/>
+  <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="reject"/>
   <exit-transition transition_id="note"/>
  </state>
  <state state_id="draft" title="Draft">
@@ -47,7 +46,7 @@
  </state>
  <state state_id="journal-submission" title="Pending journal submission">
   <description>Paper is being prepared prior to submit to a journal</description>
-  <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="journal-submission"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
@@ -55,19 +54,23 @@
  <state state_id="journal-review" title="Pending journal review">
   <description>Paper is being peer-reviewed by a journal</description>
   <exit-transition transition_id="complete"/>
+  <exit-transition transition_id="publish"/>
   <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="redraft"/>
+  <exit-transition transition_id="refused"/>
   <exit-transition transition_id="note"/>
  </state>
  <state state_id="planned" title="Planned">
   <description>Research idea is being prepared for a proposal</description>
+  <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="accept_draft"/>
+  <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="propose"/>
   <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="accept"/>
   <exit-transition transition_id="note"/>
  </state>
  <state state_id="proposed" title="Proposed">
   <description>Submitted proposal is under consideration</description>
+  <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
   <exit-transition transition_id="accept_draft"/>
@@ -84,8 +87,6 @@
  </state>
  <state state_id="unpublished" title="Unpublished">
   <description>Paper was declined for publication</description>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
  </state>
  <transition transition_id="accept" title="Accepted" new_state="draft" trigger="USER"
