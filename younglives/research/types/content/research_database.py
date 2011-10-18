@@ -279,17 +279,17 @@ class ResearchDatabase(ATFolder):
         #sent2 = fields[18]
         #rcvd6 = fields[19]
         #data_released = fields[20]
-        #due3 = fields[22]
+        #due3 = fields[22] - first draft due date
         #rcvd2 = fields[23]
         #sent_review = fields[24]
         #rcvd_review = fields[25]
         #sent_author = fields[26]
-        #due4 = fields[28]
+        #due4 = fields[28] - second draft due date
         #rcvd3 = fields[29]
         #sent_review2 = fields[30]
         #rcvd_review2 = fields[31]
         #sent_author2 = fields[32]
-        #due2 = fields[34]
+        #due2 = fields[34 - final due date
         #rcvd5 = fields[35]
 
     def _openFile(self):
