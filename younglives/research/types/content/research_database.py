@@ -178,13 +178,13 @@ class ResearchDatabase(ATFolder):
                 object.setFinalDraftDeadline(fields[34])
             # contracts comments
             if fields[17]:
-                object.setContractsComment(fields[17])
+                object.setContractsComment(fields[17][1:-1])
             # data release comments
             if fields[21]:
-                object.setDataReleaseAgreement(fields[21])
+                object.setDataReleaseAgreement(fields[21][1:-1])
             # Private comment from final column
             if fields[37]:
-                data = '<p>' + fields[37] + '</p>'
+                data = '<p>' + fields[37][1:-1] + '</p>'
                 object.setPrivateNotes(data)
             object.unmarkCreationFlag()
             object.reindexObject()
