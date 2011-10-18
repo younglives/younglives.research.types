@@ -45,14 +45,14 @@
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
  </state>
- <state state_id="journal-submission" title="Journal review">
-  <description>Paper is being peer-reviewed by a journal</description>
+ <state state_id="journal-submission" title="Pending journal submission">
+  <description>Paper is being prepared prior to submit to a journal</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
  </state>
- <state state_id="journal-review" title="Journal review">
+ <state state_id="journal-review" title="Pending journal review">
   <description>Paper is being peer-reviewed by a journal</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
@@ -70,6 +70,7 @@
   <description>Submitted proposal is under consideration</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="accept_draft"/>
   <exit-transition transition_id="decline"/>
   <exit-transition transition_id="note"/>
  </state>
@@ -91,6 +92,13 @@
      before_script="" after_script="">
   <description>Proposal was accepted and starts the draft process</description>
   <action url="%(content_url)s/workflow_transition_form?workflow_action=accept" category="workflow" icon="">Accept</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="accept_draft" title="Accepted for Draft" new_state="initial-draft" trigger="USER"
+     before_script="" after_script="">
+  <description>Proposal was accepted and starts the draft process</description>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=accept_draft" category="workflow" icon="">Accept</action>
   <guard>
   </guard>
  </transition>
@@ -131,8 +139,15 @@
  </transition>
  <transition transition_id="journal-submission" title="Pending Journal Submission" new_state="journal-submission" trigger="USER"
      before_script="" after_script="">
-  <description>Paper submitted to journal undergoing a peer review</description>
+  <description>Paper being prepared before submitting to a journal</description>
   <action url="%(content_url)s/workflow_transition_form?workflow_action=journal-submission" category="workflow" icon="">Journal Review</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="journal-review" title="Pending Journal Review" new_state="journal-review" trigger="USER"
+     before_script="" after_script="">
+  <description>Paper submitted to journal undergoing a peer review</description>
+  <action url="%(content_url)s/workflow_transition_form?workflow_action=journal-review" category="workflow" icon="">Journal Review</action>
   <guard>
   </guard>
  </transition>
