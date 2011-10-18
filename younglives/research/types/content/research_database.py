@@ -233,10 +233,18 @@ class ResearchDatabase(ATFolder):
         else:
             new_comment = default_comment
         wf_tool.doActionFor(object, 'propose', comment=new_comment)
-        if state in ['Pending 1st draft', 'Pending next draft', 'Pending final draft']:
+        if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
             return
         wf_tool.doActionFor(object, 'accept', comment=default_comment)
+        if fields[27]:
+            wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
+            wf_tool.doActionFor(object, 'redraft', comment=fields[27][1:-1])            
+        if fields[33]:
+            wf_tool.doActionFor(object, 'external-review', comment=default_comment)
+            wf_tool.doActionFor(object, 'redraft', comment=fields[33][1:-1])            
+        if state in ['Pending next draft', 'Pending final draft']:
+            return
         # journal review and journal submission are currently the same state
         if state == 'Pending journal submission':
             wf_tool.doActionFor(object, 'journal-submission', comment=comment)
@@ -252,7 +260,11 @@ class ResearchDatabase(ATFolder):
         if state == 'Completed':
             wf_tool.doActionFor(object, 'complete', comment=comment)
             return
-        wf_tool.doActionFor(object, 'complete', comment=default_comment)
+        if fields[36]:
+            new_comment = fields[36][1:-1]
+        else:
+            new_comment = default_comment
+        wf_tool.doActionFor(object, 'complete', comment=new_comment)
         if state == 'In production':
             wf_tool.doActionFor(object, 'produce', comment=comment)
             return
