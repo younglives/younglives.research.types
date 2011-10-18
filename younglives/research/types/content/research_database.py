@@ -160,7 +160,7 @@ class ResearchDatabase(ATFolder):
             if manager in PAPER_MANAGER:
                 object.setPaperManager(PAPER_MANAGER.getValue(manager))
             # paper state
-            self._createState(object, fields[8][1:-1], fields[9][1:-1])
+            self._createState(object, fields[8][1:-1], fields[9][1:-1], fields)
             # cell 14, Paper origin
             origin = fields[14][1:-1]
             if origin in PAPER_ORIGIN.values():
@@ -176,10 +176,13 @@ class ResearchDatabase(ATFolder):
                 object.setSecondDraftDeadline(fields[28])
             if fields[34]:
                 object.setFinalDraftDeadline(fields[34])
+            # contracts comments
+            if fields[17]:
+                object.setContractsComment(fields[17])
             # data release comments
             if fields[21]:
                 object.setDataReleaseAgreement(fields[21])
-            # data release comments
+            # Private comment from final column
             if fields[37]:
                 data = '<p>' + fields[37] + '</p>'
                 object.setPrivateNotes(data)
@@ -199,7 +202,7 @@ class ResearchDatabase(ATFolder):
             object = self['authors']
         return object._createAuthors(authors)
 
-    def _createState(self, object, state, comment):
+    def _createState(self, object, state, comment, fields):
         """Move the object to the right state"""
         default_comment = 'Automatic transition during intitial import.'
         wf_tool = getToolByName(self, 'portal_workflow')
@@ -225,7 +228,11 @@ class ResearchDatabase(ATFolder):
         if state == 'Proposal under review':
             wf_tool.doActionFor(object, 'propose', comment=comment)
             return
-        wf_tool.doActionFor(object, 'propose', comment=default_comment)
+        if fields[13]:
+            new_comment = fields[13][1:-1]
+        else:
+            new_comment = default_comment
+        wf_tool.doActionFor(object, 'propose', comment=new_comment)
         if state in ['Pending 1st draft', 'Pending next draft', 'Pending final draft']:
             wf_tool.doActionFor(object, 'accept', comment=comment)
             return

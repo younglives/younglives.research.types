@@ -181,6 +181,14 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    StringField('contractsComment',
+        required = 0,
+        searchable = 0,
+        widget = StringWidget(
+            label = 'Contracts Comment',
+        ),
+    ),
+
     ReferenceField('relatedResearch',
         allowed_types = ['Research',],
         relationship = 'relatedResearch',
