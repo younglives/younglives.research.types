@@ -40,7 +40,8 @@
     <h3>Related outputs</h3>
     <ul>
         <li tal:repeat="related_item related_items">
-            <a tal:attributes="href python:related_item.absolute_url()"
+            <a target="_blank"
+               tal:attributes="href python:related_item.absolute_url()"
                tal:content="python:related_item.Title()" />
         </li>
     </ul>
