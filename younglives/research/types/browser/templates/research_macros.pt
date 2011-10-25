@@ -1,12 +1,31 @@
 <div metal:define-macro="deadlines"
     style="float: right; border: 1px solid;">
     <dl>
-        <dt>First Draft Deadline</dt>
-        <dd tal:content="context/firstDraftDeadline|string:Not defined" />
-        <dt>Second Draft Deadline</dt>
-        <dd tal:content="context/secondDraftDeadline|string:Not defined" />
-        <dt>Final Draft Deadline</dt>
-        <dd tal:content="context/finalDraftDeadline|string:Not defined" />
+        <tal:proposal define="proposal_deadline context/proposalDeadline|nothing"
+            condition="proposal_deadline">
+            <dt>Proposal Deadline</dt>
+            <dd tal:content="proposal_deadline" />
+        </tal:proposal>
+        <tal:first define="first_draft_deadline context/firstDraftDeadline|nothing"
+            condition="first_draft_deadline">
+            <dt>First Draft Deadline</dt>
+            <dd tal:content="first_draft_deadline" />
+        </tal:first>
+        <tal:second define="second_draft_deadline context/secondDraftDeadline|nothing"
+            condition="second_draft_deadline">
+            <dt>Second Draft Deadline</dt>
+            <dd tal:content="second_draft_deadline" />
+        </tal:second>
+        <tal:final define="final_draft_deadline context/finalDraftDeadline|nothing"
+            condition="final_draft_deadline">
+            <dt>Final Draft Deadline</dt>
+            <dd tal:content="final_draft_deadline" />
+        </tal:final>
+        <tal:journal define="journal_submission_deadline context/journalSubmissionDeadline|nothing"
+            condition="journal_submission_deadline">
+            <dt>Journal Submission Deadline</dt>
+            <dd tal:content="journal_submission_deadline" />
+        </tal:journal>
     </dl>
 </div>
 <dl metal:define-macro="next-deadline"

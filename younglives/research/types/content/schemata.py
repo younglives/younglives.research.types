@@ -144,6 +144,16 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         ),
     ),
 
+    DateTimeField('proposalDeadline',
+        schemata='Deadlines',
+        required = 0,
+        searchable = 0,
+        widget = CalendarWidget(
+            label = 'Proposal Deadline',
+            show_hm = False,
+        ),
+    ),
+
     DateTimeField('firstDraftDeadline',
         schemata='Deadlines',
         required = 0,
@@ -170,6 +180,16 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         searchable = 0,
         widget = CalendarWidget(
             label = 'Final Draft Deadline',
+            show_hm = False,
+        ),
+    ),
+
+    DateTimeField('journalSubmissionDeadline',
+        schemata='Deadlines',
+        required = 0,
+        searchable = 0,
+        widget = CalendarWidget(
+            label = 'Journal Submission Deadline',
             show_hm = False,
         ),
     ),
