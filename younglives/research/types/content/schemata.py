@@ -121,6 +121,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         vocabulary = PAPER_ORIGIN,
         widget = SelectionWidget(
             label = 'Paper Origin',
+            format = 'radio',
         ),
     ),
 
