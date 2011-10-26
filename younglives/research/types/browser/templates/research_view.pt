@@ -12,6 +12,7 @@
         <span tal:replace="string:${context/referenceNumber}: " />
         <span metal:use-macro="python:context.widget('title', mode='view')" />
     </h1>
+    <div tal:content="context/getAllAuthors" />
     <div class="documentDescription">
         <span metal:use-macro="python:context.widget('description', mode='view')" />
     </div>
