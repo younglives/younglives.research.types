@@ -4,13 +4,13 @@
         <div class="formHelp"
             tal:content="state_info/description" />
     </div>
-    <dl tal:define="items python:view.getPapersByState(state)">
-        <div tal:repeat="item items">
-            <dt>
+    <table class="research_table" tal:define="items python:view.getPapersByState(state)">
+        <tr tal:repeat="item items">
+            <td>
                 <a tal:attributes="href item/getURL"
                    tal:content="item/Title" />
-            </dt>
-            <dd tal:content="item/Description" />
-        </div>
-    </dl>
+            </td>
+            <td tal:content="item/Description" />
+        </tr>
+    </table>
 </div>

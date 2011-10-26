@@ -10,3 +10,8 @@ dl.portletWorkflowSteps dd.even {
 dl.portletWorkflowSteps dd.portletFooter a {
     visibility: hidden;
 }
+
+table.research_table {
+    border: 1px solid;
+    width: 100%;
+}
