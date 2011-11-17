@@ -110,9 +110,21 @@ class Research(ATCTContent):
 
 # view helper methods
 
+    security.declareProtected(permissions.View, 'listAuthors')
+    def listAuthors(self, family_first=True, all=True):
+        """Return all the authors as a list of author objects"""
+        authors = []
+        author = self.getPaperAuthor()
+        if author:
+            authors.append(author)
+        co_authors = self.getCoAuthors()
+        for co_author in co_authors:
+            authors.append(co_author)
+        return authors
+
     security.declareProtected(permissions.View, 'getAllAuthors')
     def getAllAuthors(self, family_first=True, all=True):
-        """Return the member of the group, as a display list"""
+        """Return all the authors as a text string"""
         authors = []
         author = self.getPaperAuthor()
         if family_first and not author.getNameOrder():
