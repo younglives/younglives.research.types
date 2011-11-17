@@ -6,11 +6,13 @@
     </div>
     <table class="research_table" tal:define="items python:view.getPapersByState(state)">
         <thead>
+            <th>Ref</th>
             <th>Authors</th>
             <th>Title</th>
         </thead>
         <tbody>
             <tr tal:repeat="item items">
+                <td tal:content="item/id" />
                 <td tal:content="python:item.getObject().getAllAuthors(all=False)" />
                 <td>
                     <a tal:attributes="href item/getURL"
