@@ -48,32 +48,36 @@
 </div>
 <div metal:define-macro="research-info">
     <h2>Research output details</h2>
+    <div tal:define="authors context/listAuthors">
+        <b>Author<span tal:condition="python:len(authors) > 1">s</span>:</b>
+        <span tal:content="context/getAllAuthors" />
+    </div>
     <div>
         <b>Paper status:</b>
         <div tal:replace="context/getWorkflowTitle" />
     </div>
     <div>
-        <b>Research Theme:</b>
+        <b>Theme:</b>
         <div metal:use-macro="python:context.widget('researchTheme', mode='view')" />
+    </div>
+    <div>
+        <b>Methodology:</b>
+        <div metal:use-macro="python:context.widget('researchMethodology', mode='view')" />
     </div>
     <div>
         <b>Country of data to be used:</b>
         <div metal:use-macro="python:context.widget('researchCountry', mode='view')" />
     </div>
     <div>
-        <b>Research Methodology:</b>
-        <div metal:use-macro="python:context.widget('researchMethodology', mode='view')" />
-    </div>
-    <div>
-        <b>Research Output:</b>
+        <b>Type of output:</b>
         <div metal:use-macro="python:context.widget('researchOutput', mode='view')" />
     </div>
     <div>
-        <b>Paper Origin:</b>
-        <div metal:use-macro="python:context.widget('researchOrigin', mode='view')" />
+        <b>Paper manager:</b>
+        <div metal:use-macro="python:context.widget('paperManager', mode='view')" />
     </div>
     <div>
-        <b>Paper Manager:</b>
-        <div metal:use-macro="python:context.widget('paperManager', mode='view')" />
+        <b>Paper origin:</b>
+        <div metal:use-macro="python:context.widget('researchOrigin', mode='view')" />
     </div>
 </div>
