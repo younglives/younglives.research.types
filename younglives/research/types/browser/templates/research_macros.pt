@@ -47,7 +47,11 @@
     </ul>
 </div>
 <div metal:define-macro="research-info">
-    <h2>Research Information</h2>
+    <h2>Research output details</h2>
+    <div>
+        <b>Paper status:</b>
+        <div tal:replace="context/getWorkflowTitle" />
+    </div>
     <div>
         <b>Research Theme:</b>
         <div metal:use-macro="python:context.widget('researchTheme', mode='view')" />

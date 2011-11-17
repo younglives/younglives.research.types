@@ -16,4 +16,3 @@ class ResearchView(BrowserView):
         assignable = getMultiAdapter((self.context, portletManager,), ILocalPortletAssignmentManager)
         assignable.setBlacklistStatus(CONTEXT_CATEGORY, True)
         return self.template()
-

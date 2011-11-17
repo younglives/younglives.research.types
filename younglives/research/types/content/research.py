@@ -148,6 +148,14 @@ class Research(ATCTContent):
         """Return the member of the group, as a display list"""
         return self.aq_inner.aq_parent.getPaperMembersVocab()
 
+    def getWorkflowTitle(self):
+        """Return the title of the current workflow state"""
+        workflow_tool = getToolByName(self, 'portal_workflow')
+        workflow = workflow_tool.getWorkflowById('research_workflow')
+        current_state = workflow_tool.getInfoFor(self, 'review_state')
+        state = workflow.states[current_state]
+        return state.title
+
 # transition forms
 
     security.declareProtected(permissions.ModifyPortalContent, 'getSchemaForTransition')
