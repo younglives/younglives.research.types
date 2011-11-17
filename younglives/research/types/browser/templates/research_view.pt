@@ -27,15 +27,15 @@
 
     <div tal:replace="structure provider:plone.abovecontentbody" />
     <tal:data-release condition="context/dataReleaseAgreement">
-        <h3>Data Release Agreement</h3>
+        <h3>Data release information</h3>
         <div metal:use-macro="python:context.widget('dataReleaseAgreement', mode='view')" />
     </tal:data-release>
     <tal:contract-comment condition="context/contractsComment">
-        <h3>Contract Comments</h3>
+        <h3>Contract information</h3>
         <div metal:use-macro="python:context.widget('contractsComment', mode='view')" />
     </tal:contract-comment>
     <tal:private-notes condition="context/privateNotes">
-        <h3>Notes</h3>
+        <h3>General comments</h3>
         <div metal:use-macro="python:context.widget('privateNotes', mode='view')" />
     </tal:private-notes>
     <div tal:replace="structure provider:plone.belowcontentbody" />
