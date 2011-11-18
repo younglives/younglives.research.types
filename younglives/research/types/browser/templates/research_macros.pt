@@ -57,8 +57,10 @@
         <div tal:replace="context/getWorkflowTitle" />
     </div>
     <div>
-        <b>Theme:</b>
-        <div metal:use-macro="python:context.widget('researchTheme', mode='view')" />
+        <dt>Theme:</dt>
+        <dd tal:define="vocab python:context.Schema()['researchTheme'].Vocabulary(context)"
+            tal:repeat="theme context/getResearchTheme"
+            tal:content="python:vocab.getValue(theme)" />
     </div>
     <div>
         <b>Methodology:</b>
