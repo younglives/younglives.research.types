@@ -10,18 +10,19 @@ ADD_PERMISSIONS = {
 }
 
 RESEARCH_THEME = DisplayList((
-    ('1', 'Dynamics of poverty'),
-    ('2', 'Children\'s experiences of poverty'),
-    ('3', 'Schooling, time use and life transitions'),
+    ('1', 'Theme 1: Dynamics of poverty'),
+    ('2', 'Theme 2: Children\'s experiences of poverty'),
+    ('3', 'Theme 3: Learning, time use and life transitions'),
     ('M', 'Methodology'),
     ('X', 'Cross-cutting (e.g., gender, inequalities)'),
+    ('N/A', 'N/A'),
 ))
 
 RESEARCH_METHODOLOGY = DisplayList((
-    ('', 'Not applicable'),
-    ('MM', 'Mixed Methods'),
-    ('QL', 'Qualitative Methods'),
-    ('QN', 'Quantitative Methods'),
+    ('', 'N/A'),
+    ('MM', 'Mixed methods'),
+    ('QL', 'Qualitative methods'),
+    ('QN', 'Quantitative methods'),
 ))
 
 RESEARCH_COUNTRY = DisplayList((
@@ -43,11 +44,11 @@ RESEARCH_OUTPUT = DisplayList((
 ))
 
 PAPER_ORIGIN = DisplayList((
-    ('external_non_commision', 'External Non-commissioned'),
-    ('external_commision', 'External Commissioned'),
-    ('student_non_commision', 'Student Non-commissioned'),
-    ('student_commision', 'Student Commissioned'),
-    ('internal', 'YL Team/Internal'),
+    ('external_commision', 'External commissioned'),
+    ('external_non_commision', 'External non-commissioned'),
+    ('student_commision', 'Student commissioned'),
+    ('student_non_commision', 'Student non-commissioned'),
+    ('internal', 'YL team/internal'),
     ('other', 'Other'),
 ))
 
