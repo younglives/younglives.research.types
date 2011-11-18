@@ -2,7 +2,7 @@ msgid "date_format_long"
 msgstr "${d} ${B} ${Y} ${I}:${M} ${p}"
 
 msgid "date_format_short"
-msgstr "${d}/${B}/${Y}"
+msgstr "${d}-${B}-${Y}"
 
 msgid "time_format"
 msgstr "${I}:${M} ${p}"
