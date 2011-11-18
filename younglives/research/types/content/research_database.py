@@ -128,10 +128,16 @@ class ResearchDatabase(ATFolder):
             object.setTitle(title)
             # research theme
             themes = []
-            theme = fields[3][1:-1]
-            for char in theme:
-                if char in ['1','2','3','M','X',]:
-                    themes.append(char)
+            try:
+                # could be a single integer
+                int(fields[3])
+                theme.append(fields[3])
+            except ValueError:
+                # text string that probably has multiple values
+                theme = fields[3][1:-1]
+                for char in theme:
+                    if char in ['1','2','3','M','X',]:
+                        themes.append(char)
             object.setResearchTheme(themes)
             # research methodology
             methodology = fields[4][1:-1]
