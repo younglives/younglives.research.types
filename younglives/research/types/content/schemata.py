@@ -29,7 +29,7 @@ ResearchDatabaseSchema = ATFolderSchema.copy() + Schema((
         required = 0,
         vocabulary = 'getPortalGroupsVocab',
         widget = SelectionWidget(
-            label = 'Paper Managers',
+            label = 'Paper managers',
             description = 'Please choose which user group contains the users for the paper managers.',
             ),
         ),
@@ -42,7 +42,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         searchable = 0,
         required = 1,
         widget = StringWidget(
-            label = 'Reference Number',
+            label = 'Reference number',
             description = 'This should be in the form of year-num-letter',
             ),
         ),
@@ -78,7 +78,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         vocabulary = RESEARCH_THEME,
         multiValued = True,
         widget = MultiSelectionWidget(
-            label='Research Theme',
+            label='Theme',
             format='checkbox',
         )
     ),
@@ -99,7 +99,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         searchable = False,
         vocabulary = RESEARCH_METHODOLOGY,
         widget = SelectionWidget(
-            label='Research Methodology',
+            label='Methodology',
             format='radio',
         )
     ),
@@ -110,7 +110,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         vocabulary = RESEARCH_OUTPUT,
         multiValued = True,
         widget = MultiSelectionWidget(
-            label='Research Output',
+            label='Research output',
             format='checkbox',
         )
     ),
@@ -120,7 +120,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         searchable = 0,
         vocabulary = PAPER_ORIGIN,
         widget = SelectionWidget(
-            label = 'Paper Origin',
+            label = 'Paper origin',
             format = 'radio',
         ),
     ),
@@ -131,7 +131,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         vocabulary = 'getPaperMembersVocab',
         default_method = 'getCurrentUser',
         widget = SelectionWidget(
-            label = 'Paper Manager',
+            label = 'Paper manager',
         ),
     ),
 
@@ -139,7 +139,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = CalendarWidget(
-            label = 'Next Deadline',
+            label = 'Next deadline',
             show_hm = False,
         ),
     ),
@@ -149,7 +149,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = CalendarWidget(
-            label = 'Proposal Deadline',
+            label = 'Proposal deadline',
             show_hm = False,
         ),
     ),
@@ -159,7 +159,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = CalendarWidget(
-            label = 'First Draft Deadline',
+            label = 'First draft deadline',
             show_hm = False,
         ),
     ),
@@ -169,7 +169,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = CalendarWidget(
-            label = 'Second Draft Deadline',
+            label = 'Second draft deadline',
             show_hm = False,
         ),
     ),
@@ -179,7 +179,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = CalendarWidget(
-            label = 'Final Draft Deadline',
+            label = 'Final draft deadline',
             show_hm = False,
         ),
     ),
@@ -189,7 +189,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = CalendarWidget(
-            label = 'Journal Submission Deadline',
+            label = 'Journal submission deadline',
             show_hm = False,
         ),
     ),
@@ -198,7 +198,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = StringWidget(
-            label = 'Data Release Agreement',
+            label = 'Data release information',
         ),
     ),
 
@@ -206,7 +206,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         searchable = 0,
         widget = StringWidget(
-            label = 'Contracts Comment',
+            label = 'Contract information',
         ),
     ),
 
@@ -217,7 +217,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         required = 0,
         multiValued = 1,
         widget = ReferenceBrowserWidget(
-            label = "Related Outputs",
+            label = "Related outputs",
             show_review_state = True,
         ),
     ),
@@ -228,7 +228,7 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         validators = ('isTidyHtmlWithCleanup',),
         default_output_type = 'text/x-html-safe',
         widget = RichWidget(
-            label = 'Private Notes',
+            label = 'General comments',
             description = "Any notes stored here will only be available to system managers.",
             rows = 25,)
         ),
