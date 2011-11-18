@@ -18,7 +18,6 @@
 
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/next-deadline" />
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/deadlines" />
-    <div tal:replace="structure provider:plone.belowcontenttitle" />
 
     <div>&nbsp;</div>
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/research-info" />
@@ -38,6 +37,7 @@
         <h3>General comments</h3>
         <div metal:use-macro="python:context.widget('privateNotes', mode='view')" />
     </tal:private-notes>
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
     <div tal:replace="structure provider:plone.belowcontentbody" />
     </tal:main-macro>
 </div>
