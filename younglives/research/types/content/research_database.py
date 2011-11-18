@@ -131,7 +131,7 @@ class ResearchDatabase(ATFolder):
             try:
                 # could be a single integer
                 int(fields[3])
-                theme.append(fields[3])
+                themes.append(fields[3])
             except ValueError:
                 # text string that probably has multiple values
                 theme = fields[3][1:-1]
@@ -141,6 +141,8 @@ class ResearchDatabase(ATFolder):
             object.setResearchTheme(themes)
             # research methodology
             methodology = fields[4][1:-1]
+            if methodology[-1:] == '?':
+                methodology = methodology[:-1]
             if methodology in ['MM', 'QL', 'QN']:
                 object.setResearchMethodology(methodology)
             # countries
