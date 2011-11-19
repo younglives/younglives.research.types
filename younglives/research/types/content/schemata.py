@@ -115,13 +115,14 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         )
     ),
 
-    StringField('researchOrigin',
+    LinesField('researchOrigin',
         required = 0,
         searchable = 0,
         vocabulary = PAPER_ORIGIN,
-        widget = SelectionWidget(
+        multiValued = True,
+        widget = MultiSelectionWidget(
             label = 'Paper origin',
-            format = 'radio',
+            format = 'checkbox',
         ),
     ),
 

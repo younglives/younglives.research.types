@@ -171,9 +171,11 @@ class ResearchDatabase(ATFolder):
             self._createState(object, fields[8][1:-1], fields[9][1:-1], fields)
             # cell 14, Paper origin
             origin = fields[14][1:-1]
-            if origin in PAPER_ORIGIN.values():
-                origin_key = PAPER_ORIGIN.getKey(origin)
-                object.setResearchOrigin(origin_key)
+            origins = []
+            for item in PAPER_ORIGIN:
+                if PAPER_ORIGIN.getValue(item).lower() in origin.lower():
+                    origins.append(item)
+            object.setResearchOrigin(origins)
             next_deadline = self._getNextDeadline(object, fields)
             if next_deadline:
                 object.setNextDeadline(next_deadline)
