@@ -101,8 +101,9 @@ class ResearchDatabase(ATFolder):
 # spreadsheet upload methods
 
     security.declareProtected(permissions.ManagePortal, 'processFile')
-    def processFile(self):
+    def processFile(self, testing=0):
         """process the file"""
+        count = 0
         input = self._openFile()
         # skip the first 7 lines, as these are headers
         input = input[7:]
@@ -199,6 +200,9 @@ class ResearchDatabase(ATFolder):
             object.unmarkCreationFlag()
             object.reindexObject()
             transaction.savepoint(optimistic = True)
+            count += 1
+            if testing and testing > count:
+                return self
         return self
 
     def _importAuthors(self, authors):
