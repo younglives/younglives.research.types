@@ -236,4 +236,5 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
 
 ))
 
+ResearchSchema['title'].accessor = 'getTitle'
 finalizeATCTSchema(ResearchSchema)

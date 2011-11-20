@@ -9,7 +9,6 @@
     <div tal:replace="structure provider:plone.abovecontenttitle" />
 
     <h1 class="documentFirstHeading">
-        <span tal:replace="string:${context/referenceNumber}: " />
         <span metal:use-macro="python:context.widget('title', mode='view')" />
     </h1>
     <div class="documentDescription">

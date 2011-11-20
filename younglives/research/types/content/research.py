@@ -1,3 +1,4 @@
+import string
 import transaction
 from AccessControl import ClassSecurityInfo
 from zExceptions import BadRequest
@@ -109,6 +110,24 @@ class Research(ATCTContent):
         return path
 
 # view helper methods
+
+    security.declareProtected(permissions.View, 'Title')
+    def Title(self, **kw):
+        """We have to override Title here to insert the reference number"""
+        title = self.getField('title').get(self)
+        reference_no = self.getReferenceNumber()
+        if reference_no:
+            return reference_no + ": " + title
+        return title
+
+    security.declareProtected(permissions.View, 'getTitle')
+    def getTitle(self):
+        """return the title, or raw title if in edit form"""
+        obj = self
+        # check if in edit form
+        if string.split(self.REQUEST.PATH_INFO, '/')[-1:]  ==  ['edit']:
+            return self.getField('title').get(self)
+        return obj.Title()
 
     security.declareProtected(permissions.View, 'listAuthors')
     def listAuthors(self, family_first=True, all=True):
