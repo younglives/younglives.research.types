@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="oxford.homepage">
+<body>
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+    <h1 class="documentFirstHeading">
+        <span metal:use-macro="python:context.widget('title', mode='view')" />
+    </h1>
+    <div class="documentDescription">
+        <span metal:use-macro="python:context.widget('description', mode='view')" />
+    </div>
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+    </tal:main-macro>
+</div>
+</body>
+</html>

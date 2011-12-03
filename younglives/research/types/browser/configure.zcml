@@ -49,6 +49,21 @@
       />
 
   <browser:page
+      name="research_search"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      class=".research_search.ResearchSearch"
+      template="templates/research_search.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="younglives.research.types.research_search_macros"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      template="templates/research_search_macros.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
     for="younglives.research.types.interfaces.research_database.IResearchDatabase"
     name="browse_authors"
     class=".browse.authors.BrowseAuthorsView"
