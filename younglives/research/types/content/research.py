@@ -146,7 +146,9 @@ class Research(ATCTContent):
         """Return all the authors as a text string"""
         authors = []
         author = self.getPaperAuthor()
-        if family_first and not author.getNameOrder():
+        if author is None:
+            authors.append('Undefined Author')
+        elif family_first and not author.getNameOrder():
             authors.append(author.getFamilyName() + ', ' + author.getPersonalNames())
         else:
             authors.append(author.Title())
@@ -154,7 +156,9 @@ class Research(ATCTContent):
         if not all and len(co_authors) > 2:
             return authors[0] + ' et al'
         for co_author in co_authors:
-            if family_first and not co_author.getNameOrder():
+            if co_author is None:
+                authors.append('Undefined Author')
+            elif family_first and not co_author.getNameOrder():
                 authors.append(co_author.getFamilyName() + ', ' + co_author.getPersonalNames())
             else:
                 authors.append(co_author.Title())
