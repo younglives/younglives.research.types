@@ -14,13 +14,14 @@
         <div class="documentDescription">
             <span metal:use-macro="python:context.widget('description', mode='view')" />
         </div>
+        <div metal:use-macro="context/@@younglives.research.types.macros/macros/table_view" />
         <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/results_display" />
         <div tal:replace="structure provider:plone.belowcontenttitle" />
     </tal:main-macro>
 </div>
 <metal:slots fill-slot="column_two_slot">
     <div class="cell width-1:4 position-3:4" id="portal-column-one">
-        <form tal:attributes="action context/absolute_url">
+        <form tal:attributes="action string:${context/absolute_url}/research_search">
             <div style="float: right">
                 <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/theme_facet" />
                 <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/submit_button" />

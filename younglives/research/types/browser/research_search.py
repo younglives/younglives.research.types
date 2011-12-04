@@ -32,11 +32,16 @@ class ResearchSearch(BrowserView):
             research_theme = getattr(self.request, 'research_theme')
         else:
             research_theme = self.uniqueValuesForResearchTheme()
-        outputs = research_database_catalog(portal_type='Research',
-                                 review_state='published',
-                                 theme='research_theme',
-                                 )
+        outputs = research_database_catalog(meta_type ='Research',
+                                            theme = research_theme,
+                                           )
         return outputs
+
+    def getStateInfo(self, state):
+        portal_workflow = getToolByName(self, 'portal_workflow')
+        research_workflow = portal_workflow.getWorkflowById('research_workflow')
+        state = research_workflow['states'][state]
+        return state
 
     def vocabResearchTheme(self):
         """Get the vocab for the research theme

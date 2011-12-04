@@ -98,6 +98,17 @@ class ResearchDatabase(ATFolder):
         object = author.getObject()
         return object.getBRefs()
 
+    def shortenTitle(self, title):
+        """Shorten a title to appear in a tabular view"""
+        if len(title) > 20:
+            title = title[:20]
+            word_list = title.split(' ')
+            # strip off the last word/part word
+            word_list = word_list[:-1]
+            title = ' '.join(word_list)
+            title = title + ' ...'
+        return title
+
 # spreadsheet upload methods
 
     security.declareProtected(permissions.ManagePortal, 'processFile')

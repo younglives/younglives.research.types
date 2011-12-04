@@ -23,3 +23,22 @@
         </tbody>
     </table>
 </div>
+<div metal:define-macro="table_view">
+    <table class="research_table">
+        <thead>
+            <th class="cell_ref">Ref</th>
+            <th class="cell_authors">Authors</th>
+            <th class="cell_title">Title</th>
+        </thead>
+        <tbody>
+            <tr tal:repeat="item outputs">
+                <td class="table_ref" tal:content="item/id" />
+                <td class="cell_authors" tal:content="python:item.getObject().getAllAuthors(all=False)" />
+                <td class="cell_title">
+                    <a tal:attributes="href item/getURL"
+                       tal:content="python:context.shortenTitle(item.Title)" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -12,6 +12,23 @@ dl.portletWorkflowSteps dd.portletFooter a {
 }
 
 table.research_table {
-    border: 1px solid;
     width: 100%;
+}
+
+table.research_table,
+table.research_table th,
+table.research_table td {
+    border: 1px solid;
+}
+
+th.cell_ref {
+    width: 10%
+}
+
+th.cell_authors {
+    width: 40%
+}
+
+th.cell_title {
+    width: 50%
 }
