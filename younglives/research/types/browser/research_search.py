@@ -7,6 +7,12 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
+from younglives.research.types.config import RESEARCH_THEME, \
+                                             RESEARCH_METHODOLOGY, \
+                                             RESEARCH_COUNTRY, \
+                                             RESEARCH_OUTPUT, \
+                                             PAPER_ORIGIN
+
 class ResearchSearch(BrowserView):  
 
     template = ViewPageTemplateFile('templates/research_search.pt')
@@ -16,3 +22,30 @@ class ResearchSearch(BrowserView):
         assignable = getMultiAdapter((self.context, portletManager,), ILocalPortletAssignmentManager)
         assignable.setBlacklistStatus(CONTEXT_CATEGORY, True)
         return self.template()
+
+    def searchOutputs(self):
+        """Return the research outputs results as objects
+        """
+        request = self.request
+        research_database_catalog = getToolByName(self, 'research_database_catalog')
+        if hasattr(self.request, 'research_theme'):
+            research_theme = getattr(self.request, 'research_theme')
+        else:
+            research_theme = self.uniqueValuesForResearchTheme()
+        outputs = research_database_catalog(portal_type='Research',
+                                 review_state='published',
+                                 theme='research_theme',
+                                 )
+        return outputs
+
+    def vocabResearchTheme(self):
+        """Get the vocab for the research theme
+        """
+        return RESEARCH_THEME
+
+    def uniqueValuesForResearchTheme(self):
+        """Get the list of values for the course availability facet
+        """
+        research_database_catalog = getToolByName(self, 'research_database_catalog')
+        research_theme = research_database_catalog.uniqueValuesFor("theme")
+        return research_theme

@@ -1,0 +1,38 @@
+<fieldset metal:define-macro="theme_facet">
+    <legend>Course Type</legend>
+    <div class="field"
+         tal:define="research_theme request/research_theme|view/vocabResearchTheme">
+         <div tal:define="vocab view/vocabResearchTheme"
+              tal:repeat="vocab_item vocab">
+            <input tal:attributes="value vocab_item;
+                                   checked python:vocab_item in research_theme"
+                   name="research_theme"
+                   type="checkbox"
+                   />
+            <label tal:content="python:vocab.getValue(vocab_item)" />
+        </div>
+    </div>
+</fieldset>
+
+<dl metal:define-macro="results_display">
+    <div tal:repeat="output outputs"
+         tal:omit-tag="">
+        <dt>
+            <a tal:attributes="href output/getURL"
+               tal:content="output/Title" />
+        </dt>
+        <dd tal:content="output/Description" />
+    </div>
+</dl>
+
+<div metal:define-macro="submit_button">
+    <div class="field">
+        <div class="formControls">
+            <input class="context"
+                name="form.button.Send"
+                type="submit"
+                value="Search"
+                />
+        </div>
+    </div>
+</div>

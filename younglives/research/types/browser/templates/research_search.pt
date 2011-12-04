@@ -5,17 +5,24 @@
 <body>
 
 <div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
-    <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-    <h1 class="documentFirstHeading">
-        <span metal:use-macro="python:context.widget('title', mode='view')" />
-    </h1>
-    <div class="documentDescription">
-        <span metal:use-macro="python:context.widget('description', mode='view')" />
-    </div>
-    <div tal:replace="structure provider:plone.belowcontenttitle" />
-
+    <tal:main-macro metal:define-macro="main"
+        tal:define="outputs view/searchOutputs">
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+    
+        <h1 class="documentFirstHeading">
+            <span metal:use-macro="python:context.widget('title', mode='view')" />
+        </h1>
+        <div class="documentDescription">
+            <span metal:use-macro="python:context.widget('description', mode='view')" />
+        </div>
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+        <form tal:attributes="action context/absolute_url">
+            <div style="float: right">
+                <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/theme_facet" />
+                <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/submit_button" />
+            </div>
+            <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/results_display" />
+        </form>
     </tal:main-macro>
 </div>
 </body>
