@@ -1,5 +1,5 @@
 <fieldset metal:define-macro="theme_facet">
-    <legend>Course Type</legend>
+    <legend>Research Theme</legend>
     <div class="field"
          tal:define="research_theme request/research_theme|view/vocabResearchTheme">
          <div tal:define="vocab view/vocabResearchTheme"
