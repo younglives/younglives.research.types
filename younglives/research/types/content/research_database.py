@@ -100,8 +100,8 @@ class ResearchDatabase(ATFolder):
 
     def shortenTitle(self, title):
         """Shorten a title to appear in a tabular view"""
-        if len(title) > 20:
-            title = title[:20]
+        if len(title) > 100:
+            title = title[:100]
             word_list = title.split(' ')
             # strip off the last word/part word
             word_list = word_list[:-1]
