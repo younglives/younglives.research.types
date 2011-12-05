@@ -21,6 +21,8 @@ class ResearchDatabaseView(BrowserView):
         portal_workflow = getToolByName(self, 'portal_workflow')
         research_workflow = portal_workflow.getWorkflowById('research_workflow')
         all_states = research_workflow['states'].objectIds()
+        if '12_published' in all_states:
+            all_states.remove('12_published')
         return all_states
 
     def getStateInfo(self, state):
