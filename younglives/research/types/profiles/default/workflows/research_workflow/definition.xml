@@ -18,8 +18,8 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="note"/>
  </state>
- <state state_id="04_draft" title="Draft">
-  <description>Paper is being drafted in preparation for review</description>
+ <state state_id="04_draft" title="Draft Received">
+  <description>Draft paper has been received</description>
   <exit-transition transition_id="internal-review"/>
   <exit-transition transition_id="journal-submission"/>
   <exit-transition transition_id="external-review"/>
