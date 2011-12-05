@@ -23,7 +23,7 @@ class TestWorkflow(unittest.TestCase):
     def testStatesExist(self):
         research_workflow = self.research_workflow
         all_states = research_workflow['states'].objectIds()
-        assert len(all_states) == 13
+        assert len(all_states) == 12
         assert 'completed' in all_states
         assert 'initial-draft' in all_states
         assert 'draft' in all_states
@@ -36,7 +36,6 @@ class TestWorkflow(unittest.TestCase):
         assert 'proposed' in all_states
         assert 'published' in all_states
         assert 'rejected' in all_states
-        assert 'unpublished' in all_states
 
     def testTransitionsExist(self):
         research_workflow = self.research_workflow
@@ -54,10 +53,9 @@ class TestWorkflow(unittest.TestCase):
         assert 'propose' in all_transitions
         assert 'publish' in all_transitions
         assert 'redraft' in all_transitions
-        assert 'refused' in all_transitions
         assert 'reject' in all_transitions
         assert 'retrieve' in all_transitions
-        assert len(all_transitions) == 16, len(all_transitions)
+        assert len(all_transitions) == 15, len(all_transitions)
 
 class TestWorkflowStates(unittest.TestCase):
     """Test workflow states have correct transitions"""
@@ -133,18 +131,17 @@ class TestWorkflowStates(unittest.TestCase):
 
     def testCompletedState(self):
         transitions = self.workflow['research_workflow'].states['completed'].getTransitions()
-        assert 'refused' in transitions
+        assert 'reject' in transitions
         assert 'produce' in transitions
         assert 'note' in transitions
         assert len(transitions) == 3
 
     def testInProductionState(self):
         transitions = self.workflow['research_workflow'].states['in-production'].getTransitions()
-        assert 'refused' in transitions
         assert 'reject' in transitions
         assert 'publish' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 3
 
     def testPublishedState(self):
         transitions = self.workflow['research_workflow'].states['published'].getTransitions()
@@ -163,14 +160,8 @@ class TestWorkflowStates(unittest.TestCase):
         assert 'complete' in transitions
         assert 'publish' in transitions
         assert 'reject' in transitions
-        assert 'refused' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 5
-
-    def testUnpublishedState(self):
-        transitions = self.workflow['research_workflow'].states['unpublished'].getTransitions()
-        assert 'note' in transitions
-        assert len(transitions) == 1
+        assert len(transitions) == 4
 
     def testRejectedState(self):
         transitions = self.workflow['research_workflow'].states['rejected'].getTransitions()
