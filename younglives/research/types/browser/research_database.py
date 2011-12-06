@@ -23,6 +23,7 @@ class ResearchDatabaseView(BrowserView):
         all_states = research_workflow['states'].objectIds()
         if '12_published' in all_states:
             all_states.remove('12_published')
+        all_states.sort()
         return all_states
 
     def getStateInfo(self, state):
