@@ -15,6 +15,7 @@
  <state state_id="03_initial-draft" title="Being Drafted">
   <description>Paper is being drafted for the first time</description>
   <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="note"/>
  </state>
@@ -54,6 +55,7 @@
  </state>
  <state state_id="08_journal-review" title="Pending journal review">
   <description>Paper is being peer-reviewed by a journal</description>
+  <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="reject"/>
@@ -82,6 +84,7 @@
  </state>
  <state state_id="11_rejected" title="Rejected">
   <description>Proposal has been rejected or withdrawn and will not proceed</description>
+  <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="retrieve"/>
   <exit-transition transition_id="note"/>
  </state>

@@ -101,9 +101,10 @@ class TestWorkflowStates(unittest.TestCase):
     def testInitialDraftState(self):
         transitions = self.workflow['research_workflow'].states['03_initial-draft'].getTransitions()
         assert 'accept' in transitions
+        assert 'journal-review' in transitions
         assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 3
+        assert len(transitions) == 4
 
     def testDraftState(self):
         transitions = self.workflow['research_workflow'].states['04_draft'].getTransitions()
@@ -158,13 +159,15 @@ class TestWorkflowStates(unittest.TestCase):
     def testJournalReviewState(self):
         transitions = self.workflow['research_workflow'].states['08_journal-review'].getTransitions()
         assert 'complete' in transitions
+        assert 'journal-review' in transitions
         assert 'publish' in transitions
         assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 5
 
     def testRejectedState(self):
         transitions = self.workflow['research_workflow'].states['11_rejected'].getTransitions()
+        assert 'journal-review' in transitions
         assert 'retrieve' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 2
+        assert len(transitions) == 3
