@@ -369,11 +369,31 @@ class ResearchDatabase(ATFolder):
             return comment
         return
 
-        #due3 = fields[22] - first draft due date
-        #rcvd2 = fields[23]
-        #sent_review = fields[24]
-        #rcvd_review = fields[25]
-        #sent_author = fields[26]
+    def _firstDraftTransitionComment(self, fields):
+        """Create a comment fromt he first draft datae fields"""
+        comment = ''
+        if fields[22]:
+            comment += 'Due for first draft: ' + fields[22] + '.'
+        if fields[23]:
+            if comment:
+                comment += ' '
+            comment += 'First draft received from author: ' + fields[23] + '.'
+        if fields[24]:
+            if comment:
+                comment += ' '
+            comment += 'First draft sent to reviewer: ' + fields[24] + '.'
+        if fields[25]:
+            if comment:
+                comment += ' '
+            comment += 'First draft received from reviewer: ' + fields[25] + '.'
+        if fields[26]:
+            if comment:
+                comment += ' '
+            comment += 'First draft received from reviewer: ' + fields[26] + '.'
+        if comment:
+            return comment
+        return
+
         #due4 = fields[28] - second draft due date
         #rcvd3 = fields[29]
         #sent_review2 = fields[30]
