@@ -212,7 +212,7 @@ class ResearchDatabase(ATFolder):
             object.reindexObject()
             transaction.savepoint(optimistic = True)
             count += 1
-            if testing and testing > count:
+            if testing and int(testing) <= count:
                 return self
         return self
 
@@ -253,10 +253,7 @@ class ResearchDatabase(ATFolder):
         if state == 'Proposal under review':
             wf_tool.doActionFor(object, 'propose', comment=comment)
             return
-        if fields[13]:
-            new_comment = fields[13][1:-1]
-        else:
-            new_comment = default_comment
+        new_comment = self._proposalTransitionComment(fields, default_comment)
         wf_tool.doActionFor(object, 'propose', comment=new_comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
@@ -315,9 +312,6 @@ class ResearchDatabase(ATFolder):
                 last_date = date
         if last_date != marker:
             return last_date
-        #due = fields[10]
-        #rcvd = fields[11]
-        #accept = fields[12]
         #sent = fields[15]
         #rcvd4 = fields[16]
         #sent2 = fields[18]
@@ -335,6 +329,27 @@ class ResearchDatabase(ATFolder):
         #sent_author2 = fields[32]
         #due2 = fields[34 - final due date
         #rcvd5 = fields[35]
+
+    def _proposalTransitionComment(self, fields, default_comment):
+        """Work out the proposal workflow transition comment"""
+        comment = ''
+        if fields[10]:
+            comment += 'Proposal was due: ' + fields[10] + '.'
+        if fields[11]:
+            if comment:
+                comment += ' '
+            comment += 'Proposal was received: ' + fields[11] + '.'
+        if fields[12]:
+            if comment:
+                comment += ' '
+            comment += 'Proposal was received: ' + fields[12] + '.'
+        if fields[13]:
+            if comment:
+                comment += ' '
+            comment += fields[13][1:-1]
+        if comment:
+            return comment
+        return default_comment
 
     def _openFile(self):
         """open the file, and return the file contents"""
