@@ -419,8 +419,18 @@ class ResearchDatabase(ATFolder):
             return comment
         return
 
-        #due2 = fields[34 - final due date
-        #rcvd5 = fields[35]
+    def _secondDraftTransitionComment(self, fields):
+        """Create a comment from the second draft date fields"""
+        comment = ''
+        if fields[34]:
+            comment += 'Final draft due: ' + fields[34] + '.'
+        if fields[35]:
+            if comment:
+                comment += ' '
+            comment += 'Final draft received: ' + fields[35] + '.'
+        if comment:
+            return comment
+        return
 
     def _openFile(self):
         """open the file, and return the file contents"""
