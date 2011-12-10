@@ -389,7 +389,7 @@ class ResearchDatabase(ATFolder):
         if fields[26]:
             if comment:
                 comment += ' '
-            comment += 'First draft received from reviewer: ' + fields[26] + '.'
+            comment += 'First draft comments sent to author: ' + fields[26] + '.'
         if comment:
             return comment
         return
