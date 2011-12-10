@@ -317,19 +317,6 @@ class ResearchDatabase(ATFolder):
                 last_date = date
         if last_date != marker:
             return last_date
-        #data_released = fields[20]
-        #due3 = fields[22] - first draft due date
-        #rcvd2 = fields[23]
-        #sent_review = fields[24]
-        #rcvd_review = fields[25]
-        #sent_author = fields[26]
-        #due4 = fields[28] - second draft due date
-        #rcvd3 = fields[29]
-        #sent_review2 = fields[30]
-        #rcvd_review2 = fields[31]
-        #sent_author2 = fields[32]
-        #due2 = fields[34 - final due date
-        #rcvd5 = fields[35]
 
     def _proposalTransitionComment(self, fields, default_comment):
         """Work out the proposal workflow transition comment"""
@@ -374,9 +361,26 @@ class ResearchDatabase(ATFolder):
             if comment:
                 comment += ' '
             comment += 'Received from data release agreement: ' + fields[19] + '.'
+        if fields[20]:
+            if comment:
+                comment += ' '
+            comment += 'Data released: ' + fields[20] + '.'
         if comment:
             return comment
         return
+
+        #due3 = fields[22] - first draft due date
+        #rcvd2 = fields[23]
+        #sent_review = fields[24]
+        #rcvd_review = fields[25]
+        #sent_author = fields[26]
+        #due4 = fields[28] - second draft due date
+        #rcvd3 = fields[29]
+        #sent_review2 = fields[30]
+        #rcvd_review2 = fields[31]
+        #sent_author2 = fields[32]
+        #due2 = fields[34 - final due date
+        #rcvd5 = fields[35]
 
     def _openFile(self):
         """open the file, and return the file contents"""
