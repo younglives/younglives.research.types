@@ -370,7 +370,7 @@ class ResearchDatabase(ATFolder):
         return
 
     def _firstDraftTransitionComment(self, fields):
-        """Create a comment fromt he first draft datae fields"""
+        """Create a comment from the first draft date fields"""
         comment = ''
         if fields[22]:
             comment += 'Due for first draft: ' + fields[22] + '.'
@@ -394,11 +394,31 @@ class ResearchDatabase(ATFolder):
             return comment
         return
 
-        #due4 = fields[28] - second draft due date
-        #rcvd3 = fields[29]
-        #sent_review2 = fields[30]
-        #rcvd_review2 = fields[31]
-        #sent_author2 = fields[32]
+    def _secondDraftTransitionComment(self, fields):
+        """Create a comment from the second draft date fields"""
+        comment = ''
+        if fields[28]:
+            comment += 'Due for second draft: ' + fields[28] + '.'
+        if fields[29]:
+            if comment:
+                comment += ' '
+            comment += 'Second draft received from author: ' + fields[29] + '.'
+        if fields[30]:
+            if comment:
+                comment += ' '
+            comment += 'Second draft sent to reviewer: ' + fields[30] + '.'
+        if fields[31]:
+            if comment:
+                comment += ' '
+            comment += 'Second draft received from reviewer: ' + fields[31] + '.'
+        if fields[32]:
+            if comment:
+                comment += ' '
+            comment += 'Second draft comments sent to author: ' + fields[32] + '.'
+        if comment:
+            return comment
+        return
+
         #due2 = fields[34 - final due date
         #rcvd5 = fields[35]
 
