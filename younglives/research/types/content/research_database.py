@@ -252,8 +252,10 @@ class ResearchDatabase(ATFolder):
             return
         if state == 'Proposal under review':
             wf_tool.doActionFor(object, 'propose', comment=comment)
-            return
-        new_comment = self._proposalTransitionComment(fields, default_comment)
+            return _contractsTransitionComment
+        contract_comment = self._proposalTransitionComment(fields, default_comment)
+        if contract_comment:
+            wf_tool.doActionFor(object, 'note', comment=contract_comment)
         wf_tool.doActionFor(object, 'propose', comment=new_comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
@@ -312,8 +314,6 @@ class ResearchDatabase(ATFolder):
                 last_date = date
         if last_date != marker:
             return last_date
-        #sent = fields[15]
-        #rcvd4 = fields[16]
         #sent2 = fields[18]
         #rcvd6 = fields[19]
         #data_released = fields[20]
@@ -347,6 +347,19 @@ class ResearchDatabase(ATFolder):
             if comment:
                 comment += ' '
             comment += fields[13][1:-1]
+        if comment:
+            return comment
+        return default_comment
+
+    def _contractsTransitionComment(self, fields, default_comment):
+        """Create a comment for the contract date fields"""
+        comment = ''
+        if fields[15]:
+            comment += 'Sent to contracts: ' + fields[15] + '.'
+        if fields[16]:
+            if comment:
+                comment += ' '
+            comment += 'Received from contracts: ' + fields[16] + '.'
         if comment:
             return comment
         return default_comment
