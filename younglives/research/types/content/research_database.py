@@ -253,9 +253,12 @@ class ResearchDatabase(ATFolder):
         if state == 'Proposal under review':
             wf_tool.doActionFor(object, 'propose', comment=comment)
             return _contractsTransitionComment
-        contract_comment = self._proposalTransitionComment(fields, default_comment)
+        contract_comment = self._proposalTransitionComment(fields)
         if contract_comment:
             wf_tool.doActionFor(object, 'note', comment=contract_comment)
+        data_release_comment = self._dataReleaseTransitionComment(fields)
+        if data_release_comment:
+            wf_tool.doActionFor(object, 'note', comment=data_release_comment)
         wf_tool.doActionFor(object, 'propose', comment=new_comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
@@ -314,8 +317,6 @@ class ResearchDatabase(ATFolder):
                 last_date = date
         if last_date != marker:
             return last_date
-        #sent2 = fields[18]
-        #rcvd6 = fields[19]
         #data_released = fields[20]
         #due3 = fields[22] - first draft due date
         #rcvd2 = fields[23]
@@ -351,7 +352,7 @@ class ResearchDatabase(ATFolder):
             return comment
         return default_comment
 
-    def _contractsTransitionComment(self, fields, default_comment):
+    def _contractsTransitionComment(self, fields):
         """Create a comment for the contract date fields"""
         comment = ''
         if fields[15]:
@@ -362,7 +363,20 @@ class ResearchDatabase(ATFolder):
             comment += 'Received from contracts: ' + fields[16] + '.'
         if comment:
             return comment
-        return default_comment
+        return
+
+    def _dataReleaseTransitionComment(self, fields):
+        """Work out the proposal workflow transition comment"""
+        comment = ''
+        if fields[18]:
+            comment += 'Sent to data release agreement: ' + fields[18] + '.'
+        if fields[19]:
+            if comment:
+                comment += ' '
+            comment += 'Received from data release agreement: ' + fields[19] + '.'
+        if comment:
+            return comment
+        return
 
     def _openFile(self):
         """open the file, and return the file contents"""
