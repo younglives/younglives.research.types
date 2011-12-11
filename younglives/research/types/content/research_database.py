@@ -271,7 +271,6 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'note', comment=final_draft_comment)
         if fields[36]:
             wf_tool.doActionFor(object, 'note', comment=fields[36][1:-1])
-            new_comment = 
         wf_tool.doActionFor(object, 'propose', comment=comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
