@@ -240,6 +240,7 @@ class ResearchDatabase(ATFolder):
                          'Draft under review',
                          'Pending next draft',
                          'Pending final draft',
+                         '2nd draft under review', #6_external-review
                          'Final draft received',
                          'Final draft under review', #9_completed
                          'Pending journal submission',
@@ -292,7 +293,7 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'journal-submission', comment=comment)
             wf_tool.doActionFor(object, 'journal-review', comment=comment)
             return
-        if state == 'Draft under review':
+        if state in ['Draft under review', '2nd draft under review']:
             wf_tool.doActionFor(object, 'internal-review', comment=comment)
             return
         wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
