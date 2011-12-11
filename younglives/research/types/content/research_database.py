@@ -241,6 +241,7 @@ class ResearchDatabase(ATFolder):
                          'Pending next draft',
                          'Pending final draft',
                          'Final draft received',
+                         'Final draft under review', #9_completed
                          'Pending journal submission',
                          'Pending journal review',
                          'Completed',
@@ -253,7 +254,7 @@ class ResearchDatabase(ATFolder):
         if state == 'Proposal under review':
             wf_tool.doActionFor(object, 'propose', comment=comment)
             return _contractsTransitionComment
-        contract_comment = self._proposalTransitionComment(fields)
+        contract_comment = self._contractsTransitionComment(fields)
         if contract_comment:
             wf_tool.doActionFor(object, 'note', comment=contract_comment)
         data_release_comment = self._dataReleaseTransitionComment(fields)
@@ -268,7 +269,7 @@ class ResearchDatabase(ATFolder):
         final_draft_comment = self._finalDraftTransitionComment(fields)
         if final_draft_comment:
             wf_tool.doActionFor(object, 'note', comment=final_draft_comment)
-        wf_tool.doActionFor(object, 'propose', comment=new_comment)
+        wf_tool.doActionFor(object, 'propose', comment=comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
             return
@@ -293,7 +294,7 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'internal-review', comment=comment)
             return
         wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
-        if state == 'Completed':
+        if state in ['Completed', 'Final draft under review']:
             wf_tool.doActionFor(object, 'complete', comment=comment)
             return
         if fields[36]:
@@ -443,16 +444,20 @@ class ResearchDatabase(ATFolder):
 
     def _openFile(self):
         """open the file, and return the file contents"""
-        data_path = os.path.abspath('var')
+        data_path = os.path.abspath('/usr/local/plone/younglives/var')
         try:
             data_catch = open(data_path + '/spreadsheet.csv', 'rU')
-        except IOError: # file does not exist, or path is wrong
+        except IOError:
+            data_path = os.path.abspath('var')
             try:
-                # we might be in foreground mode
-                data_path = os.path.abspath('../var')
                 data_catch = open(data_path + '/spreadsheet.csv', 'rU')
             except IOError: # file does not exist, or path is wrong
-                return 'File does not exist'
+                try:
+                    # we might be in foreground mode
+                    data_path = os.path.abspath('../var')
+                    data_catch = open(data_path + '/spreadsheet.csv', 'rU')
+                except IOError: # file does not exist, or path is wrong
+                    return 'File does not exist'
         input = data_catch.read()
         data_catch.close()
         #input = input.replace("'", "\'\")
