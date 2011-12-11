@@ -259,6 +259,15 @@ class ResearchDatabase(ATFolder):
         data_release_comment = self._dataReleaseTransitionComment(fields)
         if data_release_comment:
             wf_tool.doActionFor(object, 'note', comment=data_release_comment)
+        first_draft_comment = self._firstDraftTransitionComment(fields)
+        if first_draft_comment:
+            wf_tool.doActionFor(object, 'note', comment=first_draft_comment)
+        second_draft_comment = self._secondDraftTransitionComment(fields)
+        if second_draft_comment:
+            wf_tool.doActionFor(object, 'note', comment=second_draft_comment)
+        final_draft_comment = self._finalDraftTransitionComment(fields)
+        if final_draft_comment:
+            wf_tool.doActionFor(object, 'note', comment=final_draft_comment)
         wf_tool.doActionFor(object, 'propose', comment=new_comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
@@ -419,8 +428,8 @@ class ResearchDatabase(ATFolder):
             return comment
         return
 
-    def _secondDraftTransitionComment(self, fields):
-        """Create a comment from the second draft date fields"""
+    def _finalDraftTransitionComment(self, fields):
+        """Create a comment from the final draft date fields"""
         comment = ''
         if fields[34]:
             comment += 'Final draft due: ' + fields[34] + '.'
