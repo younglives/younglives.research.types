@@ -83,6 +83,16 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         )
     ),
 
+    StringField('researchMethodology',
+        required = False,
+        searchable = False,
+        vocabulary = RESEARCH_METHODOLOGY,
+        widget = SelectionWidget(
+            label='Methodology',
+            format='radio',
+        )
+    ),
+
     LinesField('researchCountry',
         required = False,
         searchable = False,
@@ -91,16 +101,6 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         widget = MultiSelectionWidget(
             label='Country of data to be used',
             format='checkbox',
-        )
-    ),
-
-    StringField('researchMethodology',
-        required = False,
-        searchable = False,
-        vocabulary = RESEARCH_METHODOLOGY,
-        widget = SelectionWidget(
-            label='Methodology',
-            format='radio',
         )
     ),
 
@@ -115,6 +115,16 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         )
     ),
 
+    StringField('paperManager',
+        required = 0,
+        searchable = 0,
+        vocabulary = 'getPaperMembersVocab',
+        default_method = 'getCurrentUser',
+        widget = SelectionWidget(
+            label = 'Paper manager',
+        ),
+    ),
+
     LinesField('researchOrigin',
         required = 0,
         searchable = 0,
@@ -123,16 +133,6 @@ ResearchSchema = ATContentTypeSchema.copy() + Schema((
         widget = MultiSelectionWidget(
             label = 'Paper origin',
             format = 'checkbox',
-        ),
-    ),
-
-    StringField('paperManager',
-        required = 0,
-        searchable = 0,
-        vocabulary = 'getPaperMembersVocab',
-        default_method = 'getCurrentUser',
-        widget = SelectionWidget(
-            label = 'Paper manager',
         ),
     ),
 
