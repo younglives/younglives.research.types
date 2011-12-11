@@ -269,6 +269,9 @@ class ResearchDatabase(ATFolder):
         final_draft_comment = self._finalDraftTransitionComment(fields)
         if final_draft_comment:
             wf_tool.doActionFor(object, 'note', comment=final_draft_comment)
+        if fields[36]:
+            wf_tool.doActionFor(object, 'note', comment=fields[36][1:-1])
+            new_comment = 
         wf_tool.doActionFor(object, 'propose', comment=comment)
         if state == 'Pending 1st draft':
             wf_tool.doActionFor(object, 'accept', comment=comment)
@@ -297,11 +300,7 @@ class ResearchDatabase(ATFolder):
         if state in ['Completed', 'Final draft under review']:
             wf_tool.doActionFor(object, 'complete', comment=comment)
             return
-        if fields[36]:
-            new_comment = fields[36][1:-1]
-        else:
-            new_comment = default_comment
-        wf_tool.doActionFor(object, 'complete', comment=new_comment)
+        wf_tool.doActionFor(object, 'complete', comment=comment)
         if state == 'In production':
             wf_tool.doActionFor(object, 'produce', comment=comment)
             return
