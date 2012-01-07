@@ -9,6 +9,5 @@
   <include package=".browser" />
   <include package=".content" />
   <include file="profiles.zcml" />
-  <i18n:registerTranslations directory="locales" />
 
 </configure>
