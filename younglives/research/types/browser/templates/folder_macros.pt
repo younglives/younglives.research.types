@@ -17,7 +17,8 @@
                 <td tal:content="item/id" />
                 <td tal:content="item/getAllAuthors" />
                 <td>
-                    <a tal:attributes="href item/getURL"
+                    <a tal:attributes="href item/getURL;
+                                       title item/getLastComment"
                        tal:content="item/rawTitle" />
                 </td>
                 <td tal:content="item/getPaperManagerFullName" />
