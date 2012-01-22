@@ -9,16 +9,20 @@
             <th>Ref</th>
             <th>Authors</th>
             <th>Title</th>
+            <th>Paper Manager</th>
+            <th>Theme</th>
         </thead>
         <tbody>
             <tr tal:repeat="item items">
                 <td tal:content="item/id" />
-                <td tal:content="python:item.getObject().getAllAuthors(all=False)" />
+                <td tal:content="item/getAllAuthors" />
                 <td>
                     <a tal:attributes="href item/getURL"
-                       tal:content="item/Title" />
+                       tal:content="item/rawTitle" />
                 </td>
-                <td tal:content="item/Description" />
+                <td tal:content="item/getPaperManagerFullName" />
+                <td tal:define="themes item/researchTheme"
+                    tal:content="python:', '.join(themes)" />
             </tr>
         </tbody>
     </table>
