@@ -19,6 +19,7 @@ table.research_table,
 table.research_table th,
 table.research_table td {
     border: 1px solid;
+    padding: 2px;
 }
 
 th.cell_ref {
