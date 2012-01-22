@@ -79,17 +79,16 @@ class Research(ATCTContent):
         current_user = mtool.getAuthenticatedMember()
         return current_user.getId()
 
-    security.declareProtected(permissions.View, 'getPaperManagerFullName')
+        security.declareProtected(permissions.View, 'getPaperManagerFullName')
     def getPaperManagerFullName(self):
-        """
-        Get the full name of the assigned to user."""
-        user_id = self.getAssignedTo()
-        if user_id is None:
-            return
+        """Return the full name of the paper manager"""
+        user_id = self.getField('paperManager').get(self)
+        if user_id is None or user_id == '':
+            return 'N/A'
         mtool = getToolByName(self, 'portal_membership')
         user = mtool.getMemberInfo(user_id)
         if user is None:
-            # user deleted, just return the id
+            # TODO: user deleted
             return user_id
         user_name = user['fullname']
         return user_name
@@ -176,20 +175,6 @@ class Research(ATCTContent):
     def getPaperMembersVocab(self):
         """Return the member of the group, as a display list"""
         return self.aq_inner.aq_parent.getPaperMembersVocab()
-
-        security.declareProtected(permissions.View, 'getPaperManagerFullName')
-    def getPaperManagerFullName(self):
-        """Return the full name of the paper manager"""
-        user_id = self.getField('paperManager').get(self)
-        if user_id is None:
-            return
-        mtool = getToolByName(self, 'portal_membership')
-        user = mtool.getMemberInfo(user_id)
-        if user is None:
-            # TODO: user deleted
-            return user_id
-        user_name = user['fullname']
-        return user_name
 
     def getWorkflowTitle(self):
         """Return the title of the current workflow state"""
