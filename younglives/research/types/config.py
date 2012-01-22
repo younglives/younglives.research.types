@@ -55,6 +55,7 @@ PAPER_ORIGIN = DisplayList((
 # vocabs for initial imports 
 
 PAPER_MANAGER = DisplayList((
+    ('', 'N/A'),
     ('Caroline', 'caroline.knowles@qeh.ox.ac.uk'),
     ('Paul', 'pauldornan'),
     ('Emma', 'emma.merry@qeh.ox.ac.uk'),
