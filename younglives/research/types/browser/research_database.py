@@ -33,6 +33,6 @@ class ResearchDatabaseView(BrowserView):
         return state
 
     def getPapersByState(self, state):
-        portal_catalog = getToolByName(self, 'portal_catalog')
+        portal_catalog = getToolByName(self, 'research_database_catalog')
         results = portal_catalog(portal_type='Research', review_state=state)
         return results
