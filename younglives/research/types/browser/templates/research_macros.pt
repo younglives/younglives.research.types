@@ -76,7 +76,7 @@
     </div>
     <div>
         <b>Paper manager:</b>
-        <div tal:content="context/getPaperManagerFullName" />
+        <span tal:content="context/getPaperManagerFullName" />
     </div>
     <div>
         <b>Paper origin:</b>
