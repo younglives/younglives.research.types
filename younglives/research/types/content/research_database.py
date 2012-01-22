@@ -179,6 +179,8 @@ class ResearchDatabase(ATFolder):
             manager = fields[7][1:-1]
             if manager in PAPER_MANAGER:
                 object.setPaperManager(PAPER_MANAGER.getValue(manager))
+            else:
+                object.setPaperManager('')
             # paper state
             self._createState(object, fields[8][1:-1], fields[9][1:-1], fields)
             # cell 14, Paper origin
@@ -443,6 +445,7 @@ class ResearchDatabase(ATFolder):
 
     def _openFile(self):
         """open the file, and return the file contents"""
+        #data_path = os.path.abspath('var')
         data_path = os.path.abspath('/usr/local/plone/younglives/var')
         try:
             data_catch = open(data_path + '/spreadsheet.csv', 'rU')
