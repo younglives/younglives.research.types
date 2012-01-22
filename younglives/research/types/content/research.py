@@ -179,9 +179,17 @@ class Research(ATCTContent):
 
         security.declareProtected(permissions.View, 'getPaperManagerFullName')
     def getPaperManagerFullName(self):
-        """Return the member of the group, as a display list"""
-        paper_manager = self.getField('paperManager').get(self)
-        return paper_manager
+        """Return the full name of the paper manager"""
+        user_id = self.getField('paperManager').get(self)
+        if user_id is None:
+            return
+        mtool = getToolByName(self, 'portal_membership')
+        user = mtool.getMemberInfo(user_id)
+        if user is None:
+            # TODO: user deleted
+            return user_id
+        user_name = user['fullname']
+        return user_name
 
     def getWorkflowTitle(self):
         """Return the title of the current workflow state"""
