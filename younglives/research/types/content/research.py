@@ -129,6 +129,12 @@ class Research(ATCTContent):
             return self.getField('title').get(self)
         return obj.Title()
 
+    security.declareProtected(permissions.View, 'getTitle')
+    def rawTitle(self):
+        """return the raw title, where the reference number is not required"""
+        title = self.getField('title').get(self)
+        return title
+
     security.declareProtected(permissions.View, 'listAuthors')
     def listAuthors(self, family_first=True, all=True):
         """Return all the authors as a list of author objects"""
@@ -170,6 +176,12 @@ class Research(ATCTContent):
     def getPaperMembersVocab(self):
         """Return the member of the group, as a display list"""
         return self.aq_inner.aq_parent.getPaperMembersVocab()
+
+        security.declareProtected(permissions.View, 'getPaperManagerFullName')
+    def getPaperManagerFullName(self):
+        """Return the member of the group, as a display list"""
+        paper_manager = self.getField('paperManager').get(self)
+        return paper_manager
 
     def getWorkflowTitle(self):
         """Return the title of the current workflow state"""
