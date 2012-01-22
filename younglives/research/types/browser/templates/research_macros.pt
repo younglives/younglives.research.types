@@ -76,7 +76,7 @@
     </div>
     <div>
         <b>Paper manager:</b>
-        <div metal:use-macro="python:context.widget('paperManager', mode='view')" />
+        <div tal:content="context/getPaperManagerFullName" />
     </div>
     <div>
         <b>Paper origin:</b>
