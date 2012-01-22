@@ -3,7 +3,6 @@
     description="- Essentially a workflow with no transitions, but has a Published state, so portlets and applications that expect that state will continue to work."
     state_variable="review_state" initial_state="01_planned" manager_bypass="False">
  <permission>Access contents information</permission>
- <permission>Change portal events</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <state state_id="09_completed" title="Completed">
@@ -11,6 +10,21 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="produce"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="03_initial-draft" title="Being Drafted">
   <description>Paper is being drafted for the first time</description>
@@ -18,6 +32,21 @@
   <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="04_draft" title="Draft Received">
   <description>Draft paper has been received</description>
@@ -25,6 +54,21 @@
   <exit-transition transition_id="journal-submission"/>
   <exit-transition transition_id="external-review"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="06_external-review" title="External review">
   <description>Paper is being externally reviewed</description>
@@ -32,12 +76,42 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="10_in-production" title="In production">
   <description>Paper is in production or being published externally</description>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="05_internal-review" title="Internal review">
   <description>Paper is being internally reviewed</description>
@@ -45,6 +119,21 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="07_journal-submission" title="Pending journal submission">
   <description>Paper is being prepared prior to submit to a journal</description>
@@ -52,6 +141,21 @@
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="08_journal-review" title="Pending journal review">
   <description>Paper is being peer-reviewed by a journal</description>
@@ -60,6 +164,21 @@
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="01_planned" title="Planned">
   <description>Research idea is being prepared for a proposal</description>
@@ -69,6 +188,21 @@
   <exit-transition transition_id="propose"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="02_proposed" title="Proposed">
   <description>Submitted proposal is under consideration</description>
@@ -78,6 +212,21 @@
   <exit-transition transition_id="accept_draft"/>
   <exit-transition transition_id="decline"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <state state_id="12_published" title="Published">
   <description>Paper has been published</description>
@@ -87,6 +236,21 @@
   <exit-transition transition_id="journal-review"/>
   <exit-transition transition_id="retrieve"/>
   <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
  </state>
  <transition transition_id="accept" title="Accepted" new_state="04_draft" trigger="USER"
      before_script="" after_script="">
