@@ -114,6 +114,7 @@ class ResearchDatabase(ATFolder):
     security.declareProtected(permissions.ManagePortal, 'processFile')
     def processFile(self, testing=0):
         """process the file"""
+        wf_tool = getToolByName(self, 'portal_workflow')
         count = 0
         input = self._openFile()
         # skip the first 7 lines, as these are headers
@@ -182,7 +183,8 @@ class ResearchDatabase(ATFolder):
             else:
                 object.setPaperManager('')
             # paper state
-            self._createState(object, fields[8][1:-1], fields[9][1:-1], fields)
+            self._createState(object, fields[8][1:-1], fields)
+            wf_tool.doActionFor(object, 'note', comment=fields[9][1:-1])
             # cell 14, Paper origin
             origin = fields[14][1:-1]
             origins = []
@@ -229,41 +231,127 @@ class ResearchDatabase(ATFolder):
             object = self['authors']
         return object._createAuthors(authors)
 
-    def _createState(self, object, state, comment, fields):
+    def _createState(self, object, state, fields):
         """Move the object to the right state"""
         default_comment = 'Automatic transition during intitial import.'
         wf_tool = getToolByName(self, 'portal_workflow')
         # state 1 Planned
+        if fields[10]:
+            comment = 'Proposal due: ' + fields[10] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
         if state in ['Pending proposal', 'N/A']:
             return
         # state 2 Proposed
+        if fields[11]:
+            comment = 'Proposal accepted: ' + fields[11] + '.'
+        else:
+            comment = default_comment
         wf_tool.doActionFor(object, 'propose', comment=comment)
         if state in ['Proposal under review',]:
             return
         # state 3 Being drafted
+        if fields[11]:
+            comment = 'Proposal due: ' + fields[11] + '.'
+        else:
+            comment = default_comment
         wf_tool.doActionFor(object, 'accept-draft', comment=default_comment)
         if state in ['Pending 1st draft',]:
             return
         # state 4 Draft received
+        if fields[12]:
+            comment = 'Proposal was received: ' + fields[12] + '.'
+            if fields[13]:
+                comment += ' '
+                comment += fields[13][1:-1]
+        if fields[15] or fields[16] or fields[17]:
+            comment = self._contractsTransitionComment(fields)
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[18] or fields[19] or fields[20] or fields[21]:
+            comment = self._dataReleaseTransitionComment(fields)
+            wf_tool.doActionFor(object, 'note', comment=comment)
         wf_tool.doActionFor(object, 'accept', comment=default_comment)
         # state 5 Internal review (first review)
-        wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
+        if fields[22]:
+            comment = 'First draft due on: ' + fields[22] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[23]:
+            comment = 'First draft received on: ' + fields[23] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[24]:
+            comment = 'First draft sent to reviewers on: ' + fields[24] + '.'
+        else:
+            comment = default_comment
+        wf_tool.doActionFor(object, 'internal-review', comment=comment)
+        if fields[25]:
+            comment = 'First draft received from reviewers on: ' + fields[25] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[27]:
+            comment = 'First draft comment from reviewers: ' + fields[27][1:-1] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
+        if fields[26]:
+            comment = 'First draft comments sent to author on: ' + fields[26] + '.'
+        else:
+            comment = default_comment
+        if state in ['1st draft under review',]:
+            return
         wf_tool.doActionFor(object, 'redraft', comment=default_comment)
         # state 6 External review (second review)
+        if fields[28]:
+            comment = 'Second draft due on: ' + fields[28] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[29]:
+            comment = 'Second draft received on: ' + fields[29] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[30]:
+            comment = 'Second draft sent to reviewers on: ' + fields[30] + '.'
+        else:
+            comment = default_comment
+        if state in ['Pending 2nd draft',]:
+            return
         wf_tool.doActionFor(object, 'external-review', comment=default_comment)
+        if fields[31]:
+            comment = 'Second draft received from reviewers on: ' + fields[31] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[33]:
+            comment = 'Second draft comment from reviewers: ' + fields[33][1:-1] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
+        if fields[32]:
+            comment = 'Second draft comments sent to author on: ' + fields[26] + '.'
+        else:
+            comment = default_comment
+        if state in ['2nd draft under review',]:
+            return
         wf_tool.doActionFor(object, 'redraft', comment=default_comment)
-        # state 6 External review (final review)
-        wf_tool.doActionFor(object, 'external-review', comment=default_comment)
-        # state 4 Draft received
-        wf_tool.doActionFor(object, 'redraft', comment=default_comment)
+        if fields[34] or fields[35] or fields[36]:
+            if fields[34]:
+                comment = 'Final draft due on: ' + fields[34] + '.'
+                wf_tool.doActionFor(object, 'note', comment=comment)
+            if fields[35]:
+                comment = 'Final draft received on: ' + fields[35] + '.'
+                wf_tool.doActionFor(object, 'note', comment=comment)
+            if fields[36]:
+                comment = 'Final draft comments: ' + fields[36][1:-1] + '.'
+                wf_tool.doActionFor(object, 'note', comment=comment)
+            if state in ['Pending final draft',]:
+                return
+            # state 6 External review (final review)
+            wf_tool.doActionFor(object, 'external-review', comment=default_comment)
+            # state 4 Draft received
+            wf_tool.doActionFor(object, 'redraft', comment=default_comment)
         # state 9 completed
         wf_tool.doActionFor(object, 'complete', comment=default_comment)
+        if state in ['Completed',]:
+            return
         # state 10 In production
         wf_tool.doActionFor(object, 'produce', comment=default_comment)
+        if state in ['In production',]:
+            return
         # state 12 Published
         wf_tool.doActionFor(object, 'publish', comment=default_comment)
+        if state in ['Published',]:
+            return
 
     def _createStateOld(self, object, state, comment, fields):
         """Move the object to the right state"""
