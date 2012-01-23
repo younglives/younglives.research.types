@@ -24,18 +24,18 @@ class TestWorkflow(unittest.TestCase):
         research_workflow = self.research_workflow
         all_states = research_workflow['states'].objectIds()
         assert len(all_states) == 12
-        assert '09_completed' in all_states
-        assert '03_initial-draft' in all_states
-        assert '04_draft' in all_states
-        assert '06_external-review' in all_states
-        assert '10_in-production' in all_states
-        assert '05_internal-review' in all_states
-        assert '07_journal-submission' in all_states
-        assert '08_journal-review' in all_states
         assert '01_planned' in all_states
         assert '02_proposed' in all_states
-        assert '12_published' in all_states
+        assert '03_initial-draft' in all_states
+        assert '04_draft' in all_states
+        assert '05_internal-review' in all_states
+        assert '06_external-review' in all_states
+        assert '07_journal-submission' in all_states
+        assert '08_journal-review' in all_states
+        assert '09_completed' in all_states
+        assert '10_in-production' in all_states
         assert '11_rejected' in all_states
+        assert '12_published' in all_states
 
     def testTransitionsExist(self):
         research_workflow = self.research_workflow
@@ -76,13 +76,10 @@ class TestWorkflowStates(unittest.TestCase):
         object_state = self.workflow.getInfoFor(r1, 'review_state')
         self.assertEqual('01_planned', object_state)
         transitions = self.workflow['research_workflow'].states['01_planned'].getTransitions()
-        assert 'accept' in transitions
-        assert 'accept_draft' in transitions
-        assert 'journal-review' in transitions
         assert 'propose' in transitions
         assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 6
+        assert len(transitions) == 3
 
     def testProposedState(self):
         r1 = self.r1
@@ -101,48 +98,44 @@ class TestWorkflowStates(unittest.TestCase):
     def testInitialDraftState(self):
         transitions = self.workflow['research_workflow'].states['03_initial-draft'].getTransitions()
         assert 'accept' in transitions
-        assert 'journal-review' in transitions
-        assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 2
 
     def testDraftState(self):
         transitions = self.workflow['research_workflow'].states['04_draft'].getTransitions()
+        assert 'complete' in transitions
         assert 'internal-review' in transitions
         assert 'journal-submission' in transitions
         assert 'external-review' in transitions
+        assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 6
 
     def testInternalReviewState(self):
         transitions = self.workflow['research_workflow'].states['05_internal-review'].getTransitions()
-        assert 'complete' in transitions
-        assert 'reject' in transitions
         assert 'redraft' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 2
 
     def testExternalReviewState(self):
         transitions = self.workflow['research_workflow'].states['06_external-review'].getTransitions()
-        assert 'complete' in transitions
-        assert 'reject' in transitions
         assert 'redraft' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 2
 
     def testCompletedState(self):
         transitions = self.workflow['research_workflow'].states['09_completed'].getTransitions()
         assert 'reject' in transitions
         assert 'produce' in transitions
+        assert 'publish' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 3
+        assert len(transitions) == 4
 
     def testInProductionState(self):
         transitions = self.workflow['research_workflow'].states['10_in-production'].getTransitions()
-        assert 'reject' in transitions
         assert 'publish' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 3
+        assert len(transitions) == 2
 
     def testPublishedState(self):
         transitions = self.workflow['research_workflow'].states['12_published'].getTransitions()
@@ -151,23 +144,20 @@ class TestWorkflowStates(unittest.TestCase):
     def testJournalSubmissionState(self):
         transitions = self.workflow['research_workflow'].states['07_journal-submission'].getTransitions()
         assert 'journal-review' in transitions
-        assert 'reject' in transitions
-        assert 'redraft' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 4
+        assert len(transitions) == 2
 
     def testJournalReviewState(self):
         transitions = self.workflow['research_workflow'].states['08_journal-review'].getTransitions()
         assert 'complete' in transitions
-        assert 'journal-review' in transitions
-        assert 'publish' in transitions
+        assert 'journal-submission' in transitions
         assert 'reject' in transitions
         assert 'note' in transitions
-        assert len(transitions) == 5
+        assert len(transitions) == 4
 
     def testRejectedState(self):
         transitions = self.workflow['research_workflow'].states['11_rejected'].getTransitions()
-        assert 'journal-review' in transitions
+        assert 'redraft' in transitions
         assert 'retrieve' in transitions
         assert 'note' in transitions
         assert len(transitions) == 3
