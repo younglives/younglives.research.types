@@ -233,6 +233,42 @@ class ResearchDatabase(ATFolder):
         """Move the object to the right state"""
         default_comment = 'Automatic transition during intitial import.'
         wf_tool = getToolByName(self, 'portal_workflow')
+        # state 1 Planned
+        if state in ['Pending proposal', 'N/A']:
+            return
+        # state 2 Proposed
+        wf_tool.doActionFor(object, 'propose', comment=comment)
+        if state in ['Proposal under review',]:
+            return
+        # state 3 Being drafted
+        wf_tool.doActionFor(object, 'accept-draft', comment=default_comment)
+        if state in ['Pending 1st draft',]:
+            return
+        # state 4 Draft received
+        wf_tool.doActionFor(object, 'accept', comment=default_comment)
+        # state 5 Internal review (first review)
+        wf_tool.doActionFor(object, 'internal-review', comment=default_comment)
+        # state 4 Draft received
+        wf_tool.doActionFor(object, 'redraft', comment=default_comment)
+        # state 6 External review (second review)
+        wf_tool.doActionFor(object, 'external-review', comment=default_comment)
+        # state 4 Draft received
+        wf_tool.doActionFor(object, 'redraft', comment=default_comment)
+        # state 6 External review (final review)
+        wf_tool.doActionFor(object, 'external-review', comment=default_comment)
+        # state 4 Draft received
+        wf_tool.doActionFor(object, 'redraft', comment=default_comment)
+        # state 9 completed
+        wf_tool.doActionFor(object, 'complete', comment=default_comment)
+        # state 10 In production
+        wf_tool.doActionFor(object, 'produce', comment=default_comment)
+        # state 12 Published
+        wf_tool.doActionFor(object, 'publish', comment=default_comment)
+
+    def _createStateOld(self, object, state, comment, fields):
+        """Move the object to the right state"""
+        default_comment = 'Automatic transition during intitial import.'
+        wf_tool = getToolByName(self, 'portal_workflow')
         # Pending proposal and [Blank] OR N/A should be initial state
         if state == 'Withdrawn/On hold':
             wf_tool.doActionFor(object, 'reject', comment=comment)
