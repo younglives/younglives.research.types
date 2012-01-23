@@ -5,10 +5,37 @@
  <permission>Access contents information</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <state state_id="09_completed" title="Completed">
-  <description>Final draft has been accepted and is now ready for production</description>
+ <state state_id="01_planned" title="Planned">
+  <description>Research idea is being prepared for a proposal</description>
+  <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="accept_draft"/>
+  <exit-transition transition_id="journal-review"/>
+  <exit-transition transition_id="propose"/>
   <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="produce"/>
+  <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="02_proposed" title="Proposed">
+  <description>Submitted proposal is under consideration</description>
+  <exit-transition transition_id="journal-review"/>
+  <exit-transition transition_id="reject"/>
+  <exit-transition transition_id="accept"/>
+  <exit-transition transition_id="accept_draft"/>
+  <exit-transition transition_id="decline"/>
   <exit-transition transition_id="note"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Editor</permission-role>
@@ -70,8 +97,8 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="06_external-review" title="External review">
-  <description>Paper is being externally reviewed</description>
+ <state state_id="05_internal-review" title="Internal review">
+  <description>Paper is being internally reviewed</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
@@ -92,29 +119,8 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="10_in-production" title="In production">
-  <description>Paper is in production or being published externally</description>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="publish"/>
-  <exit-transition transition_id="note"/>
-  <permission-map name="Access contents information" acquired="False">
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
-  </permission-map>
-  <permission-map name="View" acquired="False">
-   <permission-role>Editor</permission-role>
-   <permission-role>Manager</permission-role>
-   <permission-role>Reviewer</permission-role>
-  </permission-map>
- </state>
- <state state_id="05_internal-review" title="Internal review">
-  <description>Paper is being internally reviewed</description>
+ <state state_id="06_external-review" title="External review">
+  <description>Paper is being externally reviewed</description>
   <exit-transition transition_id="complete"/>
   <exit-transition transition_id="reject"/>
   <exit-transition transition_id="redraft"/>
@@ -180,13 +186,10 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="01_planned" title="Planned">
-  <description>Research idea is being prepared for a proposal</description>
-  <exit-transition transition_id="accept"/>
-  <exit-transition transition_id="accept_draft"/>
-  <exit-transition transition_id="journal-review"/>
-  <exit-transition transition_id="propose"/>
+ <state state_id="09_completed" title="Completed">
+  <description>Final draft has been accepted and is now ready for production</description>
   <exit-transition transition_id="reject"/>
+  <exit-transition transition_id="produce"/>
   <exit-transition transition_id="note"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Editor</permission-role>
@@ -204,13 +207,31 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="02_proposed" title="Proposed">
-  <description>Submitted proposal is under consideration</description>
-  <exit-transition transition_id="journal-review"/>
+ <state state_id="10_in-production" title="In production">
+  <description>Paper is in production or being published externally</description>
   <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="accept"/>
-  <exit-transition transition_id="accept_draft"/>
-  <exit-transition transition_id="decline"/>
+  <exit-transition transition_id="publish"/>
+  <exit-transition transition_id="note"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="11_rejected" title="Rejected">
+  <description>Proposal has been rejected or withdrawn and will not proceed</description>
+  <exit-transition transition_id="journal-review"/>
+  <exit-transition transition_id="retrieve"/>
   <exit-transition transition_id="note"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Editor</permission-role>
@@ -230,12 +251,6 @@
  </state>
  <state state_id="12_published" title="Published">
   <description>Paper has been published</description>
- </state>
- <state state_id="11_rejected" title="Rejected">
-  <description>Proposal has been rejected or withdrawn and will not proceed</description>
-  <exit-transition transition_id="journal-review"/>
-  <exit-transition transition_id="retrieve"/>
-  <exit-transition transition_id="note"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
