@@ -241,6 +241,7 @@
  </state>
  <state state_id="12_published" title="Published">
   <description>Paper has been published</description>
+  <exit-transition transition_id="note"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
