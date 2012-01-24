@@ -254,7 +254,7 @@ class ResearchDatabase(ATFolder):
             comment = 'Proposal due: ' + fields[11] + '.'
         else:
             comment = default_comment
-        wf_tool.doActionFor(object, 'accept-draft', comment=default_comment)
+        wf_tool.doActionFor(object, 'accept_draft', comment=default_comment)
         if state in ['Pending 1st draft',]:
             return
         # state 4 Draft received
