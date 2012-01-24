@@ -139,7 +139,8 @@ class TestWorkflowStates(unittest.TestCase):
 
     def testPublishedState(self):
         transitions = self.workflow['research_workflow'].states['12_published'].getTransitions()
-        assert len(transitions) == 0
+        assert 'note' in transitions
+        assert len(transitions) == 1
 
     def testJournalSubmissionState(self):
         transitions = self.workflow['research_workflow'].states['07_journal-submission'].getTransitions()
