@@ -34,6 +34,11 @@ th.cell_title {
     width: 50%
 }
 
+#content .research-list
+{
+    margin: 0;
+}
+
 #content .research-list td
 {
     border: none;
