@@ -56,12 +56,16 @@
         <b>Paper status:</b>
         <div tal:replace="context/getWorkflowTitle" />
     </div>
-    <div class="research-list">
-        <dt>Theme:</dt>
-        <dd tal:define="vocab python:context.Schema()['researchTheme'].Vocabulary(context)"
-            tal:repeat="theme context/getResearchTheme"
-            tal:content="python:vocab.getValue(theme)" />
-    </div>
+    <table class="research-list">
+        <tr tal:define="vocab python:context.Schema()['researchTheme'].Vocabulary(context)">
+            <td><b>Theme:</b></td>
+            <td>&nbsp;</td>
+            <td>
+                <div tal:repeat="theme context/getResearchTheme"
+                     tal:content="python:vocab.getValue(theme)" />
+            </td>
+        </tr>
+    </table>
     <div>
         <b>Methodology:</b>
         <div metal:use-macro="python:context.widget('researchMethodology', mode='view')" />

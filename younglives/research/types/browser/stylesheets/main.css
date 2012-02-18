@@ -34,7 +34,9 @@ th.cell_title {
     width: 50%
 }
 
-#content .research-list dd
+#content .research-list td
 {
-    margin: 0 0 0 2em;
+    border: none;
+    padding: 0;
+    vertical-align: top;
 }
