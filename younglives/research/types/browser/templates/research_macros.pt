@@ -56,7 +56,7 @@
         <b>Paper status:</b>
         <div tal:replace="context/getWorkflowTitle" />
     </div>
-    <div>
+    <div class="research-list">
         <dt>Theme:</dt>
         <dd tal:define="vocab python:context.Schema()['researchTheme'].Vocabulary(context)"
             tal:repeat="theme context/getResearchTheme"
