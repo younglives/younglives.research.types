@@ -79,7 +79,7 @@ class Research(ATCTContent):
         current_user = mtool.getAuthenticatedMember()
         return current_user.getId()
 
-        security.declareProtected(permissions.View, 'getPaperManagerFullName')
+    security.declareProtected(permissions.View, 'getPaperManagerFullName')
     def getPaperManagerFullName(self):
         """Return the full name of the paper manager"""
         user_id = self.getField('paperManager').get(self)
