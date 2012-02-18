@@ -233,7 +233,7 @@ class ResearchDatabase(ATFolder):
 
     def _createState(self, object, state, fields):
         """Move the object to the right state"""
-        default_comment = 'Automatic transition during intitial import.'
+        default_comment = 'Automatic transition during initial import.'
         wf_tool = getToolByName(self, 'portal_workflow')
         # state 1 Planned
         if fields[10]:
@@ -355,7 +355,7 @@ class ResearchDatabase(ATFolder):
 
     def _createStateOld(self, object, state, comment, fields):
         """Move the object to the right state"""
-        default_comment = 'Automatic transition during intitial import.'
+        default_comment = 'Automatic transition during initial import.'
         wf_tool = getToolByName(self, 'portal_workflow')
         # Pending proposal and [Blank] OR N/A should be initial state
         if state == 'Withdrawn/On hold':
