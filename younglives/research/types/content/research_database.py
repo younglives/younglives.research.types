@@ -260,16 +260,24 @@ class ResearchDatabase(ATFolder):
         # state 4 Draft received
         if fields[12]:
             comment = 'Proposal was received: ' + fields[12] + '.'
-            if fields[13]:
+        else:
+            comment = ''
+        if fields[13]:
+            if comment != '':
                 comment += ' '
-                comment += fields[13][1:-1]
+            comment += fields[13][1:-1]
+        wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[15] or fields[16] or fields[17]:
             comment = self._contractsTransitionComment(fields)
             wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[18] or fields[19] or fields[20] or fields[21]:
             comment = self._dataReleaseTransitionComment(fields)
-            wf_tool.doActionFor(object, 'note', comment=comment)
-        wf_tool.doActionFor(object, 'accept', comment=default_comment)
+            if comment is not None:
+                wf_tool.doActionFor(object, 'accept', comment=comment)
+            else:
+                wf_tool.doActionFor(object, 'accept', comment=default_comment)
+        else:
+            wf_tool.doActionFor(object, 'accept', comment=default_comment)
         # state 5 Internal review (first review)
         if fields[22]:
             comment = 'First draft due on: ' + fields[22] + '.'
@@ -286,7 +294,7 @@ class ResearchDatabase(ATFolder):
             comment = 'First draft received from reviewers on: ' + fields[25] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[27]:
-            comment = 'First draft comment from reviewers: ' + fields[27][1:-1] + '.'
+            comment = 'First draft comments/actions: ' + fields[27][1:-1] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
         if fields[26]:
@@ -314,7 +322,7 @@ class ResearchDatabase(ATFolder):
             comment = 'Second draft received from reviewers on: ' + fields[31] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[33]:
-            comment = 'Second draft comment from reviewers: ' + fields[33][1:-1] + '.'
+            comment = 'Second draft comments/actions: ' + fields[33][1:-1] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
         if fields[32]:
@@ -332,7 +340,7 @@ class ResearchDatabase(ATFolder):
                 comment = 'Final draft received on: ' + fields[35] + '.'
                 wf_tool.doActionFor(object, 'note', comment=comment)
             if fields[36]:
-                comment = 'Final draft comments: ' + fields[36][1:-1] + '.'
+                comment = 'Final draft comments/actions: ' + fields[36][1:-1] + '.'
                 wf_tool.doActionFor(object, 'note', comment=comment)
             if state in ['Pending final draft',]:
                 return
@@ -491,7 +499,7 @@ class ResearchDatabase(ATFolder):
         """Work out the proposal workflow transition comment"""
         comment = ''
         if fields[18]:
-            comment += 'Sent to data release agreement: ' + fields[18] + '.'
+            comment += 'Data Release Agreement sent on: ' + fields[18] + '.'
         if fields[19]:
             if comment:
                 comment += ' '
