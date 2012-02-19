@@ -1,36 +1,46 @@
 <div metal:define-macro="papers_by_year">
     <table class="research_table" tal:define="items python:view.getPapersByYear()">
         <thead>
-            <th>Ref</th>
-            <th>Author(s)</th>
-            <th>Title</th>
-            <th>Theme</th>
-            <th>Methodology</th>
-            <th>Country of Data</th>
-            <th>Type of Output</th>
-            <th>Paper Manager</th>
-            <th>Paper Status</th>
+            <tr>
+                <th>Ref</th>
+                <th colspan="2">Author(s)</th>
+                <th colspan="4">Title</th>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Theme</th>
+                <th>Methodology</th>
+                <th>Country of Data</th>
+                <th>Type of Output</th>
+                <th>Paper Manager</th>
+                <th>Paper Status</th>
+            </tr>
         </thead>
         <tbody>
-            <tr tal:repeat="item items">
-                <td tal:content="item/id" />
-                <td tal:content="item/getAllAuthors" />
-                <td>
-                    <a tal:attributes="href item/getURL;
-                                       title item/getLastComment"
-                       tal:content="item/rawTitle" />
-                </td>
-                <td tal:define="themes item/researchTheme"
-                    tal:content="python:', '.join(themes)" />
-                <td tal:content="item/researchMethodology" />
-                <td tal:define="countries item/researchCountry"
-                    tal:content="python:', '.join(countries)" />
-                <td tal:define="outputs item/researchOutput"
-                    tal:content="python:', '.join(outputs)" />
-                <td tal:content="item/getPaperManagerFullName" />
-                <td tal:define="state_info python:view.getStateInfo(item.review_state)"
-                    tal:content="state_info/title" />
-            </tr>
+            <tal:research_item repeat="item items">
+                <tr>
+                    <td tal:content="item/id" />
+                    <td colspan="2" tal:content="item/getAllAuthors" />
+                    <td colspan="4">
+                        <a tal:attributes="href item/getURL;
+                                           title item/getLastComment"
+                           tal:content="item/rawTitle" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td tal:define="themes item/researchTheme"
+                        tal:content="python:', '.join(themes)" />
+                    <td tal:content="item/researchMethodology" />
+                    <td tal:define="countries item/researchCountry"
+                        tal:content="python:', '.join(countries)" />
+                    <td tal:define="outputs item/researchOutput"
+                        tal:content="python:', '.join(outputs)" />
+                    <td tal:content="item/getPaperManagerFullName" />
+                    <td tal:define="state_info python:view.getStateInfo(item.review_state)"
+                        tal:content="state_info/title" />
+                </tr>
+            </tal:research_item>
         </tbody>
     </table>
 </div>
