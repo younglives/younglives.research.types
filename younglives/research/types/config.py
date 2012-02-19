@@ -19,10 +19,10 @@ RESEARCH_THEME = DisplayList((
 ))
 
 RESEARCH_METHODOLOGY = DisplayList((
-    ('', 'N/A'),
     ('MM', 'Mixed methods'),
     ('QL', 'Qualitative methods'),
     ('QN', 'Quantitative methods'),
+    ('', 'N/A'),
 ))
 
 RESEARCH_COUNTRY = DisplayList((
