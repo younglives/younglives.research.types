@@ -18,28 +18,31 @@
         </thead>
         <tbody>
             <tal:research_item repeat="item items">
-                <tr>
-                    <td tal:content="item/id" />
-                    <td colspan="2" tal:content="item/getAllAuthors" />
-                    <td colspan="4">
-                        <a tal:attributes="href item/getURL;
-                                           title item/getLastComment"
-                           tal:content="item/rawTitle" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td tal:define="themes item/researchTheme"
-                        tal:content="python:', '.join(themes)" />
-                    <td tal:content="item/researchMethodology" />
-                    <td tal:define="countries item/researchCountry"
-                        tal:content="python:', '.join(countries)" />
-                    <td tal:define="outputs item/researchOutput"
-                        tal:content="python:', '.join(outputs)" />
-                    <td tal:content="item/getPaperManagerFullName" />
-                    <td tal:define="state_info python:view.getStateInfo(item.review_state)"
-                        tal:content="state_info/title" />
-                </tr>
+                <tal:research_defines define="oddrow repeat/item/odd;
+                                              odd_class python:oddrow and 'odd' or 'even'">
+                    <tr tal:attributes="class odd_class">
+                        <td tal:content="item/id" />
+                        <td colspan="2" tal:content="item/getAllAuthors" />
+                        <td colspan="4">
+                            <a tal:attributes="href item/getURL;
+                                               title item/getLastComment"
+                               tal:content="item/rawTitle" />
+                        </td>
+                    </tr>
+                    <tr tal:attributes="class odd_class">
+                        <td>&nbsp;</td>
+                        <td tal:define="themes item/researchTheme"
+                            tal:content="python:', '.join(themes)" />
+                        <td tal:content="item/researchMethodology" />
+                        <td tal:define="countries item/researchCountry"
+                            tal:content="python:', '.join(countries)" />
+                        <td tal:define="outputs item/researchOutput"
+                            tal:content="python:', '.join(outputs)" />
+                        <td tal:content="item/getPaperManagerFullName" />
+                        <td tal:define="state_info python:view.getStateInfo(item.review_state)"
+                            tal:content="state_info/title" />
+                    </tr>
+                </tal:research_defines>
             </tal:research_item>
         </tbody>
     </table>

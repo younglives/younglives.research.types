@@ -15,6 +15,15 @@ table.research_table {
     width: 100%;
 }
 
+table.research_table th
+{
+    text-align: left;
+    color: #666;
+    border: 0.1em solid #e7e7e7;
+    border-style: solid solid none;
+    background: #ddd;
+}
+
 table.research_table,
 table.research_table th,
 table.research_table td {
@@ -32,6 +41,11 @@ th.cell_authors {
 
 th.cell_title {
     width: 50%
+}
+
+table.research_table tr.odd td
+{
+    background: #eee;
 }
 
 #content .research-list
