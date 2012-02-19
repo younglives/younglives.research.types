@@ -45,3 +45,8 @@ th.cell_title {
     padding: 0;
     vertical-align: top;
 }
+
+.template-research_view #plone-contentmenu-workflow #advanced
+{
+    visibility: hidden;
+}
