@@ -1,16 +1,15 @@
-<div metal:define-macro="papers_by_state">
-    <div tal:define="state_info python:view.getStateInfo(state)">
-        <h2 tal:content="state_info/title" />
-        <div class="formHelp"
-            tal:content="state_info/description" />
-    </div>
-    <table class="research_table" tal:define="items python:view.getPapersByState(state)">
+<div metal:define-macro="papers_by_year">
+    <table class="research_table" tal:define="items python:view.getPapersByYear()">
         <thead>
             <th>Ref</th>
-            <th>Authors</th>
+            <th>Author(s)</th>
             <th>Title</th>
-            <th>Paper Manager</th>
             <th>Theme</th>
+            <th>Methodology</th>
+            <th>Country of Data</th>
+            <th>Type of Output</th>
+            <th>Paper Manager</th>
+            <th>Paper Status</th>
         </thead>
         <tbody>
             <tr tal:repeat="item items">
@@ -21,9 +20,16 @@
                                        title item/getLastComment"
                        tal:content="item/rawTitle" />
                 </td>
-                <td tal:content="item/getPaperManagerFullName" />
                 <td tal:define="themes item/researchTheme"
                     tal:content="python:', '.join(themes)" />
+                <td tal:content="item/researchMethodology" />
+                <td tal:define="countries item/researchCountry"
+                    tal:content="python:', '.join(countries)" />
+                <td tal:define="outputs item/researchOutput"
+                    tal:content="python:', '.join(outputs)" />
+                <td tal:content="item/getPaperManagerFullName" />
+                <td tal:define="state_info python:view.getStateInfo(item.review_state)"
+                    tal:content="state_info/title" />
             </tr>
         </tbody>
     </table>

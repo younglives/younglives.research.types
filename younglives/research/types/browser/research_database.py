@@ -17,22 +17,16 @@ class ResearchDatabaseView(BrowserView):
         assignable.setBlacklistStatus(CONTEXT_CATEGORY, True)
         return self.template() 
 
-    def getWorkflowStates(self):
-        portal_workflow = getToolByName(self, 'portal_workflow')
-        research_workflow = portal_workflow.getWorkflowById('research_workflow')
-        all_states = research_workflow['states'].objectIds()
-        if '12_published' in all_states:
-            all_states.remove('12_published')
-        all_states.sort()
-        return all_states
-
     def getStateInfo(self, state):
         portal_workflow = getToolByName(self, 'portal_workflow')
         research_workflow = portal_workflow.getWorkflowById('research_workflow')
         state = research_workflow['states'][state]
         return state
 
-    def getPapersByState(self, state):
+    def getPapersByYear(self):
+        """Return the papers in reverse order by ref no"""
         portal_catalog = getToolByName(self, 'research_database_catalog')
-        results = portal_catalog(portal_type='Research', review_state=state)
+        results = portal_catalog(portal_type='Research',
+                                 sort_on='id',
+                                 sort_order='reverse')
         return results
