@@ -250,41 +250,32 @@ class ResearchDatabase(ATFolder):
         if state in ['Proposal under review',]:
             return
         # state 3 Being drafted
-        if fields[11]:
-            comment = 'Proposal due: ' + fields[11] + '.'
-        else:
-            comment = default_comment
-        wf_tool.doActionFor(object, 'accept_draft', comment=default_comment)
+        if fields[12]:
+            comment = 'Proposal approved: ' + fields[12] + '.'
+            wf_tool.doActionFor(object, 'accept_draft', comment=default_comment)
+        if fields[13]:
+            comment = fields[13][1:-1]
+            wf_tool.doActionFor(object, 'note', comment=comment)
         if state in ['Pending 1st draft',]:
             return
         # state 4 Draft received
-        if fields[12]:
-            comment = 'Proposal was received: ' + fields[12] + '.'
-        else:
-            comment = ''
-        if fields[13]:
-            if comment != '':
-                comment += ' '
-            comment += fields[13][1:-1]
-        wf_tool.doActionFor(object, 'note', comment=comment)
-        if fields[15] or fields[16] or fields[17]:
-            comment = self._contractsTransitionComment(fields)
-            wf_tool.doActionFor(object, 'note', comment=comment)
-        if fields[18] or fields[19] or fields[20] or fields[21]:
-            comment = self._dataReleaseTransitionComment(fields)
-            if comment is not None:
-                wf_tool.doActionFor(object, 'accept', comment=comment)
-            else:
-                wf_tool.doActionFor(object, 'accept', comment=default_comment)
-        else:
-            wf_tool.doActionFor(object, 'accept', comment=default_comment)
-        # state 5 Internal review (first review)
+        #if fields[15] or fields[16] or fields[17]:
+            #comment = self._contractsTransitionComment(fields)
+            #if comment is not None:
+                #wf_tool.doActionFor(object, 'note', comment=comment)
+        #if fields[18] or fields[19] or fields[20] or fields[21]:
+            #comment = self._dataReleaseTransitionComment(fields)
+            #if comment is not None:
+                #wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[22]:
             comment = 'First draft due on: ' + fields[22] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[23]:
             comment = 'First draft received on: ' + fields[23] + '.'
-            wf_tool.doActionFor(object, 'note', comment=comment)
+            wf_tool.doActionFor(object, 'accept', comment=comment)
+        else:
+            wf_tool.doActionFor(object, 'accept', comment=default_comment)
+        # state 5 Internal review (first review)
         if fields[24]:
             comment = 'First draft sent to reviewers on: ' + fields[24] + '.'
         else:
@@ -311,12 +302,12 @@ class ResearchDatabase(ATFolder):
         if fields[29]:
             comment = 'Second draft received on: ' + fields[29] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
+        if state in ['Pending 2nd draft',]:
+            return
         if fields[30]:
             comment = 'Second draft sent to reviewers on: ' + fields[30] + '.'
         else:
             comment = default_comment
-        if state in ['Pending 2nd draft',]:
-            return
         wf_tool.doActionFor(object, 'external-review', comment=default_comment)
         if fields[31]:
             comment = 'Second draft received from reviewers on: ' + fields[31] + '.'
@@ -325,29 +316,24 @@ class ResearchDatabase(ATFolder):
             comment = 'Second draft comments/actions: ' + fields[33][1:-1] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
-        if fields[32]:
-            comment = 'Second draft comments sent to author on: ' + fields[26] + '.'
-        else:
-            comment = default_comment
         if state in ['2nd draft under review',]:
             return
+        if fields[32]:
+            comment = 'Second draft comments sent to author on: ' + fields[32] + '.'
+        else:
+            comment = default_comment
         wf_tool.doActionFor(object, 'redraft', comment=default_comment)
-        if fields[34] or fields[35] or fields[36]:
-            if fields[34]:
-                comment = 'Final draft due on: ' + fields[34] + '.'
-                wf_tool.doActionFor(object, 'note', comment=comment)
-            if fields[35]:
-                comment = 'Final draft received on: ' + fields[35] + '.'
-                wf_tool.doActionFor(object, 'note', comment=comment)
-            if fields[36]:
-                comment = 'Final draft comments/actions: ' + fields[36][1:-1] + '.'
-                wf_tool.doActionFor(object, 'note', comment=comment)
-            if state in ['Pending final draft',]:
-                return
-            # state 6 External review (final review)
-            wf_tool.doActionFor(object, 'external-review', comment=default_comment)
-            # state 4 Draft received
-            wf_tool.doActionFor(object, 'redraft', comment=default_comment)
+        if fields[34]:
+            comment = 'Final draft due on: ' + fields[34] + '.'
+            wf_tool.doActionFor(object, 'note', comment=comment)
+        if fields[35]:
+            comment = 'Final draft received on: ' + fields[35] + '.'
+            wf_tool.doActionFor(object, 'external-review', comment=comment)
+        if fields[36]:
+            comment = 'Final draft comments/actions: ' + fields[36][1:-1] + '.'
+            wf_tool.doActionFor(object, 'redraft', comment=comment)
+        if state in ['Pending final draft',]:
+            return
         # state 9 completed
         wf_tool.doActionFor(object, 'complete', comment=default_comment)
         if state in ['Completed',]:
@@ -378,120 +364,6 @@ class ResearchDatabase(ATFolder):
                 last_date = date
         if last_date != marker:
             return last_date
-
-    def _proposalTransitionComment(self, fields, default_comment):
-        """Work out the proposal workflow transition comment"""
-        comment = ''
-        if fields[10]:
-            comment += 'Proposal was due: ' + fields[10] + '.'
-        if fields[11]:
-            if comment:
-                comment += ' '
-            comment += 'Proposal was received: ' + fields[11] + '.'
-        if fields[12]:
-            if comment:
-                comment += ' '
-            comment += 'Proposal was received: ' + fields[12] + '.'
-        if fields[13]:
-            if comment:
-                comment += ' '
-            comment += fields[13][1:-1]
-        if comment:
-            return comment
-        return default_comment
-
-    def _contractsTransitionComment(self, fields):
-        """Create a comment for the contract date fields"""
-        comment = ''
-        if fields[15]:
-            comment += 'Sent to contracts: ' + fields[15] + '.'
-        if fields[16]:
-            if comment:
-                comment += ' '
-            comment += 'Received from contracts: ' + fields[16] + '.'
-        if comment:
-            return comment
-        return
-
-    def _dataReleaseTransitionComment(self, fields):
-        """Work out the proposal workflow transition comment"""
-        comment = ''
-        if fields[18]:
-            comment += 'Data Release Agreement sent on: ' + fields[18] + '.'
-        if fields[19]:
-            if comment:
-                comment += ' '
-            comment += 'Received from data release agreement: ' + fields[19] + '.'
-        if fields[20]:
-            if comment:
-                comment += ' '
-            comment += 'Data released: ' + fields[20] + '.'
-        if comment:
-            return comment
-        return
-
-    def _firstDraftTransitionComment(self, fields):
-        """Create a comment from the first draft date fields"""
-        comment = ''
-        if fields[22]:
-            comment += 'Due for first draft: ' + fields[22] + '.'
-        if fields[23]:
-            if comment:
-                comment += ' '
-            comment += 'First draft received from author: ' + fields[23] + '.'
-        if fields[24]:
-            if comment:
-                comment += ' '
-            comment += 'First draft sent to reviewer: ' + fields[24] + '.'
-        if fields[25]:
-            if comment:
-                comment += ' '
-            comment += 'First draft received from reviewer: ' + fields[25] + '.'
-        if fields[26]:
-            if comment:
-                comment += ' '
-            comment += 'First draft comments sent to author: ' + fields[26] + '.'
-        if comment:
-            return comment
-        return
-
-    def _secondDraftTransitionComment(self, fields):
-        """Create a comment from the second draft date fields"""
-        comment = ''
-        if fields[28]:
-            comment += 'Due for second draft: ' + fields[28] + '.'
-        if fields[29]:
-            if comment:
-                comment += ' '
-            comment += 'Second draft received from author: ' + fields[29] + '.'
-        if fields[30]:
-            if comment:
-                comment += ' '
-            comment += 'Second draft sent to reviewer: ' + fields[30] + '.'
-        if fields[31]:
-            if comment:
-                comment += ' '
-            comment += 'Second draft received from reviewer: ' + fields[31] + '.'
-        if fields[32]:
-            if comment:
-                comment += ' '
-            comment += 'Second draft comments sent to author: ' + fields[32] + '.'
-        if comment:
-            return comment
-        return
-
-    def _finalDraftTransitionComment(self, fields):
-        """Create a comment from the final draft date fields"""
-        comment = ''
-        if fields[34]:
-            comment += 'Final draft due: ' + fields[34] + '.'
-        if fields[35]:
-            if comment:
-                comment += ' '
-            comment += 'Final draft received: ' + fields[35] + '.'
-        if comment:
-            return comment
-        return
 
     def _openFile(self):
         """open the file, and return the file contents"""
