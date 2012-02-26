@@ -1,0 +1,44 @@
+﻿'Pending Proposal'#1_Planned                                                                        OK
+'N/A',#1_planned                                                                                               PLEASE REMOVE (I've deleted all these instances now in the current spreadsheet, which is attached)
+'Withdrawn/On hold'#11_withdrawn                                                           OK
+'Proposal under review', #2_proposed                                                         OK
+'Pending 1st draft',#3_being_drafted                                                           OK
+'Draft under review',#5_internal_review                                                    THIS SHOULD BE '1ST DRAFT UNDER REVIEW',#5_INTERNAL_REVIEW
+'Pending next draft',#3_being_drafted                                                        THIS SHOULD BE 'PENDING 2ND DRAFT',#3_BEING_DRAFTED
+'Pending final draft',#3_being_drafted                                                         OK
+'2nd draft under review', #6_external-review                                            OK
+'Final draft received', #4_draft_received                                                     PLEASE REMOVE (I've deleted all these instances now in the current spreadsheet, which is attached)
+'Final draft under review', #6_external-review                                          THIS SHOULD BE 'FINAL DRAFT UNDER REVIEW', #6_INTERNAL-REVIEW
+'Pending journal submission', #7_pending_journal_submission            OK
+'Pending journal review', #8_pending_journal_review                             OK
+'Completed', #9_completed                                                                            OK
+'In production', #10_in_production                                                               OK
+'Published', #12_published                                                                              OK
+
+
+1-1:  Proposal due [10] - if 'Pending Proposal' exit state 1
+1-2: Proposal accepted [11] -  if 'Proposal under review' exit state 2
+if [12]: 2-3: Proposal approved [12]
+if [13]: add Note [13]
+if 'Pending 1st draft' exit – [this will be wrong if 12 is empty, as it will be in state 2 rather than 3]
+if [22] add Note: First draft due on [22]
+2-4 or 3-4: First draft received on [23] (if no 23, accept anyway with default comment)
+4-5: First draft sent to reviewers on: [24]  (if no 24, accept anyway with default comment)
+if [25] add Note: First draft received from reviewers on: [25]
+if [27] add Note: [27]
+if '1st draft under review' exit state 5
+5-4: First draft comments sent to author on: [26] (if no 26, accept anyway with default comment)
+if [28] add Note: Second draft due on: [28]
+if [29] add Note: Second draft received on: [29]
+if 'Pending 2nd draft' exit – state 4
+4-6: Second draft sent to reviewers on: [30] (if no 30, accept anyway with default comment)
+if [31] add Note: Second draft received from reviewers on: [31]
+if [33] add Note: Second draft comments/actions: [33]
+if '2nd draft under review' exit state 6
+if [32] 6-4: Second draft comments sent to author on: [32] (if no 32, accept anyway with default comment)
+if [34] add Note: Final draft due on: [34]
+if [35] 4-6: Final draft received on: [35]
+if [36] 6-4: Final draft comments/actions: [36]
+if 'Pending final draft' exit state 6	
+
+
