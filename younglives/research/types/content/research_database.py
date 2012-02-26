@@ -321,6 +321,8 @@ class ResearchDatabase(ATFolder):
         if fields[35]:
             comment = 'Final draft received on: ' + fields[35] + '.'
             wf_tool.doActionFor(object, 'external-review', comment=comment)
+        if state in ['Final draft under review',]:
+            return
         if fields[36]:
             comment = 'Final draft comments/actions: ' + fields[36][1:-1] + '.'
             try:
@@ -331,6 +333,9 @@ class ResearchDatabase(ATFolder):
                 wf_tool.doActionFor(object, 'redraft', comment=comment)
         if state in ['Pending final draft',]:
             return
+        if wf_tool.getInfoFor(object, 'review_state') == '06_external-review':
+            # we must be stuck in a draft review
+            wf_tool.doActionFor(object, 'redraft', comment=comment)
         if state in ['Withdrawn/on hold',]:
             wf_tool.doActionFor(object, 'reject', comment=default_comment)
             return

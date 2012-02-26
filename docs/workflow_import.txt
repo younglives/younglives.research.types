@@ -38,6 +38,7 @@ if '2nd draft under review' exit state 6
 if [32] 6-4: Second draft comments sent to author on: [32] (if no 32, accept anyway with default comment)
 if [34] add Note: Final draft due on: [34]
 if [35] 4-6: Final draft received on: [35]
+if state is 'Final draft under review' exit
 if [36] 6-4: Final draft comments/actions: [36]
 if 'Pending final draft' exit state 6
 if 'Withdrawn/on hold' ?-11: exit
