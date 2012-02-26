@@ -239,7 +239,7 @@ class ResearchDatabase(ATFolder):
         if fields[10]:
             comment = 'Proposal due: ' + fields[10] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
-        if state in ['Pending proposal', 'N/A']:
+        if state in ['Pending proposal',]:
             return
         # state 2 Proposed
         if fields[11]:
@@ -258,15 +258,6 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'note', comment=comment)
         if state in ['Pending 1st draft',]:
             return
-        # state 4 Draft received
-        #if fields[15] or fields[16] or fields[17]:
-            #comment = self._contractsTransitionComment(fields)
-            #if comment is not None:
-                #wf_tool.doActionFor(object, 'note', comment=comment)
-        #if fields[18] or fields[19] or fields[20] or fields[21]:
-            #comment = self._dataReleaseTransitionComment(fields)
-            #if comment is not None:
-                #wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[22]:
             comment = 'First draft due on: ' + fields[22] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
