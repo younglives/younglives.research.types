@@ -279,12 +279,12 @@ class ResearchDatabase(ATFolder):
             comment = 'First draft comments/actions: ' + fields[27][1:-1] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
+        if state in ['1st draft under review',]:
+            return
         if fields[26]:
             comment = 'First draft comments sent to author on: ' + fields[26] + '.'
         else:
             comment = default_comment
-        if state in ['1st draft under review',]:
-            return
         wf_tool.doActionFor(object, 'redraft', comment=default_comment)
         # state 6 External review (second review)
         if fields[28]:
