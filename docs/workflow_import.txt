@@ -40,6 +40,7 @@ if [34] add Note: Final draft due on: [34]
 if [35] 4-6: Final draft received on: [35]
 if [36] 6-4: Final draft comments/actions: [36]
 if 'Pending final draft' exit state 6
+if 'Withdrawn/on hold' ?-11: exit
 if state is 'Pending journal submission' or 'Pending journal review' 4-7: default comment
 if state is 'Pending journal review' 7-8: default comment
 if state is 'Pending journal submission' or 'Pending journal review' exit

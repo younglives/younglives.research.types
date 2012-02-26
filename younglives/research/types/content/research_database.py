@@ -331,7 +331,7 @@ class ResearchDatabase(ATFolder):
                 wf_tool.doActionFor(object, 'redraft', comment=comment)
         if state in ['Pending final draft',]:
             return
-        if state in ['Withdrawn',]:
+        if state in ['Withdrawn/on hold',]:
             wf_tool.doActionFor(object, 'reject', comment=default_comment)
             return
         # state 7 and 8
