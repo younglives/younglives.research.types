@@ -325,6 +325,15 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'redraft', comment=comment)
         if state in ['Pending final draft',]:
             return
+        if state in ['Withdrawn',]:
+            wf_tool.doActionFor(object, 'reject', comment=default_comment)
+            return
+        # state 7 and 8
+        if state in ['Pending journal submission', 'Pending journal review']:
+            wf_tool.doActionFor(object, 'journal-submission', comment=default_comment)
+            if state in ['Pending journal review',]:
+                wf_tool.doActionFor(object, 'journal-review', comment=default_comment)
+            return
         # state 9 completed
         wf_tool.doActionFor(object, 'complete', comment=default_comment)
         if state in ['Completed',]:
@@ -337,6 +346,8 @@ class ResearchDatabase(ATFolder):
         wf_tool.doActionFor(object, 'publish', comment=default_comment)
         if state in ['Published',]:
             return
+        # a state has not been handled
+        print state
 
     def _getNextDeadline(self, object, fields):
         """Work out the next deadline from the date fields"""

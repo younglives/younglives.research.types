@@ -39,6 +39,19 @@ if [32] 6-4: Second draft comments sent to author on: [32] (if no 32, accept any
 if [34] add Note: Final draft due on: [34]
 if [35] 4-6: Final draft received on: [35]
 if [36] 6-4: Final draft comments/actions: [36]
-if 'Pending final draft' exit state 6	
+if 'Pending final draft' exit state 6
+if state is 'Pending journal submission' or 'Pending journal review' 4-7: default comment
+if state is 'Pending journal review' 7-8: default comment
+if state is 'Pending journal submission' or 'Pending journal review' exit
+4-9: default comment
+if state is 'Completed' exit
+9-10: default comment
+if state is 'In production' exit
+10-12: default comment
+if state is 'Published' exit
+
+If not exited print state as a state in the spreadsheet has not been handled.
+
+Add note: [9]
 
 
