@@ -10,6 +10,7 @@ from plone.app.folder.folder import ATFolder
 from Products.Archetypes.atapi import DisplayList
 from Products.Archetypes.atapi import registerType
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
 
 from younglives.research.types import permissions
 from younglives.research.types.config import PROJECTNAME
@@ -322,7 +323,12 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'external-review', comment=comment)
         if fields[36]:
             comment = 'Final draft comments/actions: ' + fields[36][1:-1] + '.'
-            wf_tool.doActionFor(object, 'redraft', comment=comment)
+            try:
+                wf_tool.doActionFor(object, 'redraft', comment=comment)
+            except WorkflowException:
+                # field 35 is empty so we're still in state 4
+                wf_tool.doActionFor(object, 'external-review', comment=default_comment)
+                wf_tool.doActionFor(object, 'redraft', comment=comment)
         if state in ['Pending final draft',]:
             return
         if state in ['Withdrawn',]:
