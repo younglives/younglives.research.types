@@ -244,7 +244,7 @@ class ResearchDatabase(ATFolder):
             return
         # state 2 Proposed
         if fields[11]:
-            comment = 'Proposal accepted: ' + fields[11] + '.'
+            comment = 'Proposal received: ' + fields[11] + '.'
         else:
             comment = default_comment
         wf_tool.doActionFor(object, 'propose', comment=comment)
@@ -253,7 +253,7 @@ class ResearchDatabase(ATFolder):
         # state 3 Being drafted
         if fields[12]:
             comment = 'Proposal approved: ' + fields[12] + '.'
-            wf_tool.doActionFor(object, 'accept_draft', comment=default_comment)
+            wf_tool.doActionFor(object, 'accept_draft', comment=comment)
         if fields[13]:
             comment = fields[13][1:-1]
             wf_tool.doActionFor(object, 'note', comment=comment)
