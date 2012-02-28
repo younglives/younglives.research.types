@@ -52,6 +52,25 @@ class Research(ATCTContent):
             return 'Initial record'
         return last_comment
 
+    security.declareProtected(permissions.View, 'sortable_id')
+    def sortable_id(self):
+        """Return the id so it sorts correctly"""
+        id = self.getId()
+        if len(id) != 8:
+            # not a standard id, so ignore
+            return id
+        letter = id[-1:].lower()
+        string_alphabet = string.ascii_lowercase
+        list_alphabet = []
+        list_alphabet.extend(string_alphabet)
+        reverse_list_alphabet = list(list_alphabet)
+        reverse_list_alphabet.reverse()
+        # this is a generator object, so needs to be iterated over
+        for i in (i for i,x in enumerate(list_alphabet) if x == letter):
+            index = i
+        new_letter = reverse_list_alphabet[index]
+        return id[:7] + new_letter
+
 # Edit form helper methods
 
     security.declareProtected(permissions.ModifyPortalContent, 'post_validate')

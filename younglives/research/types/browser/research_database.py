@@ -27,6 +27,6 @@ class ResearchDatabaseView(BrowserView):
         """Return the papers in reverse order by ref no"""
         portal_catalog = getToolByName(self, 'research_database_catalog')
         results = portal_catalog(portal_type='Research',
-                                 sort_on='id',
+                                 sort_on='sortable_id',
                                  sort_order='reverse')
         return results
