@@ -2,13 +2,13 @@
 <portlets
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="younglives.research.types">
-<!-- <assignment name="Research Deadline" category="content_type" key="ResearchDatabase"
-     manager="plone.rightcolumn" type="younglives.portlets.deadline" visible="True">
+ <assignment name="Research Deadline" category="content_type" key="ResearchDatabase"
+     manager="plone.rightcolumn" type="younglives.portlets.deadline" visible="False">
   <property name="interval">10</property>
  </assignment>
  <assignment name="Research Reports" category="content_type" key="ResearchDatabase"
-     manager="plone.rightcolumn" type="younglives.portlets.reports" visible="True">
- </assignment> -->
+     manager="plone.rightcolumn" type="younglives.portlets.reports" visible="False">
+ </assignment>
   <portlet 
     addview="younglives.portlets.deadline"
     title="Research by deadline"
