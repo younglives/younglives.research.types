@@ -218,7 +218,7 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="11_rejected" title="Rejected">
+ <state state_id="11_rejected" title="Withdrawn/On hold">
   <description>Proposal has been rejected or withdrawn and will not proceed</description>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="retrieve"/>
