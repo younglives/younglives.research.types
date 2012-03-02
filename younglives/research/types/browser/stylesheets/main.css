@@ -64,3 +64,8 @@ table.research_table tr.odd td
 {
     visibility: hidden;
 }
+
+.withdrawn
+{
+    color: #666666;
+}

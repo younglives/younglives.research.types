@@ -17,7 +17,8 @@
             <tal:research_item repeat="item items">
                 <tal:research_defines define="oddrow repeat/item/odd;
                                               odd_class python:oddrow and 'odd' or 'even'">
-                    <tr tal:attributes="class odd_class">
+                    <tr tal:define="state_info python:view.getStateInfo(item.review_state)"
+                        tal:attributes="class python:state_info.id == '11_rejected' and 'withdrawn odd_class' or 'odd_class'">
                         <td tal:content="item/id" />
                         <td colspan="2" tal:content="item/getAllAuthors" />
                         <td colspan="4">
@@ -33,8 +34,7 @@
                         <td tal:define="outputs item/researchOutput"
                             tal:content="python:', '.join(outputs)" />
                         <td tal:content="item/getPaperManagerFullName" />
-                        <td tal:define="state_info python:view.getStateInfo(item.review_state)"
-                            tal:content="state_info/title" />
+                        <td tal:content="state_info/title" />
                     </tr>
                 </tal:research_defines>
             </tal:research_item>
