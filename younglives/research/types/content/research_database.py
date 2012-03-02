@@ -212,6 +212,8 @@ class ResearchDatabase(ATFolder):
             # Private comment from final column
             if fields[37]:
                 data = '<p>' + fields[37][1:-1] + '</p>'
+                if object.getPrivateNotes():
+                    data = data + object.getPrivateNotes()
                 object.setPrivateNotes(data)
             object.unmarkCreationFlag()
             object.reindexObject()
@@ -241,6 +243,7 @@ class ResearchDatabase(ATFolder):
             comment = 'Proposal due: ' + fields[10] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         if state in ['Pending proposal',]:
+            self._importOtherComments(object, fields)
             return
         # state 2 Proposed
         if fields[11]:
@@ -249,6 +252,7 @@ class ResearchDatabase(ATFolder):
             comment = default_comment
         wf_tool.doActionFor(object, 'propose', comment=comment)
         if state in ['Proposal under review',]:
+            self._importOtherComments(object, fields)
             return
         # state 3 Being drafted
         if fields[12]:
@@ -258,6 +262,7 @@ class ResearchDatabase(ATFolder):
             comment = fields[13][1:-1]
             wf_tool.doActionFor(object, 'note', comment=comment)
         if state in ['Pending 1st draft',]:
+            self._importOtherComments(object, fields)
             return
         if fields[22]:
             comment = 'First draft due on: ' + fields[22] + '.'
@@ -281,6 +286,7 @@ class ResearchDatabase(ATFolder):
             wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
         if state in ['1st draft under review',]:
+            self._importOtherComments(object, fields)
             return
         if fields[26]:
             comment = 'First draft comments sent to author on: ' + fields[26] + '.'
@@ -295,6 +301,7 @@ class ResearchDatabase(ATFolder):
             comment = 'Second draft received on: ' + fields[29] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         if state in ['Pending 2nd draft',]:
+            self._importOtherComments(object, fields)
             return
         if fields[30]:
             comment = 'Second draft sent to reviewers on: ' + fields[30] + '.'
@@ -305,10 +312,11 @@ class ResearchDatabase(ATFolder):
             comment = 'Second draft received from reviewers on: ' + fields[31] + '.'
             wf_tool.doActionFor(object, 'note', comment=comment)
         if fields[33]:
-            comment = 'Second draft comments/actions: ' + fields[33][1:-1] + '.'
+            comment = fields[33][1:-1]
             wf_tool.doActionFor(object, 'note', comment=comment)
         # state 4 Draft received
         if state in ['2nd draft under review',]:
+            self._importOtherComments(object, fields)
             return
         if fields[32]:
             comment = 'Second draft comments sent to author on: ' + fields[32] + '.'
@@ -322,9 +330,10 @@ class ResearchDatabase(ATFolder):
             comment = 'Final draft received on: ' + fields[35] + '.'
             wf_tool.doActionFor(object, 'external-review', comment=comment)
         if state in ['Final draft under review',]:
+            self._importOtherComments(object, fields)
             return
         if fields[36]:
-            comment = 'Final draft comments/actions: ' + fields[36][1:-1] + '.'
+            comment = fields[36][1:-1]
             try:
                 wf_tool.doActionFor(object, 'redraft', comment=comment)
             except WorkflowException:
@@ -359,6 +368,25 @@ class ResearchDatabase(ATFolder):
             return
         # a state has not been handled
         print state
+
+    def _importOtherComments(self, object, fields):
+        """Import any comment field that has not already been imported into the general comments"""
+        # field 13, 27, 33, 36
+        to_add = ''
+        workflow_tool = getToolByName(self, 'portal_workflow')
+        history = workflow_tool.getInfoFor(object, 'review_history')
+        history_comments = []
+        for history_item in history:
+            history_comments.append(history_item['comments'])
+        if fields[13] and fields[13][1:-1] not in history_comments:
+            to_add += '<p>' + fields[13][1:-1] + '</p>'
+        if fields[27] and fields[27][1:-1] not in history_comments:
+            to_add += '<p>' + fields[27][1:-1] + '</p>'
+        if fields[33] and fields[33][1:-1] not in history_comments:
+            to_add += '<p>' + fields[33][1:-1] + '</p>'
+        if fields[36] and fields[36][1:-1] not in history_comments:
+            to_add += '<p>' + fields[36][1:-1] + '</p>'
+        object.setPrivateNotes(to_add)
 
     def _getNextDeadline(self, object, fields):
         """Work out the next deadline from the date fields"""
