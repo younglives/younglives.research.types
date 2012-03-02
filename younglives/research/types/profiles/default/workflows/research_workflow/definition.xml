@@ -218,7 +218,7 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="11_rejected" title="Withdrawn/On hold">
+ <state state_id="11_withdrawn" title="Withdrawn/On hold">
   <description>Proposal has been rejected or withdrawn and will not proceed</description>
   <exit-transition transition_id="redraft"/>
   <exit-transition transition_id="retrieve"/>
@@ -349,7 +349,7 @@
   <guard>
   </guard>
  </transition>
- <transition transition_id="reject" title="Rejected" new_state="11_rejected" trigger="USER"
+ <transition transition_id="reject" title="Rejected" new_state="11_withdrawn" trigger="USER"
      before_script="" after_script="">
   <description>Paper was rejected at some point in the process</description>
   <action url="%(content_url)s/workflow_transition_form?workflow_action=reject" category="workflow" icon="">Rejected</action>

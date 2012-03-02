@@ -34,7 +34,7 @@ class TestWorkflow(unittest.TestCase):
         assert '08_journal-review' in all_states
         assert '09_completed' in all_states
         assert '10_in-production' in all_states
-        assert '11_rejected' in all_states
+        assert '11_withdrawn' in all_states
         assert '12_published' in all_states
 
     def testTransitionsExist(self):
@@ -157,7 +157,7 @@ class TestWorkflowStates(unittest.TestCase):
         assert len(transitions) == 4
 
     def testRejectedState(self):
-        transitions = self.workflow['research_workflow'].states['11_rejected'].getTransitions()
+        transitions = self.workflow['research_workflow'].states['11_withdrawn'].getTransitions()
         assert 'redraft' in transitions
         assert 'retrieve' in transitions
         assert 'note' in transitions
