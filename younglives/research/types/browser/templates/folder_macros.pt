@@ -5,8 +5,8 @@
         <thead>
             <tr>
                 <th>Ref</th>
-                <th colspan="2">Author(s)</th>
-                <th colspan="4">Title</th>
+                <th>Author(s)</th>
+                <th>Title</th>
                 <th>Theme</th>
                 <th>Methodology</th>
                 <th>Country of Data</th>
@@ -27,8 +27,8 @@
                     <tr tal:define="state_info python:view.getStateInfo(item.review_state)"
                         tal:attributes="class python:state_info.id != '11_withdrawn' and odd_class or 'withdrawn ' + odd_class">
                         <td tal:content="item/id" />
-                        <td colspan="2" tal:content="item/getAllAuthors" />
-                        <td colspan="4">
+                        <td tal:content="item/getAllAuthors" />
+                        <td>
                             <a tal:attributes="href item/getURL;
                                                title item/getLastComment"
                                tal:content="item/rawTitle" />
