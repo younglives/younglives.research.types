@@ -1,3 +1,5 @@
+import datetime
+
 from zope.component import getMultiAdapter, getUtility
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
@@ -30,3 +32,9 @@ class ResearchDatabaseView(BrowserView):
                                  sort_on='sortable_id',
                                  sort_order='reverse')
         return results
+
+    def getNextYear(self):
+        """Return the next year to do the year labels in the template"""
+        now = datetime.datetime.now()
+        next_year = now.year + 1
+        return str(next_year)[2:]
