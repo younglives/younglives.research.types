@@ -78,6 +78,7 @@ class ResearchDatabase(ATFolder):
         m_tool = getToolByName(self, 'portal_membership')
         users = m_tool.searchForMembers()
         vocab = DisplayList()
+        vocab.add('', 'N/A')
         for user in users:
             user_id = user.getId()
             user_name = user.getProperty('fullname')
