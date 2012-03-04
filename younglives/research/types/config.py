@@ -68,10 +68,9 @@ PAPER_MANAGER = DisplayList((
     ('Sofya', 'sofyakrutikova'),
     ('Kirrily', 'kirrilypells'),
     ('Michelle', 'michelle.chew@qeh.ox.ac.uk'),
-    ('Proochista', 'proochista.ariana@dphpc.ox.ac.uk'),
+    ('Proochista', 'proochistaariana'),
     ('Gina', 'ginacrivello'),
 ))
-
 
 """
 helenmurray
