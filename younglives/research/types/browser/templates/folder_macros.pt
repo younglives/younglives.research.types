@@ -40,7 +40,8 @@
                             tal:content="python:', '.join(countries)" />
                         <td tal:define="outputs item/researchOutput"
                             tal:content="python:', '.join(outputs)" />
-                        <td tal:content="item/getPaperManagerFullName" />
+                        <td width="100"
+                            tal:content="item/getPaperManagerFullName" />
                         <td tal:content="state_info/title" />
                     </tr>
                 </tal:research_defines>
