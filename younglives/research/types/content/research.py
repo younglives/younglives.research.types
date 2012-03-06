@@ -190,6 +190,10 @@ class Research(ATCTContent):
             return '; '.join(authors)
         return ', '.join(authors)
 
+    security.declareProtected(permissions.View, 'getShortAuthors')
+    def getShortAuthors(self):
+        return self.getAllAuthors(all=False)
+
     security.declareProtected(permissions.View, 'getPaperMembersVocab')
     def getPaperMembersVocab(self):
         """Return the member of the group, as a display list"""

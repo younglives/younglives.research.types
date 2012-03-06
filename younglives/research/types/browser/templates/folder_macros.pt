@@ -27,7 +27,8 @@
                     <tr tal:define="state_info python:view.getStateInfo(item.review_state)"
                         tal:attributes="class python:state_info.id != '11_withdrawn' and odd_class or 'withdrawn ' + odd_class">
                         <td tal:content="item/id" />
-                        <td tal:content="item/getAllAuthors" />
+                        <td tal:attributes="title item/getAllAuthors"
+                            tal:content="item/getShortAuthors" />
                         <td>
                             <a tal:attributes="href item/getURL;
                                                title item/getLastComment"
