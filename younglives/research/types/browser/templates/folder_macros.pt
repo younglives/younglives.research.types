@@ -1,5 +1,5 @@
 <div metal:define-macro="papers_by_year">
-    <table class="research_table"
+    <table id="research_table"
         tal:define="items python:view.getPapersByYear();
                     global loop_year view/getNextYear">
         <thead>
@@ -9,10 +9,10 @@
                 <th>Title</th>
                 <th>Theme</th>
                 <th>Methodology</th>
-                <th>Country of Data</th>
-                <th>Type of Output</th>
-                <th>Paper Manager</th>
-                <th>Paper Status</th>
+                <th width="50">Country of Data</th>
+                <th width="40">Type of Output</th>
+                <th width="50">Paper Manager</th>
+                <th width="50">Paper Status</th>
             </tr>
         </thead>
         <tbody>
@@ -42,8 +42,7 @@
                             tal:content="python:', '.join(countries)" />
                         <td tal:define="outputs item/researchOutput"
                             tal:content="python:', '.join(outputs)" />
-                        <td width="100"
-                            tal:content="item/getPaperManagerFullName" />
+                        <td tal:content="item/getPaperManagerFullName" />
                         <td tal:content="state_info/title" />
                     </tr>
                 </tal:research_defines>

@@ -24,10 +24,9 @@ table.research_table th
     background: #ddd;
 }
 
-table.research_table,
-table.research_table th,
-table.research_table td {
-    border: 1px solid;
+table#research_table,
+table#research_table th,
+table#research_table td {
     padding: 2px;
 }
 
@@ -43,7 +42,7 @@ th.cell_title {
     width: 50%
 }
 
-table.research_table tr.odd td
+table#research_table tr.odd td
 {
     background: #eee;
 }
