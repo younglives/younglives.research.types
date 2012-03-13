@@ -130,6 +130,8 @@ class ResearchDatabase(ATFolder):
                 continue
             new_id = self.invokeFactory('Research', fields[0][1:-1])
             print new_id
+            # mangle the fields to take into account field 10
+            fields = fields[:10] + fields[11:] + [fields[10]]
             object = self[new_id]
             object.setReferenceNumber(fields[0][1:-1])
             # authors
@@ -194,9 +196,12 @@ class ResearchDatabase(ATFolder):
                 if PAPER_ORIGIN.getValue(item).lower() in origin.lower():
                     origins.append(item)
             object.setResearchOrigin(origins)
-            next_deadline = self._getNextDeadline(object, fields)
-            if next_deadline:
+            if fields[38]:
                 object.setNextDeadline(next_deadline)
+            else:
+                next_deadline = self._getNextDeadline(object, fields)
+                if next_deadline:
+                    object.setNextDeadline(next_deadline)
             # deadlines
             if fields[22]:
                 object.setFirstDraftDeadline(fields[22])
