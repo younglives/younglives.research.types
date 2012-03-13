@@ -63,13 +63,12 @@ PAPER_MANAGER = DisplayList((
     ('Caine', 'cainerolleston'),
     ('Andreas', 'andreasgeorgiadis'),
     ('Ginny', 'virginiamorrow'),
-    ('Martin', 'martinwoodhead'),
-    ('Abhijeet', 'abhijeetsingh'),
     ('Sofya', 'sofyakrutikova'),
     ('Kirrily', 'kirrilypells'),
     ('Michelle', 'michelle.chew@qeh.ox.ac.uk'),
-    ('Proochista', 'proochistaariana'),
     ('Gina', 'ginacrivello'),
+    ('Jo', 'joboyden'),
+    ('Mel', 'melaniefrost'),
 ))
 
 """
