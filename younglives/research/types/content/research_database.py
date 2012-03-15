@@ -197,7 +197,7 @@ class ResearchDatabase(ATFolder):
                     origins.append(item)
             object.setResearchOrigin(origins)
             if fields[38]:
-                object.setNextDeadline(next_deadline)
+                object.setNextDeadline(fields[38])
             else:
                 next_deadline = self._getNextDeadline(object, fields)
                 if next_deadline:
