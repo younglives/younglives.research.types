@@ -102,13 +102,13 @@ class ResearchDatabase(ATFolder):
 
     def shortenTitle(self, title):
         """Shorten a title to appear in a tabular view"""
-        if len(title) > 100:
-            title = title[:100]
+        if len(title) > 75:
+            title = title[:75]
             word_list = title.split(' ')
             # strip off the last word/part word
             word_list = word_list[:-1]
             title = ' '.join(word_list)
-            title = title + ' ...'
+            title = title + '...'
         return title
 
 # spreadsheet upload methods
