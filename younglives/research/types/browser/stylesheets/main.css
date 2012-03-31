@@ -68,3 +68,8 @@ table#research_table tr.odd td
 {
     color: #666666;
 }
+
+.portaltype-research #portal-column-content #content p
+{
+    font-size: 100%;
+}
