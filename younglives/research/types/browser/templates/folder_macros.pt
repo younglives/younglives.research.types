@@ -25,15 +25,15 @@
                                               odd_class python:oddrow and 'odd' or 'even'">
                     <tr tal:define="state_info python:view.getStateInfo(item.review_state)"
                         tal:attributes="class python:state_info.id != '11_withdrawn' and odd_class or 'withdrawn ' + odd_class">
-                        <td tal:attributes="title item/getLastComment"
-                            tal:content="item/id" />
-                        <td tal:attributes="title item/getAllAuthors"
-                            tal:content="item/getShortAuthors" />
                         <td>
                             <a tal:attributes="href item/getURL;
-                                               title item/rawTitle"
-                               tal:content="python:context.shortenTitle(item.rawTitle)" />
+                                               title item/getLastComment"
+                                tal:content="item/id" />
                         </td>
+                        <td tal:attributes="title item/getAllAuthors"
+                            tal:content="item/getShortAuthors" />
+                        <td tal:attributes="title item/rawTitle"
+                            tal:content="python:context.shortenTitle(item.rawTitle)" />
                         <td tal:define="themes item/researchTheme"
                             tal:content="python:', '.join(themes)" />
                         <td tal:define="countries item/researchCountry"
