@@ -112,6 +112,13 @@ class Research(ATCTContent):
         user_name = user['fullname']
         return user_name
 
+    security.declareProtected(permissions.View, 'getPaperManagerFirstName')
+    def getPaperManagerFirstName(self):
+        """Return the first name of the paper manager"""
+        full_name = self.getPaperManagerFullName()
+        names = full_name.split(' ')
+        return names[0]
+
     security.declareProtected(permissions.ModifyPortalContent, 'refStartUpDir')
     def refStartUpDir(self):
         """
