@@ -8,7 +8,6 @@
                 <th>Author(s)</th>
                 <th>Title</th>
                 <th>Theme</th>
-                <th>Methodology</th>
                 <th width="50">Country of Data</th>
                 <th width="40">Type of Output</th>
                 <th width="50">Paper Manager</th>
@@ -37,7 +36,6 @@
                         </td>
                         <td tal:define="themes item/researchTheme"
                             tal:content="python:', '.join(themes)" />
-                        <td tal:content="item/researchMethodology" />
                         <td tal:define="countries item/researchCountry"
                             tal:content="python:', '.join(countries)" />
                         <td tal:define="outputs item/researchOutput"
