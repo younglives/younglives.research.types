@@ -24,9 +24,10 @@
     <div metal:use-macro="context/@@younglives.research.types.research_macros/macros/related-outputs" />
 
     <div tal:replace="structure provider:plone.abovecontentbody" />
-    <tal:data-release condition="context/dataReleaseAgreement">
+    <tal:data-release>
         <h3>Data release information</h3>
         <div metal:use-macro="python:context.widget('dataReleaseAgreement', mode='view')" />
+        <div condition="context/dataReleaseAgreement">N/A</div>
     </tal:data-release>
     <tal:contract-comment condition="context/contractsComment">
         <h3>Contract information</h3>
