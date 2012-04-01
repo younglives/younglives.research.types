@@ -235,7 +235,7 @@ class Research(ATCTContent):
             return IDeadlineTransition
         else:
             # just the comment field
-            return
+            return IDeadlineTransition
 
     security.declareProtected(permissions.ModifyPortalContent, 'processTransitionForm')
     def processTransitionForm(self, data):
