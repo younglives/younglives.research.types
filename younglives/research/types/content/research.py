@@ -201,6 +201,14 @@ class Research(ATCTContent):
     def getShortAuthors(self):
         return self.getAllAuthors(all=False)
 
+    security.declareProtected(permissions.View, 'getShortCountries')
+    def getShortCountries(self):
+        countries = self.researchCountry
+        short_country = []
+        for country in countries:
+            short_country.append(country[0])
+        return short_country
+
     security.declareProtected(permissions.View, 'getPaperMembersVocab')
     def getPaperMembersVocab(self):
         """Return the member of the group, as a display list"""

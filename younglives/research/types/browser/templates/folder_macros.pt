@@ -36,7 +36,8 @@
                             tal:content="python:context.shortenTitle(item.rawTitle)" />
                         <td tal:define="themes item/researchTheme"
                             tal:content="python:', '.join(themes)" />
-                        <td tal:define="countries item/researchCountry"
+                        <td tal:define="object item/getObject;
+                        countries object/getShortCountries"
                             tal:content="python:', '.join(countries)" />
                         <td tal:define="outputs item/researchOutput"
                             tal:content="python:', '.join(outputs)" />
