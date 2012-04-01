@@ -188,7 +188,9 @@ class ResearchDatabase(ATFolder):
                 object.setPaperManager('')
             # paper state
             self._createState(object, fields[8][1:-1], fields)
-            wf_tool.doActionFor(object, 'note', comment=fields[9][1:-1])
+            if fields[9]:
+                final_comment = fields[9][1:-1].replace('""', '"')
+                wf_tool.doActionFor(object, 'note', comment=final_comment)
             # cell 14, Paper origin
             origin = fields[14][1:-1]
             origins = []
@@ -220,6 +222,7 @@ class ResearchDatabase(ATFolder):
                 data = '<p>' + fields[37][1:-1] + '</p>'
                 if object.getPrivateNotes():
                     data = data + object.getPrivateNotes()
+                    data = data.replace('""', '"')
                 object.setPrivateNotes(data)
             object.unmarkCreationFlag()
             object.reindexObject()
@@ -392,6 +395,7 @@ class ResearchDatabase(ATFolder):
             to_add += '<p>' + fields[33][1:-1] + '</p>'
         if fields[36] and fields[36][1:-1] not in history_comments:
             to_add += '<p>' + fields[36][1:-1] + '</p>'
+        to_add = to_add.replace('""', '"')
         object.setPrivateNotes(to_add)
 
     def _getNextDeadline(self, object, fields):
