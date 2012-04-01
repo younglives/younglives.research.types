@@ -81,6 +81,7 @@
     <div>
         <b>Paper manager:</b>
         <span tal:content="context/getPaperManagerFullName" />
+        <span tal:condition="not:context/getPaperManagerFullName">N/A</span>
     </div>
     <div>
         <b>Paper origin:</b>
