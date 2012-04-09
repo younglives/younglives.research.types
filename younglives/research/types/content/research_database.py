@@ -419,7 +419,7 @@ class ResearchDatabase(ATFolder):
     def _openFile(self):
         """open the file, and return the file contents"""
         #data_path = os.path.abspath('var')
-        data_path = os.path.abspath('/usr/home/mdavis/sites/young/var')
+        data_path = os.path.abspath('/usr/home/mdavis/sites/young-live')
         try:
             data_catch = open(data_path + '/spreadsheet.csv', 'rU')
         except IOError:
