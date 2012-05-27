@@ -1,5 +1,5 @@
 <fieldset metal:define-macro="country_facet">
-    <legend>Course Type</legend>
+    <legend>Research Country</legend>
     <div class="field"
          tal:define="research_country request/research_country|python:[]">
          <div tal:define="vocab view/vocabResearchCountry"
@@ -25,3 +25,10 @@
         </div>
     </div>
 </div>
+
+<ul metal:define-macro="results_display">
+    <li tal:repeat="research_item research_items">
+        <a tal:attributes="href research_item/getURL"
+           tal:content="research_item/Title" />
+    </li>
+</ul>

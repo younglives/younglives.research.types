@@ -21,6 +21,19 @@ class ResearchFolderView(BrowserView):
         assignable.setBlacklistStatus(CONTEXT_CATEGORY, True)
         return self.template() 
 
+    def searchResearch(self):
+        """Return a list of research items from the faceted search
+        """
+        request = self.request
+        research_catalog = getToolByName(self, 'research_database_catalog')
+        if hasattr(self.request, 'research_country'):
+            research_country = getattr(self.request, 'research_country')
+        else:
+            research_country = self.vocabResearchCountry()
+        research_items = research_catalog(country=research_country,
+                                          sort_on='id')
+        return research_items
+
     def vocabResearchCountry(self):
         """Get the vocab for the research country
         """
