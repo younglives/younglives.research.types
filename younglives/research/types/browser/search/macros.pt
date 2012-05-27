@@ -8,6 +8,7 @@
                                    checked python:vocab_item in research_methodology"
                    name="research_methodology"
                    type="checkbox"
+                   class="facet_item"
                    />
             <label tal:content="python:vocab.getValue(vocab_item)" />
         </div>
@@ -24,6 +25,7 @@
                                    checked python:vocab_item in research_theme"
                    name="research_theme"
                    type="checkbox"
+                   class="facet_item"
                    />
             <label tal:content="python:vocab.getValue(vocab_item)" />
         </div>
@@ -40,6 +42,7 @@
                                    checked python:vocab_item in research_country"
                    name="research_country"
                    type="checkbox"
+                   class="facet_item"
                    />
             <label tal:content="python:vocab.getValue(vocab_item)" />
         </div>
