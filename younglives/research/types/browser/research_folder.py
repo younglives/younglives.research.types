@@ -54,7 +54,6 @@ class ResearchFolderView(BrowserView):
     def vocabResearchMethodology(self):
         """Get the vocab for the research methodology
         """
-        import pdb;pdb.set_trace()
         return RESEARCH_METHODOLOGY
 
     def vocabResearchCountry(self):
