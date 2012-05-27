@@ -22,6 +22,7 @@
         style="float:right;">
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/submit_button" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/theme_facet" />
+        <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/methodology_facet" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/country_facet" />
     </form>
     <div tal:condition="submitted">

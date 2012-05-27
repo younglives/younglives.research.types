@@ -10,6 +10,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
 from younglives.research.types.config import RESEARCH_COUNTRY,\
+                                             RESEARCH_METHODOLOGY,\
                                              RESEARCH_THEME
 
 class ResearchFolderView(BrowserView):  
@@ -31,19 +32,29 @@ class ResearchFolderView(BrowserView):
             research_theme = getattr(self.request, 'research_theme')
         else:
             research_theme = self.vocabResearchTheme()
+        if hasattr(self.request, 'research_methodology'):
+            research_methodology = getattr(self.request, 'research_methodology')
+        else:
+            research_methodology = self.vocabResearchMethodology()
         if hasattr(self.request, 'research_country'):
             research_country = getattr(self.request, 'research_country')
         else:
             research_country = self.vocabResearchCountry()
         research_items = research_catalog(theme=research_theme,
+                                          methodology=research_methodology,
                                           country=research_country,
                                           sort_on='id')
         return research_items
 
     def vocabResearchTheme(self):
-        """Get the vocab for the research country
+        """Get the vocab for the research thene
         """
         return RESEARCH_THEME
+
+    def vocabResearchMethodology(self):
+        """Get the vocab for the research methodology
+        """
+        return RESEARCH_METHODOLOGY
 
     def vocabResearchCountry(self):
         """Get the vocab for the research country
