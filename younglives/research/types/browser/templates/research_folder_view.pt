@@ -26,6 +26,11 @@
     </form>
     <div tal:condition="submitted">
         <div tal:define="research_items view/searchResearch" tal:omit-tag="">
+            <div>
+                There are
+                <span tal:replace="python:len(research_items)" />
+                items that meet your search criteria.
+            </div>
             <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/results_display" />
         </div>
     </div>
