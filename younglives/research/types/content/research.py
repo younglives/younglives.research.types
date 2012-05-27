@@ -8,6 +8,7 @@ from Products.Archetypes.atapi import registerType
 from Products.ATContentTypes.content.base import ATCTContent
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
 
 from younglives.research.types import _
 from younglives.research.types import permissions
@@ -44,7 +45,11 @@ class Research(ATCTContent):
     def getLastComment(self):
         """Return the last workflow comment"""
         workflow_tool = getToolByName(self, 'portal_workflow')
-        history = workflow_tool.getInfoFor(self, 'review_history')
+        try:
+            history = workflow_tool.getInfoFor(self, 'review_history')
+        except WorkflowException:
+            # During GS import objects get reindexed before workflow is imported
+            return ''
         if not history:
             return 'Initial record'
         last_comment = history[-1]['comments']
