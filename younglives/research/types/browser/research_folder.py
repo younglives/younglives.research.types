@@ -43,7 +43,8 @@ class ResearchFolderView(BrowserView):
         research_items = research_catalog(theme=research_theme,
                                           methodology=research_methodology,
                                           country=research_country,
-                                          sort_on='id')
+                                          sort_on='id',
+                                          sort_order='reverse')
         return research_items
 
     def vocabResearchTheme(self):
