@@ -1,0 +1,27 @@
+<fieldset metal:define-macro="country_facet">
+    <legend>Course Type</legend>
+    <div class="field"
+         tal:define="research_country request/research_country|python:[]">
+         <div tal:define="vocab view/vocabResearchCountry"
+              tal:repeat="vocab_item vocab">
+            <input tal:attributes="value vocab_item;
+                                   checked python:vocab_item in research_country"
+                   name="research_country"
+                   type="checkbox"
+                   />
+            <label tal:content="python:vocab.getValue(vocab_item)" />
+        </div>
+    </div>
+</fieldset>
+
+<div metal:define-macro="submit_button">
+    <div class="field">
+        <div class="formControls">
+            <input class="context"
+                name="form.button.Send"
+                type="submit"
+                value="Search"
+                />
+        </div>
+    </div>
+</div>

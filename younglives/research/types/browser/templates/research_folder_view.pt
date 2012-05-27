@@ -17,6 +17,11 @@
         <span metal:use-macro="python:context.widget('description', mode='view')" />
     </div>
     <div tal:replace="structure provider:plone.abovecontentbody" />
+    <form tal:attributes="action context/absolute_url"
+        style="float:right;">
+        <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/submit_button" />
+        <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/country_facet" />
+    </form>
     <div tal:replace="structure provider:plone.belowcontentbody" />
     </tal:main-macro>
 </div>

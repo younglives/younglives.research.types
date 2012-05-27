@@ -9,6 +9,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
+from younglives.research.types.config import RESEARCH_COUNTRY
+
 class ResearchFolderView(BrowserView):  
 
     template = ViewPageTemplateFile('templates/research_folder_view.pt')
@@ -18,3 +20,8 @@ class ResearchFolderView(BrowserView):
         assignable = getMultiAdapter((self.context, portletManager,), ILocalPortletAssignmentManager)
         assignable.setBlacklistStatus(CONTEXT_CATEGORY, True)
         return self.template() 
+
+    def vocabResearchCountry(self):
+        """Get the vocab for the research country
+        """
+        return RESEARCH_COUNTRY

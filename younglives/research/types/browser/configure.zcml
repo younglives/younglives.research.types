@@ -5,6 +5,7 @@
     i18n_domain="younglives.research.types">
 
   <include package="plone.app.portlets"/>
+  <include package=".search" />
 
   <browser:resourceDirectory
       name="younglives.research.types.stylesheets"

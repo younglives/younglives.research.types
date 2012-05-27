@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="younglives.research.types">
+
+  <browser:page
+      name="younglives.research.types.search.macros"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      template="macros.pt"
+      permission="zope2.View"
+      />
+
+</configure>
