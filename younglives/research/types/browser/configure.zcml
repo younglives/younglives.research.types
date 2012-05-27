@@ -34,6 +34,14 @@
       />
 
   <browser:page
+      name="research_folder_view"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      class=".research_folder.ResearchFolderView"
+      template="templates/research_folder_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="research_view"
       for="younglives.research.types.interfaces.research.IResearch"
       class=".research.ResearchView"

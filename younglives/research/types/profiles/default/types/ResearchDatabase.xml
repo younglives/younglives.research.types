@@ -9,7 +9,7 @@
  <property name="content_meta_type">ResearchDatabase</property>
  <property name="product">younglives.research.types</property>
  <property name="factory">addResearchDatabase</property>
- <property name="immediate_view">research_database_view</property>
+ <property name="immediate_view">research_folder_view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
@@ -17,9 +17,10 @@
   <element value="AuthorFolder"/>
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">research_database_view</property>
+ <property name="default_view">research_folder_view</property>
  <property name="view_methods">
   <element value="research_database_view"/>
+  <element value="research_folder_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>
