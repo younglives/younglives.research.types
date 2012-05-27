@@ -35,7 +35,8 @@ class ResearchFolderView(BrowserView):
             research_country = getattr(self.request, 'research_country')
         else:
             research_country = self.vocabResearchCountry()
-        research_items = research_catalog(country=research_country,
+        research_items = research_catalog(theme=research_theme,
+                                          country=research_country,
                                           sort_on='id')
         return research_items
 
