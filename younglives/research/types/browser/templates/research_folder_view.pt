@@ -20,13 +20,15 @@
     <div tal:replace="structure provider:plone.abovecontentbody" />
     <form tal:attributes="action context/absolute_url"
         name="facetSearch"
+        id="facetSearch"
         style="float:right;">
         <input type="hidden" name="form.submitted" value="1" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/theme_facet" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/methodology_facet" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/country_facet" />
     </form>
-    <div tal:condition="submitted">
+    <div id="results_list"
+        tal:condition="submitted">
         <div tal:define="research_items view/searchResearch" tal:omit-tag="">
             <div>
                 There are
