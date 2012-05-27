@@ -31,15 +31,15 @@ class ResearchFolderView(BrowserView):
         if hasattr(self.request, 'research_theme'):
             research_theme = getattr(self.request, 'research_theme')
         else:
-            research_theme = self.vocabResearchTheme()
+            research_theme = self.vocabResearchTheme().keys()
         if hasattr(self.request, 'research_methodology'):
             research_methodology = getattr(self.request, 'research_methodology')
         else:
-            research_methodology = self.vocabResearchMethodology()
+            research_methodology = self.vocabResearchMethodology().keys()
         if hasattr(self.request, 'research_country'):
             research_country = getattr(self.request, 'research_country')
         else:
-            research_country = self.vocabResearchCountry()
+            research_country = self.vocabResearchCountry().keys()
         research_items = research_catalog(theme=research_theme,
                                           methodology=research_methodology,
                                           country=research_country,
@@ -54,10 +54,10 @@ class ResearchFolderView(BrowserView):
     def vocabResearchMethodology(self):
         """Get the vocab for the research methodology
         """
+        import pdb;pdb.set_trace()
         return RESEARCH_METHODOLOGY
 
     def vocabResearchCountry(self):
         """Get the vocab for the research country
         """
         return RESEARCH_COUNTRY
-
