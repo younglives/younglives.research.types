@@ -49,18 +49,6 @@
     </div>
 </fieldset>
 
-<div metal:define-macro="submit_button">
-    <div class="field">
-        <div class="formControls">
-            <input class="context"
-                name="form.button.Send"
-                type="submit"
-                value="Search"
-                />
-        </div>
-    </div>
-</div>
-
 <ul metal:define-macro="results_display">
     <li tal:repeat="research_item research_items">
         <a tal:attributes="href research_item/getURL"

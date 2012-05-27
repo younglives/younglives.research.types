@@ -6,7 +6,7 @@
 
 <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-        tal:define="submitted request/form.button.Send|nothing">
+        tal:define="submitted request/form.submitted|nothing">
     <div tal:replace="structure provider:plone.abovecontenttitle" />
 
     <h1 class="documentFirstHeading">
@@ -19,8 +19,9 @@
     </div>
     <div tal:replace="structure provider:plone.abovecontentbody" />
     <form tal:attributes="action context/absolute_url"
+        name="facetSearch"
         style="float:right;">
-        <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/submit_button" />
+        <input type="hidden" name="form.submitted" value="1" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/theme_facet" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/methodology_facet" />
         <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/country_facet" />
