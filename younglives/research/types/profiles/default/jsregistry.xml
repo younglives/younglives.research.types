@@ -6,6 +6,10 @@
                 inline="False"/>
     <javascript cacheable="True" compression="safe" cookable="True"
                 enabled="True" expression="python:object.meta_type == 'ResearchDatabase'"
+                id="++resource++younglives.research.types.javascripts/jquery-ui.min.js"
+                inline="False"/>
+    <javascript cacheable="True" compression="safe" cookable="True"
+                enabled="True" expression="python:object.meta_type == 'ResearchDatabase'"
                 id="++resource++younglives.research.types.javascripts/younglives_facets.js"
                 inline="False"/>
 </object>
