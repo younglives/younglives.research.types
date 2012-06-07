@@ -83,7 +83,7 @@ class ResearchFolderView(BrowserView):
         script = script + 'var availableTags = ['
         paper_managers = self.vocabResearchPaperManager()
         for k, v in paper_managers.items():
-            script = script + '{label: ' + v + ', value: ' + k + '},'
+            script = script + '{label: "' + k + '", value: "' + v + '"},'
         # remove the trailing comma
         script = script[:-1]
         script = script + '];'
