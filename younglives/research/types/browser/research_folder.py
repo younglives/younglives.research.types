@@ -9,7 +9,8 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
-from younglives.research.types.config import RESEARCH_COUNTRY,\
+from younglives.research.types.config import PAPER_MANAGER,\
+                                             RESEARCH_COUNTRY,\
                                              RESEARCH_METHODOLOGY,\
                                              RESEARCH_THEME
 
@@ -40,9 +41,14 @@ class ResearchFolderView(BrowserView):
             research_country = getattr(self.request, 'research_country')
         else:
             research_country = self.vocabResearchCountry().keys()
+        if hasattr(self.request, 'paper_manager'):
+            paper_manager = getattr(self.request, 'paper_manager')
+        else:
+            paper_manager = self.vocabResearchPaperManager().keys()
         research_items = research_catalog(theme=research_theme,
                                           methodology=research_methodology,
                                           country=research_country,
+                                          paper_manager=paper_manager,
                                           sort_on='id',
                                           sort_order='reverse')
         return research_items
@@ -61,3 +67,28 @@ class ResearchFolderView(BrowserView):
         """Get the vocab for the research country
         """
         return RESEARCH_COUNTRY
+
+    def vocabResearchPaperManager(self):
+        """Get the vocab for the paper managers
+        """
+        return PAPER_MANAGER
+        research_database_catalog = getToolByName(self, 'research_database_catalog')
+        paper_manager = research_database_catalog.uniqueValuesFor("paper_manager")
+        return paper_manager
+
+    def javascriptPaperManagerWidget(self):
+        """Return the javascript for the paper manager facet search widget
+        """
+        script = 'jq(function() {'
+        script = script + 'var availableTags = ['
+        paper_managers = self.vocabResearchPaperManager()
+        for k, v in paper_managers.items():
+            script = script + '{label: ' + v + ', value: ' + k + '},'
+        # remove the trailing comma
+        script = script[:-1]
+        script = script + '];'
+        script = script + 'jq( "#tags" ).autocomplete({'
+        script = script + 'source: availableTags'
+        script = script + '});'
+        script = script + '});'
+        return script

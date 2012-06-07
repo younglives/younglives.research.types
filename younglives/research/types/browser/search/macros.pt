@@ -49,6 +49,14 @@
     </div>
 </fieldset>
 
+<fieldset metal:define-macro="paper_manager_facet">
+    <legend>Paper Manager</legend>
+<script tal:content="view/javascriptPaperManagerWidget" />
+    <div class="field">
+        <input id="tags" name="paper_manager">
+    </div>
+</fieldset>
+
 <ul metal:define-macro="results_display">
     <li tal:repeat="research_item research_items">
         <a tal:attributes="href research_item/getURL"
