@@ -111,6 +111,12 @@ class ResearchDatabase(ATFolder):
             title = title + '...'
         return title
 
+    def getStateInfo(self, state):
+        portal_workflow = getToolByName(self, 'portal_workflow')
+        research_workflow = portal_workflow.getWorkflowById('research_workflow')
+        state = research_workflow['states'][state]
+        return state
+
 # spreadsheet upload methods
 
     security.declareProtected(permissions.ManagePortal, 'processFile')

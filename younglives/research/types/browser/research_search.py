@@ -37,12 +37,6 @@ class ResearchSearch(BrowserView):
                                            )
         return outputs
 
-    def getStateInfo(self, state):
-        portal_workflow = getToolByName(self, 'portal_workflow')
-        research_workflow = portal_workflow.getWorkflowById('research_workflow')
-        state = research_workflow['states'][state]
-        return state
-
     def vocabResearchTheme(self):
         """Get the vocab for the research theme
         """
