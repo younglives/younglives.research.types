@@ -10,7 +10,6 @@ from Products.CMFCore.utils import getToolByName
 from younglives.research.types.config import RESEARCH_THEME, \
                                              RESEARCH_METHODOLOGY, \
                                              RESEARCH_COUNTRY, \
-                                             RESEARCH_OUTPUT, \
                                              PAPER_ORIGIN
 
 class ResearchSearch(BrowserView):  

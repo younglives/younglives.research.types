@@ -12,6 +12,7 @@ from Products.CMFCore.utils import getToolByName
 from younglives.research.types.config import PAPER_MANAGER,\
                                              RESEARCH_COUNTRY,\
                                              RESEARCH_METHODOLOGY,\
+                                             RESEARCH_OUTPUT, \
                                              RESEARCH_THEME
 
 class ResearchFolderView(BrowserView):  
@@ -72,6 +73,11 @@ class ResearchFolderView(BrowserView):
         """Get the vocab for the paper managers
         """
         return PAPER_MANAGER
+
+    def vocabResearchOutput(self):
+        """Get the vocab for the research output
+        """
+        return RESEARCH_OUTPUT
 
     def javascriptPaperManagerWidget(self):
         """Return the javascript for the paper manager facet search widget
