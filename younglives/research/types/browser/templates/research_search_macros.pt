@@ -1,3 +1,11 @@
+<table metal:define-macro="table_search_results">
+    <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_header" />
+    <tbody>
+        <div tal:repeat="item research_items" tal:omit-tag="">
+            <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_row" />
+        </div>
+    </tbody>
+</table>
 <fieldset metal:define-macro="theme_facet">
     <legend>Research Theme</legend>
     <div class="field"
@@ -13,14 +21,6 @@
         </div>
     </div>
 </fieldset>
-<table metal:define-macro="search_table">
-    <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_header" />
-    <tbody>
-        <div tal:repeat="item research_items" tal:omit-tag="">
-            <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_row" />
-        </div>
-    </tbody>
-</table>
 <div metal:define-macro="submit_button">
     <div class="field">
         <div class="formControls">

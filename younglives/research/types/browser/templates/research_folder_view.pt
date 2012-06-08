@@ -44,7 +44,7 @@
                 <span tal:replace="python:len(research_items)" />
                 items that meet your search criteria.
             </div>
-            <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/search_table" />
+            <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/table_search_results" />
         </div>
     </div>
     <div tal:replace="structure provider:plone.belowcontentbody" />
