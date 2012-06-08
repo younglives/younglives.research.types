@@ -14,7 +14,6 @@
         </div>
     </div>
 </fieldset>
-
 <fieldset metal:define-macro="theme_facet">
     <legend>Research Theme</legend>
     <div class="field"
@@ -31,7 +30,6 @@
         </div>
     </div>
 </fieldset>
-
 <fieldset metal:define-macro="country_facet">
     <legend>Research Country</legend>
     <div class="field"
@@ -56,10 +54,3 @@
         <input id="tags" name="paper_manager">
     </div>
 </fieldset>
-
-<ul metal:define-macro="results_display">
-    <li tal:repeat="research_item research_items">
-        <a tal:attributes="href research_item/getURL"
-           tal:content="research_item/Title" />
-    </li>
-</ul>
