@@ -72,9 +72,6 @@ class ResearchFolderView(BrowserView):
         """Get the vocab for the paper managers
         """
         return PAPER_MANAGER
-        research_database_catalog = getToolByName(self, 'research_database_catalog')
-        paper_manager = research_database_catalog.uniqueValuesFor("paper_manager")
-        return paper_manager
 
     def javascriptPaperManagerWidget(self):
         """Return the javascript for the paper manager facet search widget
