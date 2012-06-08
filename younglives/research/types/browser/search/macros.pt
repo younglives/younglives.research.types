@@ -46,7 +46,21 @@
         </div>
     </div>
 </fieldset>
-
+<fieldset metal:define-macro="output_facet">
+    <legend>Research Output</legend>
+    <div class="field"
+         tal:define="research_output request/research_output|view/vocabResearchOutput">
+         <div tal:define="vocab view/vocabResearchOutput"
+              tal:repeat="vocab_item vocab">
+            <input tal:attributes="value vocab_item;
+                                   checked python:vocab_item in research_output"
+                   name="research_output"
+                   type="checkbox"
+                   />
+            <label tal:content="python:vocab.getValue(vocab_item)" />
+        </div>
+    </div>
+</fieldset>
 <fieldset metal:define-macro="paper_manager_facet">
     <legend>Paper Manager</legend>
 <script tal:content="view/javascriptPaperManagerWidget" />

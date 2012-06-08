@@ -32,6 +32,9 @@
             <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/country_facet" />
         </div>
         <div style="float:left;">
+            <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/output_facet" />
+        </div>
+        <div style="float:left;">
             <metal:position use-macro="context/@@younglives.research.types.search.macros/macros/paper_manager_facet" />
         </div>
     </form>
