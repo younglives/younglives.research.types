@@ -28,7 +28,7 @@
       />
 
   <browser:page
-      name="younglives.research.types.macros"
+      name="younglives.research.types.folder_macros"
       for="younglives.research.types.interfaces.research_database.IResearchDatabase"
       template="templates/folder_macros.pt"
       permission="zope2.View"

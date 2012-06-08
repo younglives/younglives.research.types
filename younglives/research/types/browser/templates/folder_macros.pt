@@ -1,71 +1,57 @@
-<div metal:define-macro="papers_by_year">
-    <table id="research_table"
-        tal:define="items python:view.getPapersByYear();
-                    global loop_year view/getNextYear">
-        <thead>
-            <tr>
-                <th>Ref</th>
-                <th>Author(s)</th>
-                <th>Title</th>
-                <th>Theme</th>
-                <th width="50">Country of Data</th>
-                <th width="40">Type of Output</th>
-                <th width="50">Paper Manager</th>
-                <th width="50">Paper Status</th>
+<table metal:define-macro="papers_by_year"
+    id="research_table"
+    tal:define="items python:view.getPapersByYear();
+                global loop_year view/getNextYear">
+    <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_header" />
+    <tbody>
+        <tal:research_item repeat="item items">
+            <tr tal:condition="python:item.id[:2] != loop_year">
+                <td colspan="9">
+                    <h2 tal:define="global loop_year python:item.id[:2]"
+                        tal:content="string:20$loop_year" />
             </tr>
-        </thead>
-        <tbody>
-            <tal:research_item repeat="item items">
-                <tr tal:condition="python:item.id[:2] != loop_year">
-                    <td colspan="9">
-                        <h2 tal:define="global loop_year python:item.id[:2]"
-                            tal:content="string:20$loop_year" />
-                </tr>
-                <tal:research_defines define="oddrow repeat/item/odd;
-                                              odd_class python:oddrow and 'odd' or 'even'">
-                    <tr tal:define="state_info python:view.getStateInfo(item.review_state)"
-                        tal:attributes="class python:state_info.id != '11_withdrawn' and odd_class or 'withdrawn ' + odd_class">
-                        <td>
-                            <a tal:attributes="href item/getURL;
-                                               title item/getLastComment"
-                                tal:content="item/id" />
-                        </td>
-                        <td tal:attributes="title item/getAllAuthors"
-                            tal:content="item/getShortAuthors" />
-                        <td tal:attributes="title item/rawTitle"
-                            tal:content="python:context.shortenTitle(item.rawTitle)" />
-                        <td tal:define="themes item/researchTheme"
-                            tal:content="python:', '.join(themes)" />
-                        <td tal:define="object item/getObject;
-                        countries object/getShortCountries"
-                            tal:content="python:', '.join(countries)" />
-                        <td tal:define="outputs item/researchOutput"
-                            tal:content="python:', '.join(outputs)" />
-                        <td tal:attributes="title item/getPaperManagerFullName"
-                            tal:content="item/getPaperManagerFirstName" />
-                        <td tal:content="state_info/title" />
-                    </tr>
-                </tal:research_defines>
-            </tal:research_item>
-        </tbody>
-    </table>
-</div>
-<div metal:define-macro="table_view">
-    <table class="research_table">
-        <thead>
-            <th class="cell_ref">Ref</th>
-            <th class="cell_authors">Authors</th>
-            <th class="cell_title">Title</th>
-        </thead>
-        <tbody>
-            <tr tal:repeat="item outputs">
-                <td class="table_ref" tal:content="item/id" />
-                <td class="cell_authors" tal:content="python:item.getObject().getAllAuthors(all=False)" />
-                <td class="cell_title">
-                    <a tal:attributes="href item/getURL"
-                       tal:content="python:context.shortenTitle(item.Title)" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+            <tal:research_defines define="state_info python:view.getStateInfo(item.review_state);
+                                          oddrow repeat/item/odd;
+                                          odd_class python:oddrow and 'odd' or 'even'">
+                <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_row" />
+            </tal:research_defines>
+        </tal:research_item>
+    </tbody>
+</table>
+<thead metal:define-macro="papers_table_header">
+    <tr>
+        <th>Ref</th>
+        <th>Author(s)</th>
+        <th>Title</th>
+        <th>Theme</th>
+        <th width="50">Country of Data</th>
+        <th width="40">Type of Output</th>
+        <th width="50">Paper Manager</th>
+        <th width="50">Paper Status</th>
+    </tr>
+</thead>
+<tr metal:define-macro="papers_table_row"
+    tal:define="oddrow repeat/item/odd;
+                odd_class python:oddrow and 'odd' or 'even'"
+    tal:attributes="class python:item.review_state != '11_withdrawn' and odd_class or 'withdrawn ' + odd_class">
+    <td>
+        <a tal:attributes="href item/getURL;
+                           title item/getLastComment"
+            tal:content="item/id" />
+    </td>
+    <td tal:attributes="title item/getAllAuthors"
+        tal:content="item/getShortAuthors" />
+    <td tal:attributes="title item/rawTitle"
+        tal:content="python:context.shortenTitle(item.rawTitle)" />
+    <td tal:define="themes item/researchTheme"
+        tal:content="python:', '.join(themes)" />
+    <td tal:define="object item/getObject;
+                    countries object/getShortCountries"
+        tal:content="python:', '.join(countries)" />
+    <td tal:define="outputs item/researchOutput"
+        tal:content="python:', '.join(outputs)" />
+    <td tal:attributes="title item/getPaperManagerFullName"
+        tal:content="item/getPaperManagerFirstName" />
+    <td tal:define="state_info python:context.getStateInfo(item.review_state)"
+        tal:content="state_info/title" />
+</tr>

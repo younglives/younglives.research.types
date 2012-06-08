@@ -17,7 +17,7 @@
         <span metal:use-macro="python:context.widget('description', mode='view')" />
     </div>
     <div tal:replace="structure provider:plone.abovecontentbody" />
-    <div metal:use-macro="context/@@younglives.research.types.macros/macros/papers_by_year" />
+    <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_by_year" />
     <div tal:replace="structure provider:plone.belowcontentbody" />
     </tal:main-macro>
 </div>

@@ -13,18 +13,14 @@
         </div>
     </div>
 </fieldset>
-
-<dl metal:define-macro="results_display">
-    <div tal:repeat="output outputs"
-         tal:omit-tag="">
-        <dt>
-            <a tal:attributes="href output/getURL"
-               tal:content="output/Title" />
-        </dt>
-        <dd tal:content="output/Description" />
-    </div>
-</dl>
-
+<table metal:define-macro="search_table">
+    <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_header" />
+    <tbody>
+        <div tal:repeat="item research_items" tal:omit-tag="">
+            <div metal:use-macro="context/@@younglives.research.types.folder_macros/macros/papers_table_row" />
+        </div>
+    </tbody>
+</table>
 <div metal:define-macro="submit_button">
     <div class="field">
         <div class="formControls">

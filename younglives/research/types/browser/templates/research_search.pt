@@ -14,8 +14,7 @@
         <div class="documentDescription">
             <span metal:use-macro="python:context.widget('description', mode='view')" />
         </div>
-        <div metal:use-macro="context/@@younglives.research.types.macros/macros/table_view" />
-        <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/results_display" />
+        <metal:position use-macro="context/@@younglives.research.types.research_search_macros/macros/search_table" />
         <div tal:replace="structure provider:plone.belowcontenttitle" />
     </tal:main-macro>
 </div>
