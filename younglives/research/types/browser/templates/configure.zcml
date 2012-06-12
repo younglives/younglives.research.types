@@ -1,0 +1,60 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="younglives.research.types">
+
+  <browser:page
+      name="research_database_view"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      class="younglives.research.types.browser.research_database.ResearchDatabaseView"
+      template="research_database_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="younglives.research.types.folder_macros"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      template="folder_macros.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="research_folder_view"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      class="younglives.research.types.browser.research_folder.ResearchFolderView"
+      template="research_folder_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="research_view"
+      for="younglives.research.types.interfaces.research.IResearch"
+      class="younglives.research.types.browser.research.ResearchView"
+      template="research_view.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="younglives.research.types.research_macros"
+      for="younglives.research.types.interfaces.research.IResearch"
+      template="research_macros.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="research_search"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      class="younglives.research.types.browser.research_search.ResearchSearch"
+      template="research_search.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="younglives.research.types.research_search_macros"
+      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+      template="research_search_macros.pt"
+      permission="zope2.View"
+      />
+
+</configure>

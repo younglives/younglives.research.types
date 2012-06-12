@@ -6,6 +6,7 @@
 
   <include package="plone.app.portlets"/>
   <include package=".search" />
+  <include package=".templates" />
 
   <browser:resourceDirectory
       name="younglives.research.types.stylesheets"
@@ -17,59 +18,6 @@
       name="younglives.research.types.javascripts"
       directory="javascripts"
       layer=".interfaces.IResearchTypes"
-      />
-
-  <browser:page
-      name="research_database_view"
-      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-      class=".research_database.ResearchDatabaseView"
-      template="templates/research_database_view.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="younglives.research.types.folder_macros"
-      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-      template="templates/folder_macros.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="research_folder_view"
-      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-      class=".research_folder.ResearchFolderView"
-      template="templates/research_folder_view.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="research_view"
-      for="younglives.research.types.interfaces.research.IResearch"
-      class=".research.ResearchView"
-      template="templates/research_view.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="younglives.research.types.research_macros"
-      for="younglives.research.types.interfaces.research.IResearch"
-      template="templates/research_macros.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="research_search"
-      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-      class=".research_search.ResearchSearch"
-      template="templates/research_search.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="younglives.research.types.research_search_macros"
-      for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-      template="templates/research_search_macros.pt"
-      permission="zope2.View"
       />
 
   <browser:page
