@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="younglives.research.types">
+<body>
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+        tal:define="submitted request/form.submitted|nothing">
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+    <h1 class="documentFirstHeading">
+        Deadline Report
+    </h1>
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+    <metal:position use-macro="context/@@younglives.research.types.folder_macros/macros/reserch_folder_tabs" />
+    <div class="documentDescription">
+        <span metal:use-macro="python:context.widget('description', mode='view')" />
+    </div>
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+    <div style="clear:both;">&nbsp;</div>
+    <div tal:replace="structure provider:plone.belowcontentbody" />
+    </tal:main-macro>
+</div>
+</body>
+</html>

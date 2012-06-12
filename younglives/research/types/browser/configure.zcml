@@ -6,6 +6,7 @@
 
   <include package="plone.app.portlets"/>
   <include package=".browse" />
+  <include package=".reports" />
   <include package=".search" />
   <include package=".templates" />
 

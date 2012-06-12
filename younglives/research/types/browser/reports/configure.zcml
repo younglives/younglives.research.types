@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="younglives.research.types">
+
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="deadline_report"
+    class=".deadline_report.DeadlineReport"
+    template="deadline_report.pt"
+    permission="zope2.View"
+    />
+
+</configure>
