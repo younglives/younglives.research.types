@@ -5,6 +5,7 @@
     i18n_domain="younglives.research.types">
 
   <include package="plone.app.portlets"/>
+  <include package=".browse" />
   <include package=".search" />
   <include package=".templates" />
 
@@ -19,38 +20,6 @@
       directory="javascripts"
       layer=".interfaces.IResearchTypes"
       />
-
-  <browser:page
-    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-    name="browse_authors"
-    class=".browse.authors.BrowseAuthorsView"
-    template="browse/browse_authors.pt"
-    permission="zope2.View"
-    />
-
-  <browser:page
-    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-    name="themes"
-    class=".browse.themes.BrowseThemesView"
-    template="browse/themes.pt"
-    permission="zope2.View"
-    />
-
-  <browser:page
-    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-    name="managers"
-    class=".browse.paper_managers.BrowsePaperManagersView"
-    template="browse/paper_managers.pt"
-    permission="zope2.View"
-    />
-
-  <browser:page
-    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
-    name="country"
-    class=".browse.country.BrowseCountry"
-    template="browse/country.pt"
-    permission="zope2.View"
-    />
 
   <plone:portlet
       name="younglives.portlets.deadline"

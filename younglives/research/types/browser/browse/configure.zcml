@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="younglives.research.types">
+
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="browse_authors"
+    class=".authors.BrowseAuthorsView"
+    template="browse_authors.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="themes"
+    class=".themes.BrowseThemesView"
+    template="themes.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="managers"
+    class=".paper_managers.BrowsePaperManagersView"
+    template="paper_managers.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    for="younglives.research.types.interfaces.research_database.IResearchDatabase"
+    name="country"
+    class=".country.BrowseCountry"
+    template="country.pt"
+    permission="zope2.View"
+    />
+
+</configure>
