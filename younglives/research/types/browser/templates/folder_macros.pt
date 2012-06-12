@@ -1,3 +1,16 @@
+<ul metal:define-macro="reserch_folder_tabs"
+    class="formTabs">
+    <li class="formTab firstFormTab">
+        <a tal:attributes="href string:${context/absolute_url}/research_database_view">
+            List View
+        </a>
+    </li>
+    <li class="formTab lastFormTab">
+        <a tal:attributes="href string:${context/absolute_url}">
+            Monthly Report
+        </a>
+    </li>
+</ul>
 <table metal:define-macro="papers_by_year"
     id="research_table"
     tal:define="items python:view.getPapersByYear();

@@ -14,6 +14,7 @@
     </h1>
 
     <div tal:replace="structure provider:plone.belowcontenttitle" />
+    <metal:position use-macro="context/@@younglives.research.types.folder_macros/macros/reserch_folder_tabs" />
     <div class="documentDescription">
         <span metal:use-macro="python:context.widget('description', mode='view')" />
     </div>
