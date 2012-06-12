@@ -1,8 +1,16 @@
 <ul metal:define-macro="reserch_folder_tabs"
-    class="formTabs">
-    <li class="formTab firstFormTab">
+    class="formTabs"
+    tal:define="templateId template/getId">
+    <li class="formTab firstFormTab"
+        tal:condition="python:templateId != 'research_database_view.pt'">
         <a tal:attributes="href string:${context/absolute_url}/research_database_view">
             List View
+        </a>
+    </li>
+    <li class="formTab firstFormTab"
+        tal:condition="python:templateId != 'research_folder_view.pt'">
+        <a tal:attributes="href string:${context/absolute_url}/research_folder_view">
+            Search View
         </a>
     </li>
     <li class="formTab lastFormTab">
